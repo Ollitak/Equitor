@@ -32,7 +32,10 @@ analysisRouter.get("/", (req, res) => {
 
 analysisRouter.get("/:id", (req, res) => {
     const id = req.params.id;
-    res.json(analyses.find(analyse => analyse.id === id));
+    const analysis =  analyses.find(analyse => analyse.id === id);
+
+    if(analysis) res.json(analysis);
+    else res.status(404).send("incorrect id");
 });
 
 analysisRouter.post("/", (req, res) => {
@@ -43,8 +46,12 @@ analysisRouter.post("/", (req, res) => {
 
 analysisRouter.delete("/:id", (req, res) => {
     const id = req.params.id;
-    analyses = analyses.filter(analyse => analyse.id !== id);
-    res.status(201).send("deleted succesfully");
+    if(analyses.find(analysis => id === analysis.id)) {
+        analyses = analyses.filter(analyse => analyse.id !== id);
+        res.status(204).send("deleted succesfully");
+    } else {
+        res.status(404).send("incorrect id");
+    }
 });
 
 
