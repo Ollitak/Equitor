@@ -41,4 +41,12 @@ analysisRouter.post("/", (req, res) => {
     res.json(analysis);
 });
 
+analysisRouter.delete("/:id", (req, res) => {
+    const id = req.params.id;
+    analyses = analyses.filter(analyse => analyse.id !== id);
+    res.status(201).send("deleted succesfully");
+});
+
+
+
 module.exports = analysisRouter;
