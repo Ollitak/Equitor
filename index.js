@@ -1,4 +1,6 @@
 const { response } = require("express");
+const { v4: uuidv4 } = require("uuid");
+
 const express = require("express");
 
 const app = express();
@@ -42,7 +44,7 @@ app.get("/:id", (req, res) => {
 });
 
 app.post("/", (req, res) => {
-    const analysis = req.body;
+    const analysis = { ...req.body, id: uuidv4() };
     analyses = analyses.concat(analysis);
     res.json(analysis);
 });
