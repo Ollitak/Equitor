@@ -25,6 +25,6 @@ module.exports = {
             "error",
             "always"
         ],
-        'eqeqeq': 'error'
+        "eqeqeq": "error"
     }
 };
