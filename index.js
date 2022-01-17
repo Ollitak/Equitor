@@ -1,13 +1,14 @@
-const express = require('express');
+const express = require("express");
 
 const app = express();
-const PORT = 3001 | process.env.PORT
+// eslint-disable-next-line no-undef
+const PORT = 3001 | process.env.PORT;
 
 
 app.get("/", (req, res) => {
-  res.send("test");
+    res.send("test");
 });
 
 app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+    console.log(`Server running on port ${PORT}`);
 });
