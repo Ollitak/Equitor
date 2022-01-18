@@ -13,6 +13,8 @@ mongoose.connect(config.MONGODB_URI);
 
 
 app.use(express.json());
+app.use(middleware.tokenExtractor);
+
 app.use("/login", loginRouter);
 app.use("/analyses", analysesRouter);
 app.use("/users", usersRouter);
