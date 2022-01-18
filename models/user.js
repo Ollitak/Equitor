@@ -13,6 +13,9 @@ const userSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    imageURL: {
+        type: String
+    },
     analyses: [
         {
             type: mongoose.Schema.Types.ObjectId,

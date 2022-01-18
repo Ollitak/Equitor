@@ -5,12 +5,28 @@ const analysisSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    content: {
+    stockName: {
         type: String,
         required: true
     },
-    imageURL: {
+    stockLogoUrl: {
         type: String
+    },
+    analysisDescription: {
+        type: String,
+        required: true
+    },
+    toolsUsed: [
+        {
+            type: String,
+        }
+    ],
+    stockPriceEstimate: {
+        type: Number
+    },
+    analysisPrice: {
+        type: Number,
+        required: true,
     },
     user: {
         type: mongoose.Schema.Types.ObjectId,

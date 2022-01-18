@@ -31,10 +31,9 @@ analysisRouter.post("/", async (req, res, next) => {
 
         const user = await User.findById(decodedToken.id);
 
+        console.log(body);
         const analysis = new Analysis({
-            title: body.title,
-            content: body.content,
-            imageURL: body.imageURL,
+            ...body,
             user: user._id 
         });
         

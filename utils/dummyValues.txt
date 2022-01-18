@@ -1,0 +1,30 @@
+{
+  "title": "Comprehensive analysis on Nokia Oyj",
+  "stockName": "NOK",
+  "analysisDescription": "Extensive techinal analysis of Nokia with various valuation techiques used, such as DCF and multiples. Also includes comprehensive qualitative analysis of Nokia's current market position, competitors and future avenues",
+  "toolsUsed": ["DCF", "market multiples", "qualitative reasoning"],
+  "stockPriceEstimate": 16,
+  "analysisPrice": 150
+}
+
+{
+  "title": "Insightful multiples analysis on Valmet Oyj",
+  "stockName": "VALMT",
+  "stockLogoUrl": "https://www.valmet.com/globalassets/media/media-gallery/logos/valmet_logo_rgb.jpg",
+  "analysisDescription": "Comparable analysis on Valmet Oyj based on both precedent transactions and listed peers",
+  "toolsUsed": ["market multiples", "qualitative reasoning"],
+  "stockPriceEstimate": 25,
+  "analysisPrice": 20
+}
+
+
+{
+  "title": "Extensive discounted cash flow analysis on Wärtsilä",
+  "stockName": "WRT1V",
+  "stockLogoUrl": "https://www.wartsila.com/images/default-source/brand-portal/logo/w-logo-1.png?sfvrsn=9b828545_6",
+  "analysisDescription": "Based on several years of following the company's disclosings and general industry knowledge, I have constructed a extensive DCF analysis on the company",
+  "toolsUsed": ["DCF"],
+  "stockPriceEstimate": 12,
+  "analysisPrice": 40
+}
+
