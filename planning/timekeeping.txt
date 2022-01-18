@@ -1,0 +1,5 @@
+18.1: (9h) projektin aloitus
+  * suunnittelua (kts. initial project structure planning-kansiosta)
+  * backendin ensimmäisen version työstäminen, alustavien endpointtien
+    luominen, mongoose schemat ja databaseyhteyksien avaaminen jne... 
+19.1: 
