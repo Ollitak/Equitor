@@ -12,7 +12,13 @@ const userSchema = mongoose.Schema({
     passwordHash: {
         type: String,
         required: true
-    }
+    },
+    analyses: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Analysis"
+        }
+    ]
 });
 
 userSchema.set("toJSON", {
