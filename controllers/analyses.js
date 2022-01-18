@@ -22,6 +22,7 @@ analysisRouter.post("/", async (req, res, next) => {
 
     const user = await User.findById(body.userID);
 
+
     const analysis = new Analysis({
         title: body.title,
         content: body.content,

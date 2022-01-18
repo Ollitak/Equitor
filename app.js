@@ -1,6 +1,7 @@
 const express = require("express");
 const analysesRouter = require("./controllers/analyses");
 const usersRouter = require("./controllers/users");
+const loginRouter = require("./controllers/login");
 const middleware = require("./utils/middleware"); 
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
@@ -12,6 +13,7 @@ mongoose.connect(config.MONGODB_URI);
 
 
 app.use(express.json());
+app.use("/login", loginRouter);
 app.use("/analyses", analysesRouter);
 app.use("/users", usersRouter);
 
