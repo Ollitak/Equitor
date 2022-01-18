@@ -1,5 +1,6 @@
 import React from "react";
 import AnalysesList from "./AnalysesList";
+import TopSection from "./TopSection";
 
 const FrontPage = ({ analyses }) => {
 
@@ -9,10 +10,8 @@ const FrontPage = ({ analyses }) => {
 
   return(
     <div>
-      <div>
-        YLÄPALKKI
-      </div>
-      <AnalysesList analyses={analyses}/>
+      <TopSection />
+      <AnalysesList analyses={analyses} />
     </div>
 
   );
