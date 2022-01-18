@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import analysesService from "./services/analyses";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FrontPage from "./components/FrontPage";
+import "./App.css";
 
 const App = () => {
   const [analyses, setAnalyses] = useState(null);
