@@ -2,12 +2,12 @@ import React from "react";
 import "./AnalyseItem.css";
 import analysesService from "../services/analyses";
 
-const AnalyseItem = ({ analysis }) => {
+const AnalyseItem = ({ analysis, analyses, setAnalyses }) => {
 
-  const onClick = async (id) => {
+  const removeItem = async (id) => {
     try {
-      const response = await analysesService.deleteAnalyse(id);
-      console.log(response);
+      await analysesService.deleteAnalyse(id);
+      setAnalyses(analyses.filter(analysis => analysis.id !== id));
     } catch(e) {
       console.log(e.response.data);
     }
@@ -40,7 +40,7 @@ const AnalyseItem = ({ analysis }) => {
             <p className={"info-header"}>User rating</p>
             <p className={"info-value"}>65</p>
           </div>
-          <button onClick={() => onClick(analysis.id)}> delete </button>
+          <button onClick={() => removeItem(analysis.id)}> delete </button>
         </div>
       </div>
     </div>

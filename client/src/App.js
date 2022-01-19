@@ -41,6 +41,7 @@ const App = () => {
         <Route path="/">
           <FrontPage
             analyses={analyses}
+            setAnalyses={setAnalyses}
             user={user}
             setUser={setUser}
           />
