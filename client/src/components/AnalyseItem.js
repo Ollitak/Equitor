@@ -2,7 +2,7 @@ import React from "react";
 import "./AnalyseItem.css";
 import analysesService from "../services/analyses";
 
-const AnalyseItem = ({ analysis, analyses, setAnalyses }) => {
+const AnalyseItem = ({ analysis, analyses, setAnalyses, myPage }) => {
 
   const removeItem = async (id) => {
     try {
@@ -40,7 +40,12 @@ const AnalyseItem = ({ analysis, analyses, setAnalyses }) => {
             <p className={"info-header"}>User rating</p>
             <p className={"info-value"}>65</p>
           </div>
-          <button onClick={() => removeItem(analysis.id)}> delete </button>
+          {/* Only allow delete if user is on myPage */}
+          {
+            myPage
+              ? <button onClick={() => removeItem(analysis.id)}> delete </button>
+              : null
+          }
         </div>
       </div>
     </div>

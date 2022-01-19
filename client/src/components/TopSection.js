@@ -18,6 +18,9 @@ const OnLoggedIn = ({ setUser }) => {
       <Link to="/create-analysis">
         <button className={"button"}> Create analysis </button>
       </Link>
+      <Link to="/my-analyses">
+        <button className={"button"}> My analyses </button>
+      </Link>
       <button className={"button"} onClick={logOut}> Log out </button>
     </div>
   );

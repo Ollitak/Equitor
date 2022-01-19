@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FrontPage from "./components/FrontPage";
 import LoginForm from "./components/LoginForm";
 import AnalysisForm from "./components/AnalysisForm";
+import MyAnalyses from "./components/MyAnalyses";
+
 import "./App.css";
 
 const App = () => {
@@ -20,7 +22,7 @@ const App = () => {
     if(loggedUserJson) {
       const loggedUser = JSON.parse(loggedUserJson);
       setUser(loggedUser);
-      analysesService.setToken(loggedUser);
+      analysesService.setToken(loggedUser.token);
     }
   }, []);
 
@@ -36,6 +38,13 @@ const App = () => {
         <Route path="/login">
           <LoginForm
             setUser={setUser}
+          />
+        </Route>
+        <Route path="/my-analyses">
+          <MyAnalyses
+            user={user}
+            analyses={analyses}
+            setAnalyses={setAnalyses}
           />
         </Route>
         <Route path="/">
