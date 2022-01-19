@@ -2,4 +2,6 @@
   * suunnittelua (kts. initial project structure planning-kansiosta)
   * backendin ensimmäisen version työstäminen, alustavien endpointtien
     luominen, mongoose schemat ja databaseyhteyksien avaaminen jne... 
-19.1: 
+19.1: (10h) alustavan backend-version viimeistely ja frontendin aloitus
+  * user-scheman luominen databaseen ja schemojen väliset yhteydet
+  * react front-endin aloitus, alustava versio aloitussivusta visualisointeineen 
