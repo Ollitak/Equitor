@@ -8,7 +8,7 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting 
 const OnLoggedIn = () => {
   return(
     <div className={"button-container"}>
-      <Link to="/login">
+      <Link to="/create-analysis">
         <button className={"button"}> Create analysis </button>
       </Link>
     </div>
