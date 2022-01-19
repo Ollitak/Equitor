@@ -14,8 +14,6 @@ const App = () => {
     setAnalyses(result);
   }, []);
 
-  console.log(user);
-
   return (
     <Router>
       <Switch>
@@ -26,7 +24,9 @@ const App = () => {
         </Route>
         <Route path="/">
           <FrontPage
-            analyses={analyses} />
+            analyses={analyses}
+            user={user}
+          />
         </Route>
       </Switch>
     </Router>

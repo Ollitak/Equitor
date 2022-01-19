@@ -3,6 +3,7 @@ import FormikInputField from "./FormikInputField";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import loginService from "../services/login";
+import analysesService from "../services/analyses";
 
 const initialValues = {
   username: "StockWizard",
@@ -17,6 +18,7 @@ const LoginForm = ({ setUser }) => {
     try {
       const response = await loginService.login(values);
       setUser(response);
+      analysesService.setToken(response.token);
       history.push("/");
     } catch(e) {
       console.log(e.response.data);

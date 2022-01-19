@@ -2,7 +2,7 @@ import React from "react";
 import AnalysesList from "./AnalysesList";
 import TopSection from "./TopSection";
 
-const FrontPage = ({ analyses }) => {
+const FrontPage = ({ analyses, user }) => {
 
   console.log(analyses);
   if(!analyses) return <></>;
@@ -10,7 +10,7 @@ const FrontPage = ({ analyses }) => {
 
   return(
     <div>
-      <TopSection />
+      <TopSection user={user} />
       <AnalysesList analyses={analyses} />
     </div>
 
