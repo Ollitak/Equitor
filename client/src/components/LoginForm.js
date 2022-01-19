@@ -18,6 +18,7 @@ const LoginForm = ({ setUser }) => {
     try {
       const response = await loginService.login(values);
       setUser(response);
+      window.localStorage.setItem("loggedUser", JSON.stringify(response));
       analysesService.setToken(response.token);
       history.push("/");
     } catch(e) {

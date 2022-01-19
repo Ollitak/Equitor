@@ -15,6 +15,15 @@ const App = () => {
     setAnalyses(result);
   }, []);
 
+  useEffect(() => {
+    const loggedUserJson = window.localStorage.getItem("loggedUser");
+    if(loggedUserJson) {
+      const loggedUser = JSON.parse(loggedUserJson);
+      setUser(loggedUser);
+      analysesService.setToken(loggedUser);
+    }
+  }, []);
+
   return (
     <Router>
       <Switch>
