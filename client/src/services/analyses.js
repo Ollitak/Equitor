@@ -13,7 +13,14 @@ const getAnalyses = async () => {
   return analyses.data;
 };
 
+const create = async (newAnalysis) => {
+  const config = { headers: { Authorization: token } };
+  const response = await axios.post(baseUrl, newAnalysis, config);
+  return response.data;
+};
+
 export default {
   getAnalyses,
+  create,
   setToken
 };

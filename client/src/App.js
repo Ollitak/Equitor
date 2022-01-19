@@ -20,6 +20,8 @@ const App = () => {
       <Switch>
         <Route path="/create-analysis">
           <AnalysisForm
+            analyses={analyses}
+            setAnalyses={setAnalyses}
           />
         </Route>
         <Route path="/login">

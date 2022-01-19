@@ -4,9 +4,7 @@ import TopSection from "./TopSection";
 
 const FrontPage = ({ analyses, user }) => {
 
-  console.log(analyses);
   if(!analyses) return <></>;
-
 
   return(
     <div>
