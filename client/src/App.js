@@ -42,6 +42,7 @@ const App = () => {
           <FrontPage
             analyses={analyses}
             user={user}
+            setUser={setUser}
           />
         </Route>
       </Switch>
