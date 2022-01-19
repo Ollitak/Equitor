@@ -19,8 +19,15 @@ const create = async (newAnalysis) => {
   return response.data;
 };
 
+const deleteAnalyse = async (id) => {
+  const config = { headers: { Authorization: token } };
+  const response = await axios.delete(`${baseUrl}/${id}`, config);
+  return response.data;
+};
+
 export default {
   getAnalyses,
   create,
+  deleteAnalyse,
   setToken
 };
