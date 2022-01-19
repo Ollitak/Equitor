@@ -1,20 +1,31 @@
 import React from "react";
 import FormikInputField from "./FormikInputField";
 import { useFormik } from "formik";
+import { useHistory } from "react-router-dom";
+import loginService from "../services/login";
 
-
-const submit = values => {
-  console.log(values);
+const initialValues = {
+  username: "StockWizard",
+  password: "password"
 };
 
 
-const LoginForm = () => {
+const LoginForm = ({ setUser }) => {
+  const history = useHistory();
+
+  const onSubmit = async (values) => {
+    try {
+      const response = await loginService.login(values);
+      setUser(response);
+      history.push("/");
+    } catch(e) {
+      console.log(e.response.data);
+    }
+  };
+
   const formik = useFormik({
-    initialValues: {
-      username:"",
-      password:""
-    },
-    onSubmit: submit
+    initialValues: initialValues,
+    onSubmit: onSubmit
   });
 
 
@@ -28,7 +39,7 @@ const LoginForm = () => {
           value={formik.values.username}
         />
         <FormikInputField
-          name={"passsword"}
+          name={"password"}
           type={"text"}
           formik={formik}
           value={formik.values.password}

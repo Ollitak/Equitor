@@ -7,20 +7,26 @@ import "./App.css";
 
 const App = () => {
   const [analyses, setAnalyses] = useState(null);
+  const [user, setUser] = useState(null);
 
   useEffect(async() => {
     const result = await analysesService.getAnalyses();
     setAnalyses(result);
   }, []);
 
+  console.log(user);
+
   return (
     <Router>
       <Switch>
         <Route path="/login">
-          <LoginForm />
+          <LoginForm
+            setUser={setUser}
+          />
         </Route>
         <Route path="/">
-          <FrontPage analyses={analyses} />
+          <FrontPage
+            analyses={analyses} />
         </Route>
       </Switch>
     </Router>
