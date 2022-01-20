@@ -33,8 +33,8 @@ const AnalyseItem = ({ analysis, myPage }) => {
               <p className={"info-value"}>{analysis.stockName}</p>
             </div>
             <div className={"info-text"}>
-              <p className={"info-header"}>Analysis price</p>
-              <p className={"info-value"}>{analysis.analysisPrice}€</p>
+              <p className={"info-header"}>Price forecast</p>
+              <p className={"info-value"}>{analysis.stockPriceEstimate}€</p>
             </div>
             <div className={"info-text"}>
               <p className={"info-header"}>User reviews</p>

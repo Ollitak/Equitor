@@ -11,7 +11,6 @@ const initialValues = {
   stockLogoUrl: "",
   analysisDescription: "",
   stockPriceEstimate: 99,
-  analysisPrice: 99
 };
 
 const AnalysisForm = () => {
@@ -61,12 +60,6 @@ const AnalysisForm = () => {
           type={"number"}
           formik={formik}
           value={formik.values.stockPriceEstimate}
-        />
-        <FormikInputField
-          name={"analysisPrice"}
-          type={"number"}
-          formik={formik}
-          value={formik.values.analysisPrice}
         />
         <button type="submit">Submit</button>
       </form>
