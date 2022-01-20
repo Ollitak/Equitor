@@ -1,7 +1,16 @@
-18.1: (9h) projektin aloitus
+17.1: (9h) projektin aloitus
   * suunnittelua (kts. initial project structure planning-kansiosta)
   * backendin ensimmäisen version työstäminen, alustavien endpointtien
     luominen, mongoose schemat ja databaseyhteyksien avaaminen jne... 
-19.1: (10h) alustavan backend-version viimeistely ja frontendin aloitus
+    
+18.1: (10h) alustavan backend-version viimeistely ja frontendin aloitus
   * user-scheman luominen databaseen ja schemojen väliset yhteydet
   * react front-endin aloitus, alustava versio aloitussivusta visualisointeineen 
+
+19.1 (9h): front-endin jatkaminen
+  * alustavien toiminnallisuuksien lisääminen: sisäänkirjautumissivu, analyysin luontisivu,
+    uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
+  * token-perusteisen kirjautumisen implementointi
+  
+20.1: (Xh) reduxin implementointi ja kommentointimahdollisuuden lisääminen
+
