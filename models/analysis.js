@@ -24,10 +24,16 @@ const analysisSchema = mongoose.Schema({
     stockPriceEstimate: {
         type: Number
     },
-    analysisPrice: {
-        type: Number,
-        required: true,
-    },
+    comments: [
+        {
+            content: String,
+            rating: Number,
+            user: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User"
+            }
+        }
+    ],
     user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User"

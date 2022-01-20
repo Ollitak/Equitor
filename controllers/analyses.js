@@ -50,6 +50,35 @@ analysisRouter.post("/", async (req, res, next) => {
     }
 });
 
+
+analysisRouter.post("/:id/comment", async (req, res, next) => {
+    const body = req.body;
+    const id = req.params.id;
+
+    try {
+        const decodedToken = jwt.verify(req.token, config.SECRET);
+
+        if(!decodedToken.id) {
+            return res.status(401).json({ error: "missing or invalid token"});
+        }
+
+        const user = await User.findById(decodedToken.id);
+        const analysis = await Analysis.findById(id);
+
+        analysis.comments = analysis.comments.concat({
+            ...body,
+            user: user._id
+        });
+    
+        const response = await analysis.save();
+
+        res.status(201).json(response);
+    } catch(e) {
+        next(e);
+    }
+});
+
+
 analysisRouter.delete("/:id", async (req, res, next) => {
     const id = req.params.id;
     try {
