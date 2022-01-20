@@ -5,6 +5,7 @@ import FrontPage from "./components/FrontPage";
 import LoginForm from "./components/LoginForm";
 import AnalysisForm from "./components/AnalysisForm";
 import MyAnalyses from "./components/MyAnalyses";
+import SingleAnalysisView from "./components/SingleAnalysisView";
 
 import "./App.css";
 
@@ -45,6 +46,11 @@ const App = () => {
             user={user}
             analyses={analyses}
             setAnalyses={setAnalyses}
+          />
+        </Route>
+        <Route path="/analysis/:id">
+          <SingleAnalysisView
+            analyses={analyses}
           />
         </Route>
         <Route path="/">

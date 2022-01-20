@@ -1,8 +1,10 @@
 import React from "react";
 import "./AnalyseItem.css";
 import analysesService from "../services/analyses";
+import { useHistory } from "react-router-dom";
 
 const AnalyseItem = ({ analysis, analyses, setAnalyses, myPage }) => {
+  const history = useHistory();
 
   const removeItem = async (id) => {
     try {
@@ -13,8 +15,12 @@ const AnalyseItem = ({ analysis, analyses, setAnalyses, myPage }) => {
     }
   };
 
+  const moveToSingleView = () => {
+    history.push(`analysis/${analysis.id}`);
+  };
+
   return(
-    <div className={"container"}>
+    <div className={"container"} onClick={moveToSingleView}>
       <img src={analysis.stockLogoUrl} className={"image"}></img>
       <div className={"text-container"}>
         <p className={"title"}>{analysis.title}</p>
