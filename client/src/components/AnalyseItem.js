@@ -1,6 +1,5 @@
 import React from "react";
 import "./AnalyseItem.css";
-import analysesService from "../services/analyses";
 import { useHistory } from "react-router-dom";
 import { deleteAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
@@ -10,12 +9,7 @@ const AnalyseItem = ({ analysis, myPage }) => {
   const dispatch = useDispatch();
 
   const removeItem = async (id) => {
-    try {
-      await analysesService.deleteAnalyse(id);
-      dispatch(deleteAnalysis(id));
-    } catch(e) {
-      console.log(e.response.data);
-    }
+    dispatch(deleteAnalysis(id));
   };
 
   const moveToSingleView = () => {

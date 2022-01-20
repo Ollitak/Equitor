@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import analysesService from "./services/analyses";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import FrontPage from "./components/FrontPage";
 import LoginForm from "./components/LoginForm";
@@ -16,8 +15,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(async () => {
-    const result = await analysesService.getAnalyses();
-    dispatch(initializeAnalyses(result));
+    dispatch(initializeAnalyses());
   }, []);
 
   useEffect(() => {

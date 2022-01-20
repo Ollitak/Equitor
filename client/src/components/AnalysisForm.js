@@ -2,7 +2,6 @@ import React from "react";
 import FormikInputField from "./FormikInputField";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
-import analysesService from "../services/analyses";
 import { addAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 
@@ -20,13 +19,8 @@ const AnalysisForm = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
-    try {
-      const response = await analysesService.create(values);
-      dispatch(addAnalysis(response));
-      history.push("/");
-    } catch(e) {
-      console.log(e.response.data);
-    }
+    dispatch(addAnalysis(values));
+    history.push("/");
   };
 
   const formik = useFormik({

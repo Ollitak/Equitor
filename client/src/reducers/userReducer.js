@@ -1,4 +1,5 @@
 import analysesService from "../services/analyses";
+import loginService from "../services/login";
 
 const reducer  = (state = null, action) => {
   switch(action.type) {
@@ -13,10 +14,17 @@ const reducer  = (state = null, action) => {
 
 /* used to store user information to both local storage and redux
 user store when client logs in*/
-export const login = (user) => {
-  window.localStorage.setItem("loggedUser", JSON.stringify(user));
-  analysesService.setToken(user.token);
-  return { type: "LOGIN", user: user };
+export const login = (values) => {
+  return async dispatch => {
+    try {
+      const user = await loginService.login(values);
+      window.localStorage.setItem("loggedUser", JSON.stringify(user));
+      analysesService.setToken(user.token);
+      dispatch( { type: "LOGIN", user: user });
+    } catch(e) {
+      console.log(e.response.data);
+    }
+  };
 };
 
 /* used in useEffect on app launch to set user information from local
