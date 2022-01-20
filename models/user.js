@@ -21,7 +21,7 @@ const userSchema = mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Analysis"
         }
-    ]
+    ],
 });
 
 userSchema.set("toJSON", {
