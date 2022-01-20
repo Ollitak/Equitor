@@ -24,8 +24,14 @@ const SingleAnalysisView = () => {
       <img src={analysis.stockLogoUrl}></img>
       <h1>{analysis.title}</h1>
       <p>{analysis.description}</p>
+      <h4>Comments</h4>
       {analysis.comments.map((comment, id) =>
-        <p key={id}>{comment.content}</p>
+        <div key={id}>
+          <p>{comment.content}</p>
+          <p>{comment.user.username}</p>
+          <p>{comment.rating}</p>
+          <br />
+        </div>
       )}
     </div>
   );
