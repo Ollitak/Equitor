@@ -1,12 +1,13 @@
 import React from "react";
 import AnalysesList from "./AnalysesList";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
-const MyAnalyses = ({ analyses, setAnalyses, user }) => {
-  if(!analyses) return <></>;
 
-  /* filter analyses that corresponds to the current user */
-  const myAnalyses = analyses.filter(analysis => analysis.user === user.id);
+const MyAnalyses = () => {
+  const myAnalyses = useSelector(state => state.analyses.filter(analysis => analysis.user === state.user.id));
+
+  if(!myAnalyses) return <></>;
 
   console.log(myAnalyses);
   return (
@@ -15,9 +16,8 @@ const MyAnalyses = ({ analyses, setAnalyses, user }) => {
         <button> home page </button>
       </Link>
       <AnalysesList
-        analyses={myAnalyses}
-        setAnalyses={setAnalyses}
         myPage={true}
+        analyses={myAnalyses}
       />
     </div>
   );

@@ -1,19 +1,19 @@
 import React from "react";
 import AnalysesList from "./AnalysesList";
 import TopSection from "./TopSection";
+import { useSelector } from "react-redux";
 
-const FrontPage = ({ analyses, user, setUser, setAnalyses }) => {
-
-  if(!analyses) return <></>;
+const FrontPage = () => {
+  const analyses = useSelector(state => state.analyses);
 
   return(
     <div>
-      <TopSection user={user} setUser={setUser} />
-      <AnalysesList analyses={analyses} setAnalyses={setAnalyses}/>
+      <TopSection />
+      <AnalysesList
+        analyses={analyses}
+      />
     </div>
-
   );
-
 };
 
 export default FrontPage;

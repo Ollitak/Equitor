@@ -4,6 +4,9 @@ import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import loginService from "../services/login";
 import analysesService from "../services/analyses";
+import { useDispatch } from "react-redux";
+import { login } from "../reducers/userReducer";
+
 
 const initialValues = {
   username: "StockWizard",
@@ -11,13 +14,14 @@ const initialValues = {
 };
 
 
-const LoginForm = ({ setUser }) => {
+const LoginForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
     try {
       const response = await loginService.login(values);
-      setUser(response);
+      dispatch(login(response));
       window.localStorage.setItem("loggedUser", JSON.stringify(response));
       analysesService.setToken(response.token);
       history.push("/");

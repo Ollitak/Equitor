@@ -2,15 +2,19 @@ import React from "react";
 import "./TopSection.css";
 import { Link } from "react-router-dom";
 import analysesService from "../services/analyses";
+import { useSelector, useDispatch } from "react-redux";
+import { logout } from "../reducers/userReducer";
 
 
 const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
-const OnLoggedIn = ({ setUser }) => {
+const OnLoggedIn = () => {
+  const dispatch = useDispatch();
+
   const logOut = () => {
     analysesService.setToken(null);
     window.localStorage.clear();
-    setUser("");
+    dispatch(logout());
   };
 
   return(
@@ -40,14 +44,16 @@ const OnLoggedOut = () => {
 };
 
 
-const TopSection = ({ user, setUser }) => {
+const TopSection = () => {
+  const user = useSelector(state => state.user);
+
   return(
     <div className={"image-container"}>
       <div className={"content-container"}>
         <div className={"top-text-container"}>
           <p>{text}</p>
         </div>
-        {user ? <OnLoggedIn setUser={setUser} /> : <OnLoggedOut />}
+        {user ? <OnLoggedIn/> : <OnLoggedOut />}
       </div>
     </div>
   );

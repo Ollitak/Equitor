@@ -3,6 +3,8 @@ import FormikInputField from "./FormikInputField";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import analysesService from "../services/analyses";
+import { addAnalysis } from "../reducers/analysisReducer";
+import { useDispatch } from "react-redux";
 
 const initialValues = {
   title: "",
@@ -13,13 +15,14 @@ const initialValues = {
   analysisPrice: 99
 };
 
-const AnalysisForm = ({ analyses, setAnalyses }) => {
+const AnalysisForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
     try {
       const response = await analysesService.create(values);
-      setAnalyses(analyses.concat(response));
+      dispatch(addAnalysis(response));
       history.push("/");
     } catch(e) {
       console.log(e.response.data);
