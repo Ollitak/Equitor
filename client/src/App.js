@@ -14,10 +14,12 @@ import "./App.css";
 const App = () => {
   const dispatch = useDispatch();
 
+  /* fetch all analyses on first launch */
   useEffect(async () => {
     dispatch(initializeAnalyses());
   }, []);
 
+  /* if user is found from local storage, save the user to redux store */
   useEffect(() => {
     const loggedUserJson = window.localStorage.getItem("loggedUser");
     if(loggedUserJson) {

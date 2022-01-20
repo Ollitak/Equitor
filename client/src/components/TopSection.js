@@ -10,10 +10,6 @@ const text = "Lorem Ipsum is simply dummy text of the printing and typesetting 
 const OnLoggedIn = () => {
   const dispatch = useDispatch();
 
-  const logOut = () => {
-    dispatch(logout());
-  };
-
   return(
     <div className={"button-container"}>
       <Link to="/create-analysis">
@@ -22,7 +18,7 @@ const OnLoggedIn = () => {
       <Link to="/my-analyses">
         <button className={"button"}> My analyses </button>
       </Link>
-      <button className={"button"} onClick={logOut}> Log out </button>
+      <button className={"button"} onClick={() => dispatch(logout())}> Log out </button>
     </div>
   );
 };
