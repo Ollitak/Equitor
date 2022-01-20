@@ -1,7 +1,6 @@
 import React from "react";
 import "./TopSection.css";
 import { Link } from "react-router-dom";
-import analysesService from "../services/analyses";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../reducers/userReducer";
 
@@ -12,8 +11,6 @@ const OnLoggedIn = () => {
   const dispatch = useDispatch();
 
   const logOut = () => {
-    analysesService.setToken(null);
-    window.localStorage.clear();
     dispatch(logout());
   };
 

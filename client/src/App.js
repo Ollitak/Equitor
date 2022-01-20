@@ -7,7 +7,7 @@ import AnalysisForm from "./components/AnalysisForm";
 import MyAnalyses from "./components/MyAnalyses";
 import SingleAnalysisView from "./components/SingleAnalysisView";
 import { initializeAnalyses } from "./reducers/analysisReducer";
-import { login } from "./reducers/userReducer";
+import { initializeUser } from "./reducers/userReducer";
 import { useDispatch } from "react-redux";
 
 import "./App.css";
@@ -23,9 +23,7 @@ const App = () => {
   useEffect(() => {
     const loggedUserJson = window.localStorage.getItem("loggedUser");
     if(loggedUserJson) {
-      const loggedUser = JSON.parse(loggedUserJson);
-      dispatch(login(loggedUser));
-      analysesService.setToken(loggedUser.token);
+      dispatch(initializeUser(loggedUserJson));
     }
   }, []);
 

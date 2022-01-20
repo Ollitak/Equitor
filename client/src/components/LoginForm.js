@@ -3,7 +3,6 @@ import FormikInputField from "./FormikInputField";
 import { useFormik } from "formik";
 import { useHistory } from "react-router-dom";
 import loginService from "../services/login";
-import analysesService from "../services/analyses";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/userReducer";
 
@@ -22,8 +21,6 @@ const LoginForm = () => {
     try {
       const response = await loginService.login(values);
       dispatch(login(response));
-      window.localStorage.setItem("loggedUser", JSON.stringify(response));
-      analysesService.setToken(response.token);
       history.push("/");
     } catch(e) {
       console.log(e.response.data);
