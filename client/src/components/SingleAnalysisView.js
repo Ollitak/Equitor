@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import CommentForm from "./CommentForm";
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
@@ -24,7 +25,7 @@ const SingleAnalysisView = () => {
       <img src={analysis.stockLogoUrl}></img>
       <h1>{analysis.title}</h1>
       <p>{analysis.description}</p>
-      <h4>Comments</h4>
+      <h2>Comments</h2>
       {analysis.comments.map((comment, id) =>
         <div key={id}>
           <p>{comment.content}</p>
@@ -33,6 +34,8 @@ const SingleAnalysisView = () => {
           <br />
         </div>
       )}
+      <h2>Write a comment</h2>
+      <CommentForm id={id} />
     </div>
   );
 

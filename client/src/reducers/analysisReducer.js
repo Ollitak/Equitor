@@ -6,8 +6,12 @@ const reducer  = (state = [], action) => {
     return action.data;
   case "ADD":
     return state.concat(action.data);
+  case "UPDATE":
+    // eslint-disable-next-line no-case-declarations
+    const updatedState = state.filter(analysis => analysis.id !== action.data.id);
+    return updatedState.concat(action.data);
   case "DELETE":
-    return state.filter(analysis => analysis.id !== action.data);
+    return state.filter(analysis => analysis.id !== action.id);
   default:
     return state;
   }
@@ -27,7 +31,7 @@ export const deleteAnalysis = (id) => {
   return async dispatch => {
     try {
       await analysesService.deleteAnalyse(id);
-      dispatch({ type: "DELETE", data: id });
+      dispatch({ type: "DELETE", id: id });
     } catch(e) {
       console.log(e.response.data);
     }
@@ -40,6 +44,19 @@ export const addAnalysis = (values) => {
     try {
       const analysis = await analysesService.create(values);
       dispatch({ type: "ADD", data: analysis });
+    } catch(e) {
+      console.log(e.response.data);
+    }
+  };
+};
+
+/* used to add new comment to an analysis - backend responds with an
+updated analysis that is then saved to the store */
+export const addComment = (id, values) => {
+  return async dispatch => {
+    try {
+      const analysis = await analysesService.newComment(id, values);
+      dispatch({ type: "UPDATE", data: analysis });
     } catch(e) {
       console.log(e.response.data);
     }

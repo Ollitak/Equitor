@@ -25,9 +25,16 @@ const deleteAnalyse = async (id) => {
   return response.data;
 };
 
+const newComment = async (id, comment) => {
+  const config = { headers: { Authorization: token } };
+  const response = await axios.post(`${baseUrl}/${id}/comment`,comment, config);
+  return response.data;
+};
+
 export default {
   getAnalyses,
   create,
   deleteAnalyse,
+  newComment,
   setToken
 };
