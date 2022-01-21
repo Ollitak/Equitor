@@ -9,7 +9,6 @@ const MyAnalyses = () => {
 
   if(!myAnalyses) return <></>;
 
-  console.log(myAnalyses);
   return (
     <div>
       <Link to={"/"}>

@@ -19,18 +19,18 @@ const AnalyseItem = ({ analysis, myPage }) => {
   return(
     <div>
       <div className={"container"} onClick={moveToSingleView}>
-        <img src={analysis.stockLogoUrl} className={"image"}></img>
+        <img src={analysis.stockInformation.logoUrl} className={"image"}></img>
         <div className={"text-container"}>
           <p className={"title"}>{analysis.title}</p>
           <div className={"tools-container"}>
-            {analysis.toolsUsed.map((tool,id) =>
-              <p className={"tools"} key={id}>{tool}</p>
+            {analysis.keyWords.map((keyWord,id) =>
+              <p className={"tools"} key={id}>{keyWord}</p>
             )}
           </div>
           <div className={"info-container"}>
             <div className={"info-text"}>
               <p className={"info-header"}>Stock ticker</p>
-              <p className={"info-value"}>{analysis.stockName}</p>
+              <p className={"info-value"}>{analysis.stockInformation.ticker}</p>
             </div>
             <div className={"info-text"}>
               <p className={"info-header"}>Price forecast</p>
