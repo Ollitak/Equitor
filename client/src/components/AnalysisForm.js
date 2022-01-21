@@ -1,18 +1,11 @@
 import React from "react";
-import { Formik, Field } from "formik";
+import { Formik, Field, ErrorMessage } from "formik";
 import { Form, Input, TextArea } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-
-const initialValues = {
-  title: "",
-  stockSelectionIndex: "",
-  description: "",
-  stockPriceEstimate: "",
-  keyWords:[],
-};
+import * as Yup from "yup";
 
 const stockSelection = [
   {
@@ -47,6 +40,19 @@ const keyWordsSelection = [
   { value: "PowerPoint", label: "PowerPoint" },
 ];
 
+const AnalysisFormSchema = Yup.object().shape({
+  title: Yup.string()
+    .required("Title is required!"),
+  description: Yup.string()
+    .required("Description is required!"),
+  stockPriceEstimate: Yup.number()
+    .min(0, "must be positive!"),
+  stockSelectionIndex: Yup.number()
+    .required("Stock must be selected!")
+});
+
+
+
 const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -61,8 +67,15 @@ const AnalysisForm = () => {
 
   return (
     <Formik
-      initialValues={initialValues}
+      initialValues={{
+        title: "",
+        stockSelectionIndex: "",
+        description: "",
+        stockPriceEstimate: "",
+        keyWords:[],
+      }}
       onSubmit={onSubmit}
+      validationSchema={AnalysisFormSchema}
     >
       {({
         setFieldValue,
@@ -70,7 +83,7 @@ const AnalysisForm = () => {
         handleBlur,
         handleSubmit
       }) => (
-        <div style={{ margin: 20 }}>
+        <div style={{ margin: 50 }}>
           <Form>
             <Form.Group  widths='equal'>
               <Form.Field>
@@ -85,6 +98,8 @@ const AnalysisForm = () => {
                     </option>
                   ))}
                 </Field>
+                <ShowError name={"stockSelectionIndex"} />
+
               </Form.Field>
 
               <Form.Field>
@@ -95,6 +110,7 @@ const AnalysisForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
+                <ShowError name={"stockPriceEstimate"} />
               </Form.Field>
 
               <Form.Field>
@@ -106,7 +122,6 @@ const AnalysisForm = () => {
                   onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
                 />
               </Form.Field>
-
             </Form.Group>
 
             <Form.Field>
@@ -117,7 +132,9 @@ const AnalysisForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <ShowError name={"title"} />
             </Form.Field>
+
 
             <Form.Field>
               <label>Description</label>
@@ -127,6 +144,8 @@ const AnalysisForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
+              <ShowError name={"description"} />
+
             </Form.Field>
             <Form.Group>
               <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
@@ -138,5 +157,11 @@ const AnalysisForm = () => {
     </Formik>
   );
 };
+
+const ShowError = ({ name }) =>
+  <ErrorMessage name={name}>
+    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
+  </ErrorMessage>;
+
 
 export default AnalysisForm;
