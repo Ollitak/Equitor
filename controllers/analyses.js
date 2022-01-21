@@ -6,7 +6,6 @@ const config = require("../utils/config");
 
 analysisRouter.get("/", async (req, res) => {
     const analyses = await Analysis.find({})
-        .populate("user")    
         .populate("comments.user");
         
     res.status(200).json(analyses);
