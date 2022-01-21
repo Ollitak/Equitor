@@ -1,10 +1,11 @@
 import React from "react";
+import { Input } from "semantic-ui-react";
 
 const FormikInputField = ({ name, type, formik, value }) => {
   return (
     <div>
       <label>{name}</label>
-      <input
+      <Input
         id={name}
         name={name}
         type={type}

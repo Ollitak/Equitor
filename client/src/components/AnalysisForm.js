@@ -1,5 +1,6 @@
 import React from "react";
-import { Formik, Field, Form } from "formik";
+import { Formik, Field } from "formik";
+import { Form, Input, TextArea } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
@@ -58,80 +59,84 @@ const AnalysisForm = () => {
     history.push("/");
   };
 
-
   return (
-    <div>
-      <Formik
-        initialValues={initialValues}
-        onSubmit={onSubmit}
-      >
-        {({ setFieldValue }) => (
+    <Formik
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+    >
+      {({
+        setFieldValue,
+        handleChange,
+        handleBlur,
+        handleSubmit
+      }) => (
+        <div style={{ margin: 20 }}>
           <Form>
-            <div>
-              <label>title</label>
-              <Field
+            <Form.Group  widths='equal'>
+              <Form.Field>
+                <label>Stock name (ticker)</label>
+                <Field
+                  as="select"
+                  name={"stockSelectionIndex"}
+                >
+                  {stockSelection.map((stock, index) => (
+                    <option key={index} value={index}>
+                      {`${stock.name} (${stock.ticker})`}
+                    </option>
+                  ))}
+                </Field>
+              </Form.Field>
+
+              <Form.Field>
+                <label>Your price estimate (€)</label>
+                <Input
+                  name={"stockPriceEstimate"}
+                  type={"number"}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+              </Form.Field>
+
+              <Form.Field>
+                <label>Key words</label>
+                <Select
+                  name={"keyWords"}
+                  options={keyWordsSelection}
+                  isMulti={true}
+                  onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
+                />
+              </Form.Field>
+
+            </Form.Group>
+
+            <Form.Field>
+              <label>Title</label>
+              <Input
                 name={"title"}
                 type={"text"}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-            </div>
+            </Form.Field>
 
-            <div>
-              <label>stock</label>
-              <Field
-                as="select"
-                name={"stockSelectionIndex"}
-              >
-                {stockSelection.map((stock, index) => (
-                  <option key={index} value={index}>
-                    {`${stock.name} (${stock.ticker})`}
-                  </option>
-                ))}
-              </Field>
-            </div>
-
-            {/*<div>
-              <label>stockLogoUrl</label>
-              <Field
-                name={"stockLogoUrl"}
-                type={"text"}
-              />
-            </div>*/}
-
-            <div>
-              <label>description</label>
-              <Field
+            <Form.Field>
+              <label>Description</label>
+              <TextArea
                 name={"description"}
                 type={"text"}
+                onChange={handleChange}
+                onBlur={handleBlur}
               />
-            </div>
-
-            <div>
-              <label>key words</label>
-              <Select
-                name={"keyWords"}
-                options={keyWordsSelection}
-                isMulti={true}
-                onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
-              />
-            </div>
-
-
-            <div>
-              <label>stockPriceEstimate</label>
-              <Field
-                name={"stockPriceEstimate"}
-                type={"number"}
-              />
-            </div>
-
-            <button type="submit">Submit</button>
+            </Form.Field>
+            <Form.Group>
+              <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
+              <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
+            </Form.Group>
           </Form>
-        )}
-      </Formik>
-    </div>
+        </div>
+      )}
+    </Formik>
   );
 };
-
-
 
 export default AnalysisForm;
