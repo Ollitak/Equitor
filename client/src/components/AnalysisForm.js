@@ -99,7 +99,6 @@ const AnalysisForm = () => {
                   ))}
                 </Field>
                 <ShowError name={"stockSelectionIndex"} />
-
               </Form.Field>
 
               <Form.Field>
@@ -134,7 +133,6 @@ const AnalysisForm = () => {
               />
               <ShowError name={"title"} />
             </Form.Field>
-
 
             <Form.Field>
               <label>Description</label>
