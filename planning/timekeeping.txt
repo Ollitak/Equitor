@@ -12,5 +12,6 @@
     uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
   * token-perusteisen kirjautumisen implementointi
   
-20.1: (Xh) reduxin implementointi ja kommentointimahdollisuuden lisääminen
+20.1: (9h) reduxin implementointi ja kommentointimahdollisuuden lisääminen
+21.1 (12h) semantic UI:n opettelu ja implementointi login formiin, Yup:n käyttöönotto.
 
