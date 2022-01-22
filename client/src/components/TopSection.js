@@ -1,38 +1,44 @@
 import React from "react";
 import "./TopSection.css";
-import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import { Segment, Button, Icon, Header } from "semantic-ui-react";
 import { logout } from "../reducers/userReducer";
+import { useHistory } from "react-router-dom";
 
 
-const text = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.";
 
 const OnLoggedIn = () => {
   const dispatch = useDispatch();
+  const history = useHistory();
 
   return(
-    <div className={"button-container"}>
-      <Link to="/create-analysis">
-        <button className={"button"}> Create analysis </button>
-      </Link>
-      <Link to="/my-analyses">
-        <button className={"button"}> My analyses </button>
-      </Link>
-      <button className={"button"} onClick={() => dispatch(logout())}> Log out </button>
-    </div>
+    <Button.Group vertical compact size='huge'>
+      <Button color="olive" inverted onClick={() => history.push("create-analysis")}>
+        Create analysis
+      </Button>
+      <Button color="olive" inverted onClick={() => history.push("my-analyses")}>
+        My analyses
+      </Button>
+      <Button color="olive" inverted onClick={() => dispatch(logout())}>
+         Log out
+      </Button>
+    </Button.Group>
   );
 };
 
 const OnLoggedOut = () => {
+  const history = useHistory();
+
   return(
-    <div className={"button-container"}>
-      <Link to="/login">
-        <button className={"button"}> Log in</button>
-      </Link>
-      <Link to="/createaccount">
-        <button className={"button"}> Create account</button>
-      </Link>
-    </div>
+    <Button.Group vertical compact size='huge'>
+      <Button color="olive" inverted onClick={() => history.push("login")}>
+        Log in
+        <Icon name="right arrow" />
+      </Button>
+      <Button color="olive" inverted onClick={() => history.push("login")}>
+        Create account
+      </Button>
+    </Button.Group>
   );
 };
 
@@ -41,14 +47,32 @@ const TopSection = () => {
   const user = useSelector(state => state.user);
 
   return(
-    <div className={"image-container"}>
+    <Segment
+      inverted
+      textAlign="center"
+      style={{ minHeight: 500, paddingTop: "5em", paddingBottom: "4em" }}
+    >
+      <Header
+        as="h1"
+        content="Equiter"
+        style={{ fontSize: "5em" }}
+      />
+      <Header
+        as="h2"
+        content="all you need to know about equities"
+        style={{ fontSize: "2em", paddingTop: "2em", paddingBottom: "2em" }}
+      />
+      {user ? <OnLoggedIn/> : <OnLoggedOut />}
+    </Segment>
+
+  /*<div className={"image-container"}>
       <div className={"content-container"}>
         <div className={"top-text-container"}>
           <p>{text}</p>
         </div>
         {user ? <OnLoggedIn/> : <OnLoggedOut />}
       </div>
-    </div>
+    </div>*/
   );
 
 };
