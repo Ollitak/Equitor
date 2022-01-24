@@ -72,9 +72,12 @@ analysisRouter.post("/:id/comment", async (req, res, next) => {
             user: user._id
         });
     
-        const response = await analysis.save();
+        await analysis.save();
 
-        res.status(201).json(response);
+        /* Analysis needs to be retreived again in order to populate it */
+        const savedAnalysis = await Analysis.findById(id).populate("comments.user");
+
+        res.status(201).json(savedAnalysis);
     } catch(e) {
         next(e);
     }
