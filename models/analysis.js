@@ -5,6 +5,36 @@ const analysisSchema = mongoose.Schema({
         type: String,
         required: true
     },
+    content: {
+        summary: {
+            type: String,
+            required: true
+        },
+        basicCompanyInformation: {
+            type: String
+        },
+        businessDescription: {
+            type: String
+        },
+        industryOverviewAndCompetitivePositioning: {
+            type: String
+        },
+        investmentSummary: {
+            type: String
+        },
+        financialAnalysis: {
+            type: String
+        },
+        valuation: {
+            type: String
+        },
+        investmentRisks: {
+            type: String
+        },
+        ESGMatters: {
+            type: String
+        },
+    },
     stockInformation: {
         name: {
             type: String,
@@ -23,10 +53,6 @@ const analysisSchema = mongoose.Schema({
         type: Date,
         default: Date.now
     },
-    description: {
-        type: String,
-        required: true
-    },
     keyWords: [
         {
             type: String,
@@ -40,6 +66,10 @@ const analysisSchema = mongoose.Schema({
             content: {
                 type: String,
                 required: true
+            },
+            date: {
+                type: Date,
+                default: Date.now
             },
             rating: {
                 type: Number,

@@ -20,19 +20,36 @@ on the right. */
 const AnalysisSection = ({ analysis }) => {
   return(
     <Grid.Row>
-      <SummaryInformation analysis={analysis} />
-      <Grid.Column width={12}>
-        <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
-        <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
-      </Grid.Column>
+      <SummarySection analysis={analysis} />
+      <TextSection analysis={analysis}/>
     </Grid.Row>
+  );
+};
+
+/*
+1) Summary
+2) Basic company information
+3) Business description
+4) Industry overview and competitive positioning
+5) Investment Summary
+6) Financial analysis
+7) Valuation
+8) Investment risks
+9) ESG matters
+*/
+const TextSection = ({ analysis }) => {
+  return (
+    <Grid.Column width={12}>
+      <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
+      <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
+    </Grid.Column>
   );
 };
 
 /* Presents general information on the left side, such as company name, user that
 made the analysis, recommendation and target price. Constructed as Semantic UI
 column with multiple rows. */
-const SummaryInformation = ({ analysis }) => {
+const SummarySection = ({ analysis }) => {
   return (
     <Grid.Column width={4} verticalAlign="center">
       <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
