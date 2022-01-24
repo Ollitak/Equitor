@@ -19,7 +19,7 @@ const LoginForm = () => {
 
   const onSubmit = async (values) => {
     dispatch(login(values));
-    history.push("/");
+    history.push("/feed");
   };
 
   return (

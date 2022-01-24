@@ -57,7 +57,7 @@ const TopSection = () => {
       <Header
         as="h2"
         content="all you need to know about equities"
-        style={{ fontSize: "2em", paddingTop: "1em", paddingBottom: "2em" }}
+        style={{ fontSize: "2em", paddingBottom: "2em" }}
       />
     </Segment>
   );

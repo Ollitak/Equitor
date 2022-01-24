@@ -4,6 +4,7 @@ import FrontPage from "./components/FrontPage";
 import LoginForm from "./components/LoginForm";
 import AnalysisForm from "./components/AnalysisForm";
 import MyAnalyses from "./components/MyAnalyses";
+import Feed from "./components/Feed";
 import SingleAnalysisView from "./components/SingleAnalysisView";
 import { initializeAnalyses } from "./reducers/analysisReducer";
 import { initializeUser } from "./reducers/userReducer";
@@ -33,6 +34,9 @@ const App = () => {
     <Router>
       <TopSection />
       <Switch>
+        <Route path="/feed">
+          <Feed />
+        </Route>
         <Route path="/create-analysis">
           <AnalysisForm />
         </Route>
