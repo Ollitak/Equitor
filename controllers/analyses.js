@@ -47,7 +47,12 @@ analysisRouter.post("/", async (req, res, next) => {
         user.analyses = user.analyses.concat(response._id);
         await user.save();
 
-        res.status(201).json(response);
+        /* Analysis needs to be retreived again in order to populate it */
+        const savedAnalysis = await Analysis.findById(response._id)
+            .populate("comments.user", "name username id")
+            .populate("user", "name username id");
+
+        res.status(201).json(savedAnalysis);
     } catch(e) {
         next(e);
     }
