@@ -1,11 +1,10 @@
 import React from "react";
 import "./TopSection.css";
-import { useSelector, useDispatch } from "react-redux";
-import { Segment, Button, Icon, Header } from "semantic-ui-react";
-import { logout } from "../reducers/userReducer";
-import { useHistory } from "react-router-dom";
-import TopMenu from "./TopMenu";
+import { Segment, Header } from "semantic-ui-react";
 
+import NavigationBar from "./NavigatioBar";
+
+/*
 const OnLoggedIn = () => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -40,18 +39,16 @@ const OnLoggedOut = () => {
     </Button.Group>
   );
 };
-
+*/
 
 const TopSection = () => {
-  const user = useSelector(state => state.user);
-
   return(
     <Segment
       inverted
       textAlign="center"
-      style={{ minHeight: 500, paddingBottom: "4em" }}
+      style={{ minHeight: 300, paddingTop: "1em" }}
     >
-      <TopMenu />
+      <NavigationBar />
       <Header
         as="h1"
         content="Equiter"
@@ -60,19 +57,9 @@ const TopSection = () => {
       <Header
         as="h2"
         content="all you need to know about equities"
-        style={{ fontSize: "2em", paddingTop: "2em", paddingBottom: "2em" }}
+        style={{ fontSize: "2em", paddingTop: "1em", paddingBottom: "2em" }}
       />
-      {user ? <OnLoggedIn/> : <OnLoggedOut />}
     </Segment>
-
-  /*<div className={"image-container"}>
-      <div className={"content-container"}>
-        <div className={"top-text-container"}>
-          <p>{text}</p>
-        </div>
-        {user ? <OnLoggedIn/> : <OnLoggedOut />}
-      </div>
-    </div>*/
   );
 
 };

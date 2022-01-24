@@ -1,6 +1,5 @@
 import React from "react";
 import AnalysesList from "./AnalysesList";
-import TopSection from "./TopSection";
 import { useSelector } from "react-redux";
 
 /* component selects all analyses from redux state and passes them to
@@ -12,7 +11,6 @@ const FrontPage = () => {
   case is false as this component renders front page */
   return(
     <div>
-      <TopSection />
       <AnalysesList
         analyses={analyses}
         myPage={false}

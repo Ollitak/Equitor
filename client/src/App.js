@@ -8,6 +8,8 @@ import SingleAnalysisView from "./components/SingleAnalysisView";
 import { initializeAnalyses } from "./reducers/analysisReducer";
 import { initializeUser } from "./reducers/userReducer";
 import { useDispatch } from "react-redux";
+import TopSection from "./components/TopSection";
+
 
 import "./App.css";
 
@@ -29,6 +31,7 @@ const App = () => {
 
   return (
     <Router>
+      <TopSection />
       <Switch>
         <Route path="/create-analysis">
           <AnalysisForm />
