@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import FrontPage from "./components/FrontPage";
+import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import AnalysisForm from "./components/AnalysisForm";
 import MyAnalyses from "./components/MyAnalyses";
@@ -50,7 +50,7 @@ const App = () => {
           <SingleAnalysisView />
         </Route>
         <Route path="/">
-          <FrontPage />
+          <HomePage />
         </Route>
       </Switch>
     </Router>
