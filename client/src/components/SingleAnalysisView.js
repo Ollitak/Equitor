@@ -1,8 +1,14 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import CommentForm from "./CommentForm";
+//import CommentForm from "./CommentForm";
+import {
+  Grid,
+  Header,
+  Segment,
+  Label,
+  Image
+} from "semantic-ui-react";
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
@@ -17,26 +23,61 @@ const SingleAnalysisView = () => {
   with this route */
   if(!analysis) return null;
 
+
   return (
-    <div>
-      <Link to={"/"}>
-        <button> home page </button>
-      </Link>
-      <img src={analysis.stockLogoUrl}></img>
-      <h1>{analysis.title}</h1>
-      <p>{analysis.description}</p>
-      <h2>Comments</h2>
-      {analysis.comments.map((comment, id) =>
-        <div key={id}>
-          <p>{comment.content}</p>
-          <p>{comment.user.username}</p>
-          <p>{comment.rating}</p>
-          <br />
-        </div>
-      )}
-      <h2>Write a comment</h2>
-      <CommentForm id={id} />
-    </div>
+    <Segment style={{ padding:"1em" }} vertical>
+      <Grid stackable container>
+
+
+        <Grid.Column width={4} verticalAlign="center">
+          <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
+            <Grid.Column>
+              <Segment vertical >
+                <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Equity name</Header>
+                <Image verticalAlign="middle" size="small" src={analysis.stockInformation.logoUrl}/>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
+            <Grid.Column>
+              <Segment vertical>
+                <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Analysis by</Header>
+                <Header as="h3" color="blue" style={{ fontSize:"1.5em" }}>StockWizard</Header>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+
+          <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
+            <Grid.Column>
+              <Segment vertical>
+                <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Recommendation</Header>
+                <Label color="green" size="huge">BUY</Label>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row columns={1}>
+            <Grid.Column>
+              <Segment vertical>
+                <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Target price</Header>
+                <Label tag color="black" size="huge"> € {analysis.stockPriceEstimate}</Label>
+              </Segment>
+            </Grid.Column>
+          </Grid.Row>
+        </Grid.Column>
+
+
+        <Grid.Column width={12}>
+          <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
+          <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
+        </Grid.Column>
+
+
+
+
+
+      </Grid>
+    </Segment>
   );
 
 };
