@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 
 
 const MyAnalyses = () => {
-  const myAnalyses = useSelector(state => state.analyses.filter(analysis => analysis.user === state.user.id));
+  const myAnalyses = useSelector(state => state.analyses.filter(analysis => analysis.user.id === state.user.id));
 
   if(!myAnalyses) return <></>;
 

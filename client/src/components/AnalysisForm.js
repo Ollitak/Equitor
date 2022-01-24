@@ -45,7 +45,7 @@ const AnalysisFormSchema = Yup.object().shape({
     .required("Title is required!"),
   description: Yup.string()
     .required("Description is required!"),
-  stockPriceEstimate: Yup.number()
+  targetPrice: Yup.number()
     .min(0, "must be positive!"),
   stockSelectionIndex: Yup.number()
     .required("Stock must be selected!")
@@ -71,7 +71,7 @@ const AnalysisForm = () => {
         title: "",
         stockSelectionIndex: "",
         description: "",
-        stockPriceEstimate: "",
+        targetPrice: "",
         keyWords:[],
       }}
       onSubmit={onSubmit}
@@ -104,12 +104,12 @@ const AnalysisForm = () => {
               <Form.Field>
                 <label>Your price estimate (€)</label>
                 <Input
-                  name={"stockPriceEstimate"}
+                  name={"targetPrice"}
                   type={"number"}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <ShowError name={"stockPriceEstimate"} />
+                <ShowError name={"targetPrice"} />
               </Form.Field>
 
               <Form.Field>

@@ -47,7 +47,7 @@ const SummaryInformation = ({ analysis }) => {
         <Grid.Column>
           <Segment vertical>
             <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Analysis by</Header>
-            <Header as="h3" color="blue" style={{ fontSize:"1.5em" }}>StockWizard</Header>
+            <Header as="h3" color="blue" style={{ fontSize:"1.5em" }}>{analysis.user.username}</Header>
           </Segment>
         </Grid.Column>
       </Grid.Row>
@@ -63,7 +63,7 @@ const SummaryInformation = ({ analysis }) => {
         <Grid.Column>
           <Segment vertical>
             <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Target price</Header>
-            <Label tag color="black" size="huge"> € {analysis.stockPriceEstimate}</Label>
+            <Label tag color="black" size="huge"> € {analysis.targetPrice}</Label>
           </Segment>
         </Grid.Column>
       </Grid.Row>
@@ -107,7 +107,7 @@ const CommentFeed = ({ analysis }) => {
               <Feed.Summary>
                         Commented and rated by <a>{comment.user.username}</a>
               </Feed.Summary>
-              <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="4" />
+              <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="5" />
               <Feed.Extra>
                 {comment.content}
               </Feed.Extra>
