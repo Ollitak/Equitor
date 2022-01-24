@@ -26,22 +26,25 @@ const AnalysisSection = ({ analysis }) => {
   );
 };
 
-/*
-1) Summary
-2) Basic company information
-3) Business description
-4) Industry overview and competitive positioning
-5) Investment Summary
-6) Financial analysis
-7) Valuation
-8) Investment risks
-9) ESG matters
-*/
 const TextSection = ({ analysis }) => {
+  const OneTextSection = ({ title, content }) =>
+    <div style={{ marginBottom: "3em" }}>
+      <Header as="h3" style={{ fontSize:"1.5em" }}>{title}</Header>
+      <p style={{ fontSize:"1.0em" }}>{content}</p>
+    </div>;
+
   return (
     <Grid.Column width={12}>
       <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
-      <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
+      <OneTextSection title={"Summary"} content={analysis.content.summary} />
+      <OneTextSection title={"Basic company information"} content={analysis.content.basicCompanyInformation} />
+      <OneTextSection title={"Business description"} content={analysis.content.businessDescription} />
+      <OneTextSection title={"Industry overview and competitive positioning"} content={analysis.content.industryOverviewAndCompetitivePositioning} />
+      <OneTextSection title={"Investment summary"} content={analysis.content.investmentSummary} />
+      <OneTextSection title={"Financial analysis"} content={analysis.content.financialAnalysis} />
+      <OneTextSection title={"Valuation"} content={analysis.content.valuation} />
+      <OneTextSection title={" Investment risks"} content={analysis.content.investmentRisks} />
+      <OneTextSection title={"ESG matters"} content={analysis.content.ESGMatters} />
     </Grid.Column>
   );
 };

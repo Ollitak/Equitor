@@ -43,21 +43,21 @@ const keyWordsSelection = [
 const AnalysisFormSchema = Yup.object().shape({
   title: Yup.string()
     .required("Title is required!"),
-  description: Yup.string()
-    .required("Description is required!"),
   targetPrice: Yup.number()
     .min(0, "must be positive!"),
   stockSelectionIndex: Yup.number()
     .required("Stock must be selected!")
 });
 
-
-
 const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
+    console.log({
+      ...values,
+      stockInformation: stockSelection[values.stockSelectionIndex]
+    });
     dispatch(addAnalysis({
       ...values,
       stockInformation: stockSelection[values.stockSelectionIndex]
@@ -69,8 +69,18 @@ const AnalysisForm = () => {
     <Formik
       initialValues={{
         title: "",
+        content: {
+          summary: "",
+          basicCompanyInformation: "",
+          businessDescription: "",
+          industryOvervviewAndCompetitivePositioning: "",
+          investmentSummary: "",
+          financialAnalysis: "",
+          valuation: "",
+          investmentRisks: "",
+          ESGMatters: ""
+        },
         stockSelectionIndex: "",
-        description: "",
         targetPrice: "",
         keyWords:[],
       }}
@@ -134,17 +144,52 @@ const AnalysisForm = () => {
               <ShowError name={"title"} />
             </Form.Field>
 
-            <Form.Field>
-              <label>Description</label>
-              <TextArea
-                name={"description"}
-                type={"text"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
-              <ShowError name={"description"} />
+            <TextBox
+              name={"content.summary"}
+              textBoxDescription={"Summary"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.basicCompanyInformation"}
+              textBoxDescription={"Basic company information"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.businessDescription"}
+              textBoxDescription={"Business description"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.industryOverviewAndCompetitivePositioning"}
+              textBoxDescription={"Industry overview and competitive positioning"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.investmentSummary"}
+              textBoxDescription={"Investment summary"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.financialAnalysis"}
+              textBoxDescription={"Financial analysis"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.valuation"}
+              textBoxDescription={"Valuation"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.investmentRisks"}
+              textBoxDescription={"Investment risks"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+            <TextBox
+              name={"content.ESGMatters"}
+              textBoxDescription={"ESG matters"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
 
-            </Form.Field>
             <Form.Group>
               <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
               <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
@@ -161,5 +206,20 @@ const ShowError = ({ name }) =>
     { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
   </ErrorMessage>;
 
+
+const TextBox = ({ name, textBoxDescription, handleChange, handleBlur }) => {
+  return (
+    <Form.Field>
+      <label>{textBoxDescription}</label>
+      <TextArea
+        name={name}
+        type={"text"}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      <ShowError name={name} />
+    </Form.Field>
+  );
+};
 
 export default AnalysisForm;
