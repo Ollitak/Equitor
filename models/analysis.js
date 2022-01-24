@@ -19,6 +19,10 @@ const analysisSchema = mongoose.Schema({
             required: true
         }
     },
+    date: {
+        type: Date,
+        default: Date.now
+    },
     description: {
         type: String,
         required: true
@@ -28,13 +32,21 @@ const analysisSchema = mongoose.Schema({
             type: String,
         }
     ],
-    stockPriceEstimate: {
+    targetPrice: {
         type: Number
     },
     comments: [
         {
-            content: String,
-            rating: Number,
+            content: {
+                type: String,
+                required: true
+            },
+            rating: {
+                type: Number,
+                min: 0,
+                max: 5,
+                required: true
+            },
             user: {
                 type: mongoose.Schema.Types.ObjectId,
                 ref: "User"
