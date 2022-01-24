@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-//import CommentForm from "./CommentForm";
+import CommentForm from "./CommentForm";
 import {
   Grid,
   Header,
@@ -14,6 +14,9 @@ import {
   Rating
 } from "semantic-ui-react";
 
+/* Presents general information on the left side, such as company name, user that
+made the analysis, recommendation and target price. Constructed as Semantic UI
+column with multiple rows. */
 const SummaryInformation = ({ analysis }) => {
   return (
     <Grid.Column width={4} verticalAlign="center">
@@ -51,8 +54,9 @@ const SummaryInformation = ({ analysis }) => {
       </Grid.Row>
     </Grid.Column>
   );
-
 };
+
+/* Presents analysis title and contents on the right side of the summary information */
 const AnalysisSection = ({ analysis }) => {
   return(
     <Grid.Row>
@@ -65,10 +69,41 @@ const AnalysisSection = ({ analysis }) => {
   );
 };
 
-const CommentSection = ({ analysis }) => {
-  return(
+/* presents comment feed. Constructed as Semantic Ui Feed component */
+const CommentFeed = ({ analysis }) => {
+  return (
     <Feed>
-      <Grid.Row columns={1} style={{ marginTop:"2em" }}>
+      {analysis.comments.map((comment, id) => {
+        return (
+          <Feed.Event key={id} style={{ marginBottom: "1em" }}>
+            <Feed.Label>
+              <Icon name="comment" color="grey"></Icon>
+            </Feed.Label>
+            <Feed.Content>
+              <Feed.Date>4 days ago</Feed.Date>
+              <Feed.Summary>
+                        Commented and rated by <a>{comment.user.username}</a>
+              </Feed.Summary>
+              <Rating disabled size="tiny" icon="star" defaultRating="2" maxRating="4" />
+              <Feed.Extra>
+                {comment.content}
+              </Feed.Extra>
+              <Feed.Meta>
+              </Feed.Meta>
+            </Feed.Content>
+          </Feed.Event>
+        );
+      })}
+    </Feed>
+  );
+};
+
+/* Contains structure for comment section. Section is constructed as new grid row
+that includes divider, comment feed and comment form */
+const CommentSection = ({ analysis ,id }) => {
+  return(
+    <div>
+      <Grid.Row columns={1} style={{ marginTop:"2em", marginBottom:"4em" }}>
         <Grid.Column>
           <Divider
             as='h4'
@@ -78,30 +113,13 @@ const CommentSection = ({ analysis }) => {
           >
             <a>Comments</a>
           </Divider>
-          {analysis.comments.map((comment, id) => {
-            return (
-              <Feed.Event key={id} style={{ marginBottom: "1em" }}>
-                <Feed.Label>
-                  <Icon name="comment" color="grey"></Icon>
-                </Feed.Label>
-                <Feed.Content>
-                  <Feed.Date>4 days ago</Feed.Date>
-                  <Feed.Summary>
-                        Commented and rated by <a>{comment.user.username}</a>
-                  </Feed.Summary>
-                  <Rating disabled size="tiny" icon="star" defaultRating="2" maxRating="4" />
-                  <Feed.Extra>
-                    {comment.content}
-                  </Feed.Extra>
-                  <Feed.Meta>
-                  </Feed.Meta>
-                </Feed.Content>
-              </Feed.Event>
-            );
-          })}
+          <CommentFeed analysis={analysis} />
         </Grid.Column>
       </Grid.Row>
-    </Feed>
+      <Grid.Row>
+        <CommentForm id={id} />
+      </Grid.Row>
+    </div>
   );
 };
 
@@ -125,7 +143,7 @@ const SingleAnalysisView = () => {
     <Segment style={{ padding:"1em" }} vertical>
       <Grid stackable container>
         <AnalysisSection analysis={analysis} />
-        <CommentSection analysis={analysis} />
+        <CommentSection analysis={analysis} id={id} />
       </Grid>
     </Segment>
   );
