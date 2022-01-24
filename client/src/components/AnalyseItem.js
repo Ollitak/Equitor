@@ -3,6 +3,8 @@ import "./AnalyseItem.css";
 import { useHistory } from "react-router-dom";
 import { deleteAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
+import { Segment, Grid, Image, Label, Icon } from "semantic-ui-react";
+
 
 const AnalyseItem = ({ analysis, myPage }) => {
   const history = useHistory();
@@ -17,43 +19,34 @@ const AnalyseItem = ({ analysis, myPage }) => {
   };
 
   return(
-    <div>
-      <div className={"container"} onClick={moveToSingleView}>
-        <img src={analysis.stockInformation.logoUrl} className={"image"}></img>
-        <div className={"text-container"}>
-          <p className={"title"}>{analysis.title}</p>
-          <div className={"tools-container"}>
-            {analysis.keyWords.map((keyWord,id) =>
-              <p className={"tools"} key={id}>{keyWord}</p>
-            )}
-          </div>
-          <div className={"info-container"}>
-            <div className={"info-text"}>
-              <p className={"info-header"}>Stock ticker</p>
-              <p className={"info-value"}>{analysis.stockInformation.ticker}</p>
-            </div>
-            <div className={"info-text"}>
-              <p className={"info-header"}>Price forecast</p>
-              <p className={"info-value"}>{analysis.stockPriceEstimate}€</p>
-            </div>
-            <div className={"info-text"}>
-              <p className={"info-header"}>User reviews</p>
-              <p className={"info-value"}>24</p>
-            </div>
-            <div className={"info-text"}>
-              <p className={"info-header"}>User rating</p>
-              <p className={"info-value"}>65</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* Only allow delete if user is on myPage */}
-      {
-        myPage
-          ? <button onClick={() => removeItem(analysis.id)}> delete </button>
-          : null
-      }
-    </div>
+    <Segment color="olive" onClick={moveToSingleView} style={{ margin:"auto", height:"6em", maxWidth: "40em", marginBottom:"1em" }}>
+      <Grid>
+        <Grid.Column textAlign="middle" width={3}>
+          <Image src={analysis.stockInformation.logoUrl} fluid style={{ height:"4em" }}/>
+        </Grid.Column>
+        <Grid.Column width={13}>
+          <Grid.Row>
+            a new analysis on <b>{analysis.stockInformation.name}</b> was posted 1 hour ago
+          </Grid.Row>
+          <Grid.Row style={{ marginTop:"1em" }}>
+            <Label color="black">
+              <Icon name="like"></Icon>
+              25
+            </Label>
+            <Label color="black">
+              <Icon name="comments"></Icon>
+              3
+            </Label>
+          </Grid.Row>
+          {/* Only allow delete if user is on myPage */}
+          {
+            myPage
+              ? <button onClick={() => removeItem(analysis.id)}> delete </button>
+              : null
+          }
+        </Grid.Column>
+      </Grid>
+    </Segment>
   );
 };
 
