@@ -6,7 +6,8 @@ const config = require("../utils/config");
 
 analysisRouter.get("/", async (req, res) => {
     const analyses = await Analysis.find({})
-        .populate("comments.user");
+        .populate("comments.user", "name username id")
+        .populate("user", "name username id");
         
     res.status(200).json(analyses);
 });
@@ -75,7 +76,9 @@ analysisRouter.post("/:id/comment", async (req, res, next) => {
         await analysis.save();
 
         /* Analysis needs to be retreived again in order to populate it */
-        const savedAnalysis = await Analysis.findById(id).populate("comments.user");
+        const savedAnalysis = await Analysis.findById(id)
+            .populate("comments.user", "name username id")
+            .populate("user", "name username id");
 
         res.status(201).json(savedAnalysis);
     } catch(e) {
