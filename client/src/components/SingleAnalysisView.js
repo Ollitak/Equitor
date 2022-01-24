@@ -14,6 +14,21 @@ import {
   Rating
 } from "semantic-ui-react";
 
+
+/* Presents summary component on the left and analysis header + analysis content
+on the right. */
+const AnalysisSection = ({ analysis }) => {
+  return(
+    <Grid.Row>
+      <SummaryInformation analysis={analysis} />
+      <Grid.Column width={12}>
+        <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
+        <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
+      </Grid.Column>
+    </Grid.Row>
+  );
+};
+
 /* Presents general information on the left side, such as company name, user that
 made the analysis, recommendation and target price. Constructed as Semantic UI
 column with multiple rows. */
@@ -22,7 +37,7 @@ const SummaryInformation = ({ analysis }) => {
     <Grid.Column width={4} verticalAlign="center">
       <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
         <Grid.Column>
-          <Segment vertical >
+          <Segment vertical>
             <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Equity</Header>
             <Image verticalAlign="middle" size="small" src={analysis.stockInformation.logoUrl}/>
           </Segment>
@@ -56,20 +71,28 @@ const SummaryInformation = ({ analysis }) => {
   );
 };
 
-/* Presents analysis title and contents on the right side of the summary information */
-const AnalysisSection = ({ analysis }) => {
+/* Contains structure for comment section. Section is constructed as new grid row
+that includes divider, comment form and comment feed */
+const CommentSection = ({ analysis ,id }) => {
   return(
-    <Grid.Row>
-      <SummaryInformation analysis={analysis} />
-      <Grid.Column width={12}>
-        <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
-        <p style={{ fontSize:"1.2em" }}>{analysis.description}</p>
+    <Grid.Row columns={1} style={{ marginTop:"2em", marginBottom:"4em" }}>
+      <Grid.Column>
+        <Divider
+          as='h4'
+          className='header'
+          horizontal
+          style={{ margin: "3em 0em", textTransform: "uppercase" }}
+        >
+          <a>Comments</a>
+        </Divider>
+        <CommentForm id={id} />
+        <CommentFeed analysis={analysis} />
       </Grid.Column>
     </Grid.Row>
   );
 };
 
-/* presents comment feed. Constructed as Semantic Ui Feed component */
+/* Presents comment feed. Constructed as Semantic Ui Feed component. */
 const CommentFeed = ({ analysis }) => {
   return (
     <Feed>
@@ -84,7 +107,7 @@ const CommentFeed = ({ analysis }) => {
               <Feed.Summary>
                         Commented and rated by <a>{comment.user.username}</a>
               </Feed.Summary>
-              <Rating disabled size="tiny" icon="star" defaultRating="2" maxRating="4" />
+              <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="4" />
               <Feed.Extra>
                 {comment.content}
               </Feed.Extra>
@@ -97,33 +120,6 @@ const CommentFeed = ({ analysis }) => {
     </Feed>
   );
 };
-
-/* Contains structure for comment section. Section is constructed as new grid row
-that includes divider, comment feed and comment form */
-const CommentSection = ({ analysis ,id }) => {
-  return(
-    <div>
-      <Grid.Row columns={1} style={{ marginTop:"2em", marginBottom:"4em" }}>
-        <Grid.Column>
-          <Divider
-            as='h4'
-            className='header'
-            horizontal
-            style={{ margin: "3em 0em", textTransform: "uppercase" }}
-          >
-            <a>Comments</a>
-          </Divider>
-          <CommentFeed analysis={analysis} />
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row>
-        <CommentForm id={id} />
-      </Grid.Row>
-    </div>
-  );
-};
-
-
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
