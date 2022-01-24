@@ -4,8 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Segment, Button, Icon, Header } from "semantic-ui-react";
 import { logout } from "../reducers/userReducer";
 import { useHistory } from "react-router-dom";
-
-
+import TopMenu from "./TopMenu";
 
 const OnLoggedIn = () => {
   const dispatch = useDispatch();
@@ -50,8 +49,9 @@ const TopSection = () => {
     <Segment
       inverted
       textAlign="center"
-      style={{ minHeight: 500, paddingTop: "5em", paddingBottom: "4em" }}
+      style={{ minHeight: 500, paddingBottom: "4em" }}
     >
+      <TopMenu />
       <Header
         as="h1"
         content="Equiter"
