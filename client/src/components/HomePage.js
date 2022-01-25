@@ -24,12 +24,12 @@ const HomePage = () => {
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1}>
-            <Grid.Column verticalAlign="middle center">
+            <Grid.Column textAlign="center">
               <Button size="massive" color="black">Join now</Button>
             </Grid.Column>
           </Grid.Row>
           <Grid.Row columns={1} style={{ marginTop:"4em" }}>
-            <Grid.Column verticalAlign="middle center">
+            <Grid.Column textAlign="center">
               <Header as="h1" style={{ fontSize:"2.5em", marginBottom:"1em" }}> Happy customers</Header>
               <p style={{ fontSize: "1.2em", fontStyle:"italic" }}>{"' Best site for cathing up with the market '"}</p>
               <p style={{ fontSize: "1.2em", fontWeight:"bold" }}>Matti Meikäläinen, CEO</p>

@@ -66,7 +66,7 @@ made the analysis, recommendation and target price. Constructed as Semantic UI
 column with multiple rows. */
 const SummarySection = ({ analysis }) => {
   return (
-    <Grid.Column width={4} verticalAlign="center">
+    <Grid.Column width={4} textAlign="center">
       <Grid.Row columns={1} style={{ marginBottom:"1.5em" }}>
         <Grid.Column>
           <Segment vertical>
