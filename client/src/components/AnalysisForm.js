@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { Form, Input, TextArea } from "semantic-ui-react";
+import { Form, Input, TextArea, Checkbox } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
@@ -53,6 +53,21 @@ const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
+  /* Used to control which textboxes are shown. Initially all are hidden,
+  but when corresponding checkbox is checked, a textboxShow is set to true
+  and textBox appears */
+  const [textboxShow, setTextboxShow] = useState({
+    summary: false,
+    basicCompanyInformation: false,
+    businessDescription: false,
+    industryOverviewAndCompetitivePositioning: false,
+    investmentSummary: false,
+    financialAnalysis: false,
+    valuation: false,
+    investmentRisks: false,
+    ESGMatters: false,
+  });
+
   const onSubmit = async (values) => {
     console.log({
       ...values,
@@ -70,10 +85,9 @@ const AnalysisForm = () => {
       initialValues={{
         title: "",
         content: {
-          summary: "",
           basicCompanyInformation: "",
           businessDescription: "",
-          industryOvervviewAndCompetitivePositioning: "",
+          industryOverviewAndCompetitivePositioning: "",
           investmentSummary: "",
           financialAnalysis: "",
           valuation: "",
@@ -144,52 +158,134 @@ const AnalysisForm = () => {
               <ShowError name={"title"} />
             </Form.Field>
 
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"basic company information"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, basicCompanyInformation: !textboxShow.basicCompanyInformation });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"business description"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, businessDescription: !textboxShow.businessDescription });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"industry overview and competitive positioning"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, industryOverviewAndCompetitivePositioning: !textboxShow.industryOverviewAndCompetitivePositioning });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"investmen summary"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, investmentSummary: !textboxShow.investmentSummary });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"financial analysis"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, financialAnalysis: !textboxShow.financialAnalysis });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"valuation"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, valuation: !textboxShow.valuation });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"investment risks"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, investmentRisks: !textboxShow.investmentRisks });
+              }}
+            />
+            <Checkbox
+              style={{ margin: "2em 1em" }}
+              label={"ESG matters"}
+              onChange={() => {
+                setTextboxShow({ ...textboxShow, ESGMatters: !textboxShow.ESGMatters });
+              }}
+            />
+
             <TextBox
               name={"content.summary"}
               textBoxDescription={"Summary"}
               handleChange={handleChange}
               handleBlur={handleBlur} />
-            <TextBox
-              name={"content.basicCompanyInformation"}
-              textBoxDescription={"Basic company information"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.businessDescription"}
-              textBoxDescription={"Business description"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.industryOverviewAndCompetitivePositioning"}
-              textBoxDescription={"Industry overview and competitive positioning"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.investmentSummary"}
-              textBoxDescription={"Investment summary"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.financialAnalysis"}
-              textBoxDescription={"Financial analysis"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.valuation"}
-              textBoxDescription={"Valuation"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.investmentRisks"}
-              textBoxDescription={"Investment risks"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
-            <TextBox
-              name={"content.ESGMatters"}
-              textBoxDescription={"ESG matters"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
 
+            {textboxShow.basicCompanyInformation
+              ? <TextBox
+                name={"content.basicCompanyInformation"}
+                textBoxDescription={"Basic company information"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            {textboxShow.businessDescription
+              ? <TextBox
+                name={"content.businessDescription"}
+                textBoxDescription={"Business description"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            {textboxShow.industryOverviewAndCompetitivePositioning
+              ? <TextBox
+                name={"content.industryOverviewAndCompetitivePositioning"}
+                textBoxDescription={"Industry overview and competitive positioning"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            {textboxShow.investmentSummary
+              ? <TextBox
+                name={"content.investmentSummary"}
+                textBoxDescription={"Investment summary"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            {textboxShow.financialAnalysis
+              ? <TextBox
+                name={"content.financialAnalysis"}
+                textBoxDescription={"Financial analysis"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+
+            {textboxShow.valuation
+              ? <TextBox
+                name={"content.valuation"}
+                textBoxDescription={"Valuation"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            {textboxShow.investmentRisks
+              ?<TextBox
+                name={"content.investmentRisks"}
+                textBoxDescription={"Investment risks"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
+            { textboxShow.ESGMatters
+              ? <TextBox
+                name={"content.ESGMatters"}
+                textBoxDescription={"ESG matters"}
+                handleChange={handleChange}
+                handleBlur={handleBlur} />
+              : null
+            }
             <Form.Group>
               <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
               <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
