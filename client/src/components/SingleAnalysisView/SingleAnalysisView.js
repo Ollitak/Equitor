@@ -14,6 +14,18 @@ import {
   Rating
 } from "semantic-ui-react";
 
+const RecommendationLabel = ({ recommendation }) => {
+  switch(recommendation){
+  case "BUY":
+    return <Label color="green" size="huge">BUY</Label>;
+  case "HOLD":
+    return <Label color="yellow" size="huge">HOLD</Label>;
+  case "SELL":
+    return <Label color="red" size="huge">SELL</Label>;
+  default:
+    return <Label color="black" size="huge">N/A</Label>;
+  }
+};
 
 /* Presents summary component on the left and analysis header + analysis content
 on the right. */
@@ -75,7 +87,7 @@ const SummarySection = ({ analysis }) => {
         <Grid.Column>
           <Segment vertical>
             <Header dividing as="h3" style={{ fontSize:"1.5em" }}>Recommendation</Header>
-            <Label color="green" size="huge">BUY</Label>
+            <RecommendationLabel recommendation={analysis.recommendation}/>
           </Segment>
         </Grid.Column>
       </Grid.Row>

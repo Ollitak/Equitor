@@ -21,7 +21,7 @@ const AnalyseItem = ({ analysis, myPage }) => {
   return(
     <Segment color="olive" onClick={moveToSingleView} style={{ margin:"auto", height:"6em", maxWidth: "40em", marginBottom:"1em" }}>
       <Grid>
-        <Grid.Column textAlign="middle" width={3}>
+        <Grid.Column width={3}>
           <Image src={analysis.stockInformation.logoUrl} fluid style={{ height:"4em" }}/>
         </Grid.Column>
         <Grid.Column width={13}>
