@@ -2,52 +2,11 @@ import React, { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
 import { Form, Input, TextArea, Checkbox } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
-import { addAnalysis } from "../reducers/analysisReducer";
+import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import * as Yup from "yup";
-
-const stockSelection = [
-  {
-    name: "Valmet Oyj",
-    ticker: "VALMT",
-    logoUrl: "https://www.valmet.com/globalassets/media/media-gallery/logos/valmet_logo_rgb.jpg"
-  },
-  {
-    name: "Wärtsilä Oyj",
-    ticker: "WRT",
-    logoUrl:"https://www.wartsila.com/images/default-source/brand-portal/logo/w-logo-1.png?sfvrsn=9b828545_6"
-  },
-  {
-    name: "Nokia Oyj",
-    ticker: "NOK",
-    logoUrl: "https://www.nokia.com/sites/default/files/styles/scale_720_no_crop/public/media/nokia_white_logo.png"
-  }
-];
-
-const keyWordsSelection = [
-  { value: "DCF", label: "DCF" },
-  { value: "multiples analysis", label: "multiples analysis" },
-  { value: "qualitative analysis", label: "qualitative analysis" },
-  { value: "quantitative analysis", label: "quantitative analysis" },
-  { value: "numerical analysis", label: "numerical analysis" },
-  { value: "competitors analysis", label: "market analysis" },
-  { value: "market analysis", label: "analysis" },
-  { value: "valuation", label: "valuation" },
-  { value: "historical analysis", label: "historical analysis" },
-  { value: "forecast", label: "forecast" },
-  { value: "Excel", label: "Excel" },
-  { value: "PowerPoint", label: "PowerPoint" },
-];
-
-const AnalysisFormSchema = Yup.object().shape({
-  title: Yup.string()
-    .required("Title is required!"),
-  targetPrice: Yup.number()
-    .min(0, "must be positive!"),
-  stockSelectionIndex: Yup.number()
-    .required("Stock must be selected!")
-});
+import { stockSelection, keyWordsSelection } from "./utilities";
+import analysisFormSchema from "./analysisFormSchema";
 
 const AnalysisForm = () => {
   const history = useHistory();
@@ -69,10 +28,6 @@ const AnalysisForm = () => {
   });
 
   const onSubmit = async (values) => {
-    console.log({
-      ...values,
-      stockInformation: stockSelection[values.stockSelectionIndex]
-    });
     dispatch(addAnalysis({
       ...values,
       stockInformation: stockSelection[values.stockSelectionIndex]
@@ -99,7 +54,7 @@ const AnalysisForm = () => {
         keyWords:[],
       }}
       onSubmit={onSubmit}
-      validationSchema={AnalysisFormSchema}
+      validationSchema={analysisFormSchema}
     >
       {({
         setFieldValue,
