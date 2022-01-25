@@ -1,6 +1,6 @@
 import * as Yup from "yup";
 
-const AnalysisFormSchema = Yup.object().shape({
+const validationSchema = Yup.object().shape({
   title: Yup.string()
     .required("Title is required!"),
   targetPrice: Yup.number()
@@ -9,4 +9,4 @@ const AnalysisFormSchema = Yup.object().shape({
     .required("Stock must be selected!")
 });
 
-export default AnalysisFormSchema;
+export default validationSchema;

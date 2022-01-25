@@ -1,12 +1,34 @@
 import React, { useState } from "react";
 import { Formik, Field, ErrorMessage } from "formik";
-import { Form, Input, TextArea, Checkbox } from "semantic-ui-react";
+import { Form, Input, TextArea, Checkbox, Header } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { stockSelection, keyWordsSelection } from "./utilities";
-import analysisFormSchema from "./analysisFormSchema";
+import analysisFormSchema from "./validationSchema";
+
+/* Component for rendering error message */
+const ShowError = ({ name }) =>
+  <ErrorMessage name={name}>
+    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
+  </ErrorMessage>;
+
+/* Component to render textBox with label and large textarea as well as the error message*/
+const TextBox = ({ name, textBoxDescription, handleChange, handleBlur }) => {
+  return (
+    <Form.Field>
+      <label>{textBoxDescription}</label>
+      <TextArea
+        name={name}
+        type={"text"}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      <ShowError name={name} />
+    </Form.Field>
+  );
+};
 
 const AnalysisForm = () => {
   const history = useHistory();
@@ -64,6 +86,7 @@ const AnalysisForm = () => {
       }) => (
         <div style={{ margin: 50 }}>
           <Form>
+            <Header as="h1" content="Create analysis" />
             <Form.Group  widths='equal'>
               <Form.Field>
                 <label>Stock name (ticker)</label>
@@ -81,7 +104,7 @@ const AnalysisForm = () => {
               </Form.Field>
 
               <Form.Field>
-                <label>Your price estimate (€)</label>
+                <label>Target price (€)</label>
                 <Input
                   name={"targetPrice"}
                   type={"number"}
@@ -103,7 +126,7 @@ const AnalysisForm = () => {
             </Form.Group>
 
             <Form.Field>
-              <label>Title</label>
+              <label>Analysis title</label>
               <Input
                 name={"title"}
                 type={"text"}
@@ -112,6 +135,14 @@ const AnalysisForm = () => {
               />
               <ShowError name={"title"} />
             </Form.Field>
+
+            <TextBox
+              name={"content.summary"}
+              textBoxDescription={"Summary"}
+              handleChange={handleChange}
+              handleBlur={handleBlur} />
+
+            <Header as="h2" content="Choose more text fields" />
 
             <Checkbox
               style={{ margin: "2em 1em" }}
@@ -170,11 +201,6 @@ const AnalysisForm = () => {
               }}
             />
 
-            <TextBox
-              name={"content.summary"}
-              textBoxDescription={"Summary"}
-              handleChange={handleChange}
-              handleBlur={handleBlur} />
 
             {textboxShow.basicCompanyInformation
               ? <TextBox
@@ -241,6 +267,7 @@ const AnalysisForm = () => {
                 handleBlur={handleBlur} />
               : null
             }
+
             <Form.Group>
               <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
               <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
@@ -252,25 +279,5 @@ const AnalysisForm = () => {
   );
 };
 
-const ShowError = ({ name }) =>
-  <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
-
-
-const TextBox = ({ name, textBoxDescription, handleChange, handleBlur }) => {
-  return (
-    <Form.Field>
-      <label>{textBoxDescription}</label>
-      <TextArea
-        name={name}
-        type={"text"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <ShowError name={name} />
-    </Form.Field>
-  );
-};
 
 export default AnalysisForm;
