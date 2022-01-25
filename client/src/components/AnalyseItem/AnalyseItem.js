@@ -1,13 +1,14 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-//import { deleteAnalysis } from "../reducers/analysisReducer";
-//import { useDispatch } from "react-redux";
-import { Feed, Segment, Button, Rating, Grid } from "semantic-ui-react";
+import { deleteAnalysis } from "../../reducers/analysisReducer";
+import { useDispatch } from "react-redux";
+import FeedContent from "./FeedContent";
+import Buttons from "./Buttons";
+import { Feed, Segment } from "semantic-ui-react";
 
-//myPage
-const AnalyseItem = ({ analysis }) => {
+const AnalyseItem = ({ analysis, myPage }) => {
   const history = useHistory();
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
 
   /* Determine how many hours ago the analysis was posted */
@@ -16,11 +17,11 @@ const AnalyseItem = ({ analysis }) => {
   /* Determine the average of given ratings */
   const averageRating = getAverageRating(analysis.comments);
 
-  /*
+
   const removeItem = async (id) => {
     dispatch(deleteAnalysis(id));
   };
-*/
+
   const moveToSingleView = () => {
     history.push(`analysis/${analysis.id}`);
   };
@@ -29,43 +30,13 @@ const AnalyseItem = ({ analysis }) => {
     <Segment style={{ margin: "auto", marginBottom:"1em", background:"white", maxWidth:600 }}>
       <Feed>
         <Feed.Event>
-          <Feed.Content>
-            <Feed.Summary>
-              <Feed.User>{analysis.user.username}</Feed.User>
-              {` posted a new analysis on ${analysis.stockInformation.name}`}
-            </Feed.Summary>
-            <Feed.Meta>
-              { postedAgo === 0
-                ?<Feed.Date>under hour ago </Feed.Date>
-                :<Feed.Date>{postedAgo} hours ago </Feed.Date>
-              }
-              <Rating style={{ marginLeft: "0em", marginTop:"0.5em" }} disabled defaultRating={averageRating} maxRating={5} />
-              <Grid style={{ marginLeft: "0em" }}>
-                <Grid.Row>
-                  {analysis.keyWords.map((keyWord, id) => {
-                    return (
-                      <div key={id} style={{ backgroundColor:"black", borderRadius:"2em",  margin:"0.5em", padding:"0.5em" }}>
-                        <p style={{ fontWeight:"bold", color:"white", fontSize:"0.9em" }}>{keyWord}</p>
-                      </div>
-                    );
-                  })}
-                </Grid.Row>
-              </Grid>
-            </Feed.Meta>
-          </Feed.Content>
-          <Grid verticalAlign="middle">
-            <Grid.Column >
-              <Button onClick={moveToSingleView} compact style={{ height:"4em", color:"white", backgroundColor:"rgb(10, 40, 230)" }}>
-                Check it out!
-              </Button>
-            </Grid.Column>
-          </Grid>
+          <FeedContent analysis={analysis} postedAgo={postedAgo} averageRating={averageRating} />
+          <Buttons moveToSingleView={moveToSingleView} removeItem={removeItem} myPage={myPage} />
         </Feed.Event>
       </Feed>
     </Segment>
   );
 };
-
 
 const getAverageRating = (comments) => {
   if(!comments || comments.length===0) return 0;
