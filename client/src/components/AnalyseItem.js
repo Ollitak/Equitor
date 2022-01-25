@@ -1,5 +1,4 @@
 import React from "react";
-import "./AnalyseItem.css";
 import { useHistory } from "react-router-dom";
 //import { deleteAnalysis } from "../reducers/analysisReducer";
 //import { useDispatch } from "react-redux";
