@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Formik, Field, ErrorMessage } from "formik";
+import { Formik, ErrorMessage } from "formik";
 import { Form, Input, TextArea, Checkbox, Header } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { stockSelection, keyWordsSelection } from "./utilities";
+import { stockSelection, keyWordOptions, recommendationOptions } from "./utilities";
 import analysisFormSchema from "./validationSchema";
 
 /* Component for rendering error message */
@@ -50,18 +50,24 @@ const AnalysisForm = () => {
   });
 
   const onSubmit = async (values) => {
-    dispatch(addAnalysis({
+    const analysis = {
       ...values,
-      stockInformation: stockSelection[values.stockSelectionIndex]
-    }));
+      stockInformation: stockSelection.find(s => s.name === values.stockName)
+    };
+    dispatch(addAnalysis(analysis));
     history.push("/");
   };
 
   return (
     <Formik
       initialValues={{
+        stockName: "",
+        targetPrice: "",
+        recommendation:"",
+        keyWords:[],
         title: "",
         content: {
+          summary: "",
           basicCompanyInformation: "",
           businessDescription: "",
           industryOverviewAndCompetitivePositioning: "",
@@ -70,10 +76,7 @@ const AnalysisForm = () => {
           valuation: "",
           investmentRisks: "",
           ESGMatters: ""
-        },
-        stockSelectionIndex: "",
-        targetPrice: "",
-        keyWords:[],
+        }
       }}
       onSubmit={onSubmit}
       validationSchema={analysisFormSchema}
@@ -88,19 +91,14 @@ const AnalysisForm = () => {
           <Form>
             <Header as="h1" content="Create analysis" />
             <Form.Group  widths='equal'>
+
               <Form.Field>
                 <label>Stock name (ticker)</label>
-                <Field
-                  as="select"
-                  name={"stockSelectionIndex"}
-                >
-                  {stockSelection.map((stock, index) => (
-                    <option key={index} value={index}>
-                      {`${stock.name} (${stock.ticker})`}
-                    </option>
-                  ))}
-                </Field>
-                <ShowError name={"stockSelectionIndex"} />
+                <Select
+                  options={stockSelection}
+                  onChange={(vals) => setFieldValue("stockName",vals.name)}
+                />
+                <ShowError name={"stockName"} />
               </Form.Field>
 
               <Form.Field>
@@ -115,15 +113,25 @@ const AnalysisForm = () => {
               </Form.Field>
 
               <Form.Field>
-                <label>Key words</label>
+                <label>Recommendation</label>
                 <Select
-                  name={"keyWords"}
-                  options={keyWordsSelection}
-                  isMulti={true}
-                  onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
+                  options={recommendationOptions}
+                  onChange={(vals) => setFieldValue("recommendation", vals.value)}
                 />
+                <ShowError name={"recommendation"} />
               </Form.Field>
+
             </Form.Group>
+
+            <Form.Field>
+              <label>Key words</label>
+              <Select
+                name={"keyWords"}
+                options={keyWordOptions}
+                isMulti={true}
+                onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
+              />
+            </Form.Field>
 
             <Form.Field>
               <label>Analysis title</label>
@@ -140,7 +148,9 @@ const AnalysisForm = () => {
               name={"content.summary"}
               textBoxDescription={"Summary"}
               handleChange={handleChange}
-              handleBlur={handleBlur} />
+              handleBlur={handleBlur}
+            />
+
 
             <Header as="h2" content="Choose more text fields" />
 
