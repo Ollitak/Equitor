@@ -12,6 +12,12 @@
     uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
   * token-perusteisen kirjautumisen implementointi
   
-20.1: (9h) reduxin implementointi ja kommentointimahdollisuuden lisääminen
-21.1 (12h) semantic UI:n opettelu ja implementointi login formiin, Yup:n käyttöönotto.
+20.1
+  * (9h) reduxin implementointi ja kommentointimahdollisuuden lisääminen
+21.1 (12h)
+  * semantic UI:n opettelu ja implementointi login formiin, Yup:n käyttöönotto. Haasteita muun muassa semantic ui:n ja formikin yhteensovittamisen kanssa.
+24.1 (12h)
+  * navigaatiobarin ja homepagen luominen pääasiassa Semantic UI:lla
+  * yhden analyysin sivun ulkoasun tekeminen, muun muassa Semantic UI:n Gridin opettelu
+  * analyysin backend scheeman laajennus ja vastaavat muutokset front-endiin
 
