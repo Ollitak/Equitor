@@ -279,5 +279,4 @@ const AnalysisForm = () => {
   );
 };
 
-
 export default AnalysisForm;
