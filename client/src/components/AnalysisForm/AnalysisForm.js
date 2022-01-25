@@ -8,18 +8,13 @@ import Select from "react-select";
 import { stockSelection, keyWordOptions, recommendationOptions } from "./utilities";
 import analysisFormSchema from "./validationSchema";
 
-/* Component for rendering error message */
-const ShowError = ({ name }) =>
-  <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
-
 /* Component to render textBox with label and large textarea as well as the error message*/
-const TextBox = ({ name, textBoxDescription, handleChange, handleBlur }) => {
+const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
   return (
     <Form.Field>
-      <label>{textBoxDescription}</label>
+      <label>{label}</label>
       <TextArea
+        value={value}
         name={name}
         type={"text"}
         onChange={handleChange}
@@ -29,6 +24,12 @@ const TextBox = ({ name, textBoxDescription, handleChange, handleBlur }) => {
     </Form.Field>
   );
 };
+
+/* Component for rendering error message */
+const ShowError = ({ name }) =>
+  <ErrorMessage name={name}>
+    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
+  </ErrorMessage>;
 
 const AnalysisForm = () => {
   const history = useHistory();
@@ -85,7 +86,8 @@ const AnalysisForm = () => {
         setFieldValue,
         handleChange,
         handleBlur,
-        handleSubmit
+        handleSubmit,
+        values
       }) => (
         <div style={{ margin: 50 }}>
           <Form>
@@ -146,7 +148,8 @@ const AnalysisForm = () => {
 
             <TextBox
               name={"content.summary"}
-              textBoxDescription={"Summary"}
+              label={"Summary"}
+              value={values.content.summary}
               handleChange={handleChange}
               handleBlur={handleBlur}
             />
@@ -215,7 +218,8 @@ const AnalysisForm = () => {
             {textboxShow.basicCompanyInformation
               ? <TextBox
                 name={"content.basicCompanyInformation"}
-                textBoxDescription={"Basic company information"}
+                label={"Basic company information"}
+                value={values.content.basicCompanyInformation}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -223,7 +227,8 @@ const AnalysisForm = () => {
             {textboxShow.businessDescription
               ? <TextBox
                 name={"content.businessDescription"}
-                textBoxDescription={"Business description"}
+                label={"Business description"}
+                value={values.content.businessDescription}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -231,7 +236,8 @@ const AnalysisForm = () => {
             {textboxShow.industryOverviewAndCompetitivePositioning
               ? <TextBox
                 name={"content.industryOverviewAndCompetitivePositioning"}
-                textBoxDescription={"Industry overview and competitive positioning"}
+                label={"Industry overview and competitive positioning"}
+                value={values.content.industryOverviewAndCompetitivePositioning}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -239,7 +245,8 @@ const AnalysisForm = () => {
             {textboxShow.investmentSummary
               ? <TextBox
                 name={"content.investmentSummary"}
-                textBoxDescription={"Investment summary"}
+                label={"Investment summary"}
+                value={values.content.investmentSummary}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -247,7 +254,8 @@ const AnalysisForm = () => {
             {textboxShow.financialAnalysis
               ? <TextBox
                 name={"content.financialAnalysis"}
-                textBoxDescription={"Financial analysis"}
+                label={"Financial analysis"}
+                value={values.content.financialAnalysis}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -256,7 +264,8 @@ const AnalysisForm = () => {
             {textboxShow.valuation
               ? <TextBox
                 name={"content.valuation"}
-                textBoxDescription={"Valuation"}
+                label={"Valuation"}
+                value={values.content.valuation}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -264,7 +273,8 @@ const AnalysisForm = () => {
             {textboxShow.investmentRisks
               ?<TextBox
                 name={"content.investmentRisks"}
-                textBoxDescription={"Investment risks"}
+                label={"Investment risks"}
+                value={values.content.investmentRisks}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
@@ -272,7 +282,8 @@ const AnalysisForm = () => {
             { textboxShow.ESGMatters
               ? <TextBox
                 name={"content.ESGMatters"}
-                textBoxDescription={"ESG matters"}
+                label={"ESG matters"}
+                value={values.content.ESGMatters}
                 handleChange={handleChange}
                 handleBlur={handleBlur} />
               : null
