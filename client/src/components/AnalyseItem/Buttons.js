@@ -1,8 +1,22 @@
 import React from "react";
 import { Button, Grid } from "semantic-ui-react";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { deleteAnalysis } from "../../reducers/analysisReducer";
 
 /* Conditionally render buttons: if myPage set to true also render delete buttons*/
-const Buttons = ({ moveToSingleView, removeItem, myPage }) => {
+const Buttons = ({ analysis, myPage }) => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const moveToSingleView = () => {
+    history.push(`analysis/${analysis.id}`);
+  };
+
+  const removeItem = async () => {
+    dispatch(deleteAnalysis(analysis.id));
+  };
+
   return (
     <Grid verticalAlign="middle">
       <Grid.Column >
