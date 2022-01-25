@@ -7,6 +7,20 @@ import {
   Image,
 } from "semantic-ui-react";
 
+/* render label based on recommendation input*/
+const RecommendationLabel = ({ recommendation }) => {
+  switch(recommendation){
+  case "BUY":
+    return <Label color="green" size="huge">BUY</Label>;
+  case "HOLD":
+    return <Label color="yellow" size="huge">HOLD</Label>;
+  case "SELL":
+    return <Label color="red" size="huge">SELL</Label>;
+  default:
+    return <Label color="black" size="huge">N/A</Label>;
+  }
+};
+
 /* Presents general information on the left side, such as company name, user that
 made the analysis, recommendation and target price. Constructed as Semantic UI
 column with multiple rows. */
@@ -49,31 +63,17 @@ const SummarySection = ({ analysis }) => {
   );
 };
 
-/* render label based on recommendation input*/
-const RecommendationLabel = ({ recommendation }) => {
-  switch(recommendation){
-  case "BUY":
-    return <Label color="green" size="huge">BUY</Label>;
-  case "HOLD":
-    return <Label color="yellow" size="huge">HOLD</Label>;
-  case "SELL":
-    return <Label color="red" size="huge">SELL</Label>;
-  default:
-    return <Label color="black" size="huge">N/A</Label>;
-  }
+const Paragraph = ({ title, content }) => {
+  if(!content) return null;
+  return (
+    <div style={{ marginBottom: "3em" }}>
+      <Header as="h3" style={{ fontSize:"1.5em" }}>{title}</Header>
+      <p style={{ fontSize:"1.0em" }}>{content}</p>
+    </div>
+  );
 };
 
 const TextSection = ({ analysis }) => {
-  const Paragraph = ({ title, content }) => {
-    if(!content) return null;
-    return (
-      <div style={{ marginBottom: "3em" }}>
-        <Header as="h3" style={{ fontSize:"1.5em" }}>{title}</Header>
-        <p style={{ fontSize:"1.0em" }}>{content}</p>
-      </div>
-    );
-  };
-
   return (
     <Grid.Column width={12}>
       <Header as="h1" style={{ fontSize:"2.5em" }}>{analysis.title}</Header>
