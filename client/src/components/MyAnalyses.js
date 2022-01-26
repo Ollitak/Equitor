@@ -1,6 +1,5 @@
 import React from "react";
-import AnalysesList from "./AnalysesList";
-import { Link } from "react-router-dom";
+import AnalyseItem from "./AnalyseItem";
 import { useSelector } from "react-redux";
 
 
@@ -11,13 +10,13 @@ const MyAnalyses = () => {
 
   return (
     <div>
-      <Link to={"/"}>
-        <button> home page </button>
-      </Link>
-      <AnalysesList
-        myPage={true}
-        analyses={myAnalyses}
-      />
+      {myAnalyses.map(analysis =>
+        <AnalyseItem
+          key={analysis.id}
+          analysis={analysis}
+          myPage={true}
+        />
+      )}
     </div>
   );
 
