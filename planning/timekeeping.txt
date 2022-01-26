@@ -1,23 +1,31 @@
-17.1: (9h) projektin aloitus
+17.1 (9h)
+  * projektin aloitus
   * suunnittelua (kts. initial project structure planning-kansiosta)
   * backendin ensimmäisen version työstäminen, alustavien endpointtien
     luominen, mongoose schemat ja databaseyhteyksien avaaminen jne... 
     
-18.1: (10h) alustavan backend-version viimeistely ja frontendin aloitus
+18.1 (10h) 
+  * alustavan backend-version viimeistely ja frontendin aloitus
   * user-scheman luominen databaseen ja schemojen väliset yhteydet
   * react front-endin aloitus, alustava versio aloitussivusta visualisointeineen 
 
-19.1 (9h): front-endin jatkaminen
+19.1 (9h)
+  * front-endin jatkaminen
   * alustavien toiminnallisuuksien lisääminen: sisäänkirjautumissivu, analyysin luontisivu,
     uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
   * token-perusteisen kirjautumisen implementointi
   
-20.1
-  * (9h) reduxin implementointi ja kommentointimahdollisuuden lisääminen
+20.1 (9h)
+  *  reduxin implementointi ja kommentointimahdollisuuden lisääminen
 21.1 (12h)
   * semantic UI:n opettelu ja implementointi login formiin, Yup:n käyttöönotto. Haasteita muun muassa semantic ui:n ja formikin yhteensovittamisen kanssa.
 24.1 (12h)
-  * navigaatiobarin ja homepagen luominen pääasiassa Semantic UI:lla
+  * navigaatiomenun ja homepagen luominen pääasiassa Semantic UI:lla
   * yhden analyysin sivun ulkoasun tekeminen, muun muassa Semantic UI:n Gridin opettelu
   * analyysin backend scheeman laajennus ja vastaavat muutokset front-endiin
+25.1 (10.5h)
+  * uuden analyysin luomiseen käytettävän formin laajentaminen, mm. checkboxit joilla
+    mahdollista renderöidä textboxeja ehdollisesti.
+  * feedin rakentaminen semantic UI:lla
+  * koodin jakaminen pienempiin komponentteihin ja moduuleihin
 
