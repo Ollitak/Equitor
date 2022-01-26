@@ -25,8 +25,8 @@ const LoginForm = () => {
   return (
     <Formik
       initialValues= {{
-        username: "StockWizard",
-        password: "password"
+        username: "",
+        password: ""
       }}
       onSubmit={onSubmit}
       validationSchema={LoginFormSchema}
