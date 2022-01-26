@@ -8,10 +8,16 @@ const Feed = () => {
   var analyses = useSelector(state => state.analyses);
 
   const filter = useSelector(state => state.filter);
-  console.log("FILTER: "+ filter.companyFilter);
+
   if(filter.companyFilter) {
     analyses = analyses.filter(analysis =>
       analysis.stockInformation.name === filter.companyFilter
+    );
+  }
+
+  if(filter.keywordFilter) {
+    analyses = analyses.filter(analysis =>
+      analysis.keyWords.includes(filter.keywordFilter)
     );
   }
 

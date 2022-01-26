@@ -1,9 +1,9 @@
 import React from "react";
-import { Segment, Form, Button  } from "semantic-ui-react";
+import { Segment, Button  } from "semantic-ui-react";
 import Select from "react-select";
-import { stockSelection } from "./AnalysisForm/utilities";
+import { stockSelection, keyWordOptions } from "./AnalysisForm/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { setCompanyFilter, resetFilters } from "../reducers/filterReducer";
+import { setCompanyFilter, setKeywordFilter, resetFilters } from "../reducers/filterReducer";
 
 /* Custom styles object for react-select */
 const selectCustomStyle = {
@@ -22,11 +22,8 @@ const selectCustomStyle = {
   }),
   control: (provided) => ({
     ...provided,
-    backgroundColor:"black"
-  }),
-  container: (provided) => ({
-    ...provided,
-    color:"white",
+    backgroundColor:"black",
+    width: 400,
   }),
   input: (provided) => ({
     ...provided,
@@ -36,41 +33,66 @@ const selectCustomStyle = {
     const color = "white";
 
     return { ...provided, color };
-  }
+  },
 };
 
 const FilterBar = () => {
   const dispatch = useDispatch();
   const companyFilter = useSelector(state => state.filter.companyFilter);
-  console.log(companyFilter);
+  const keywordFilter = useSelector(state => state.filter.keywordFilter);
+
+  console.log(keywordFilter);
+
   return (
-    <Segment inverted style={{ borderRadius: 0 }}>
-      <Segment inverted style={{ margin: "auto", padding:"0em", maxWidth:600 }}>
+    <Segment
+      inverted
+      style={{ margin: "auto", marginBottom: "1em", border:"0.2em solid white", maxWidth:600 }}
+    >
+      <div>
+        <label>Select company</label>
+        {/* Select's value attribute expects a shape of object */}
+        <Select
+          styles={selectCustomStyle}
+          value={{ label: companyFilter }}
+          options={stockSelection}
+          onChange={(vals) => dispatch(setCompanyFilter(vals.name))}
+        />
+      </div>
 
-        <Form.Field>
-          <label>Filter by company</label>
-          {/* Select's value attribute expects a shape of object */}
-          <Select
-            styles={selectCustomStyle}
-            value={{ label: companyFilter }}
-            options={stockSelection}
-            onChange={(vals) => dispatch(setCompanyFilter(vals.name))}
-          />
-          <Button
-            compact
-            style={{
-              marginTop:"1em",
-              height:"3em",
-              color:"white",
-              backgroundColor:"black",
-              border: "solid 1px white"
-            }}
-            content="Reset"
-            onClick={() => dispatch(resetFilters())}
-          />
-        </Form.Field>
+      <div style={{ marginTop: "0.5em" }}>
+        <label>Select keyword</label>
+        <Select
+          styles={selectCustomStyle}
+          value={{ label: keywordFilter }}
+          options={keyWordOptions}
+          onChange={(vals) => dispatch(setKeywordFilter(vals.value))}
+        />
+      </div>
 
-      </Segment>
+      <Button
+        compact
+        style={{
+          marginTop:"1em",
+          height:"3em",
+          color:"white",
+          backgroundColor:"black",
+          border: "solid 1px white"
+        }}
+        content="Reset"
+        onClick={() => dispatch(resetFilters())}
+      />
+
+      <Button
+        compact
+        style={{
+          marginTop:"1em",
+          height:"3em",
+          color:"white",
+          backgroundColor:"black",
+          border: "solid 1px white"
+        }}
+        content="Close filter"
+      />
     </Segment>
   );
 };
