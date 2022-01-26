@@ -23,7 +23,7 @@ const selectCustomStyle = {
   control: (provided) => ({
     ...provided,
     backgroundColor:"black",
-    width: 400,
+    maxWidth: 600,
   }),
   input: (provided) => ({
     ...provided,

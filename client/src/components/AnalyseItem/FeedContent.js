@@ -29,8 +29,8 @@ const FeedContent = ({ analysis }) => {
           <Grid.Row>
             {analysis.keyWords.map((keyWord, id) => {
               return (
-                <div key={id} style={{ backgroundColor:"black", borderRadius:"2em",  margin:"0.5em", padding:"0.5em" }}>
-                  <p style={{ fontWeight:"bold", color:"white", fontSize:"0.9em" }}>{keyWord}</p>
+                <div key={id} style={{ backgroundColor:"black", borderRadius:"2em",  margin:"0.3em", padding:"0.7em" }}>
+                  <p style={{ fontWeight:"bold", color:"white", fontSize:"1em" }}>{keyWord}</p>
                 </div>
               );
             })}
