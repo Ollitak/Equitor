@@ -5,6 +5,39 @@ import { stockSelection } from "./AnalysisForm/utilities";
 import { useDispatch, useSelector } from "react-redux";
 import { setCompanyFilter, resetFilters } from "../reducers/filterReducer";
 
+/* Custom styles object for react-select */
+const selectCustomStyle = {
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: "black",
+    padding: 20,
+    border: "0.5px solid white",
+  }),
+  option: (provided) => ({
+    ...provided,
+    borderBottom: "0.5px solid white",
+    color: "white",
+    padding: 10,
+    backgroundColor: "black"
+  }),
+  control: (provided) => ({
+    ...provided,
+    backgroundColor:"black"
+  }),
+  container: (provided) => ({
+    ...provided,
+    color:"white",
+  }),
+  input: (provided) => ({
+    ...provided,
+    color:"white",
+  }),
+  singleValue: (provided) => {
+    const color = "white";
+
+    return { ...provided, color };
+  }
+};
 
 const FilterBar = () => {
   const dispatch = useDispatch();
@@ -18,6 +51,7 @@ const FilterBar = () => {
           <label>Filter by company</label>
           {/* Select's value attribute expects a shape of object */}
           <Select
+            styles={selectCustomStyle}
             value={{ label: companyFilter }}
             options={stockSelection}
             onChange={(vals) => dispatch(setCompanyFilter(vals.name))}
@@ -40,6 +74,5 @@ const FilterBar = () => {
     </Segment>
   );
 };
-
 
 export default FilterBar;
