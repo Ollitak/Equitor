@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/userReducer";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Input } from "semantic-ui-react";
+import { Form, Input, Container } from "semantic-ui-react";
 import * as Yup from "yup";
 
 const LoginFormSchema = Yup.object().shape({
@@ -37,7 +37,7 @@ const LoginForm = () => {
         handleSubmit,
         values
       }) => (
-        <div style={{ margin: 50 }}>
+        <Container>
           <Form>
             <Form.Field>
               <label>Username</label>
@@ -66,7 +66,7 @@ const LoginForm = () => {
               <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
             </Form.Group>
           </Form>
-        </div>
+        </Container>
       )}
     </Formik>
   );
