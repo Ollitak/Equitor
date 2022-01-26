@@ -61,6 +61,11 @@ const analysisSchema = mongoose.Schema({
     targetPrice: {
         type: Number
     },
+    recommendation:{
+        type: String,
+        enum: ["BUY", "HOLD", "SELL"],
+        required: true
+    },
     comments: [
         {
             content: {
