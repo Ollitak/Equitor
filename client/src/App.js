@@ -10,6 +10,8 @@ import { initializeAnalyses } from "./reducers/analysisReducer";
 import { initializeUser } from "./reducers/userReducer";
 import { useDispatch } from "react-redux";
 import TopSection from "./components/TopSection";
+import CreateAccountForm from "./components/CreateAccountForm";
+
 
 
 import "./App.css";
@@ -39,6 +41,9 @@ const App = () => {
         </Route>
         <Route path="/create-analysis">
           <AnalysisForm />
+        </Route>
+        <Route path="/create-account">
+          <CreateAccountForm />
         </Route>
         <Route path="/login">
           <LoginForm />
