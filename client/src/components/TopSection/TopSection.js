@@ -12,12 +12,12 @@ const TopSection = () => {
       <NavigationBar />
       <Header
         as="h1"
-        content="Equiter"
+        content="Equitor"
         style={{ fontSize: "5em" }}
       />
       <Header
         as="h2"
-        content="all you need to know about equities"
+        content="keep up with the stock market"
         style={{ fontSize: "2em", paddingBottom: "2em" }}
       />
     </Segment>
