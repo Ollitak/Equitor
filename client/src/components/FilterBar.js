@@ -36,7 +36,7 @@ const selectCustomStyle = {
   },
 };
 
-const FilterBar = () => {
+const FilterBar = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
   const companyFilter = useSelector(state => state.filter.companyFilter);
   const keywordFilter = useSelector(state => state.filter.keywordFilter);
@@ -91,6 +91,7 @@ const FilterBar = () => {
           backgroundColor:"black",
           border: "solid 1px white"
         }}
+        onClick={() => setShowFilterBar(false)}
         content="Close filter"
       />
     </Segment>
