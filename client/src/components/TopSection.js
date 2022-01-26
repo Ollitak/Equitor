@@ -46,7 +46,7 @@ const TopSection = () => {
     <Segment
       inverted
       textAlign="center"
-      style={{ minHeight: 300, paddingTop: "1em" }}
+      style={{ borderRadius: 0, minHeight: 300, paddingTop: "1em", marginBottom:"0em" }}
     >
       <NavigationBar />
       <Header

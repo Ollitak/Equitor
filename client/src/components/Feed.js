@@ -1,21 +1,27 @@
 import React from "react";
 import AnalyseItem from "./AnalyseItem";
+import FilterBar from "./FilterBar";
 import { useSelector } from "react-redux";
 
-/* component selects all analyses from redux state and passes them to
-AnalyseList component for rendering*/
-const Feed = () => {
-  const analyses = useSelector(state => state.analyses);
 
-  /* myPage is used to indicate if route is set to myPage, which in this
-  case is false as this component renders front page */
+const Feed = () => {
+  var analyses = useSelector(state => state.analyses);
+
+  const filter = useSelector(state => state.filter);
+  console.log("FILTER: "+ filter.companyFilter);
+  if(filter.companyFilter) {
+    analyses = analyses.filter(analysis =>
+      analysis.stockInformation.name === filter.companyFilter
+    );
+  }
+
   return(
     <div>
+      <FilterBar />
       {analyses.map(analysis =>
         <AnalyseItem
           key={analysis.id}
           analysis={analysis}
-          myPage={false}
         />
       )}
     </div>

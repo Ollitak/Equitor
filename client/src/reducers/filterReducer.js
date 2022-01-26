@@ -5,18 +5,18 @@ const initialState = {
 const reducer  = (state = initialState, action) => {
   switch(action.type) {
   case "SET_COMPANY_FILTER":
-    return { companyFilter: action.filter, ...state };
+    return { ...state, companyFilter: action.filter };
   default:
     return state;
   }
 };
 
 
-export const changeCompanyFilter = (filter) => {
+export const setCompanyFilter = (filter) => {
   return {
     type: "SET_COMPANY_FILTER",
     filter
   };
-} ;
+};
 
 export default reducer;
