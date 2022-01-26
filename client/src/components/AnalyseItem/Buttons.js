@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteAnalysis } from "../../reducers/analysisReducer";
 
-/* Conditionally render buttons: if myPage set to true also render delete buttons*/
+/* Conditionally render buttons: if myPage set to true also render delete buttons. */
 const Buttons = ({ analysis, myPage }) => {
   const history = useHistory();
   const dispatch = useDispatch();

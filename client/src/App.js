@@ -12,8 +12,6 @@ import { useDispatch } from "react-redux";
 import TopSection from "./components/TopSection";
 import CreateAccountForm from "./components/CreateAccountForm";
 
-
-
 import "./App.css";
 
 const App = () => {
@@ -61,6 +59,5 @@ const App = () => {
     </Router>
   );
 };
-
 
 export default App;

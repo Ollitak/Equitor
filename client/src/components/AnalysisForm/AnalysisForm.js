@@ -7,8 +7,7 @@ import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { stockSelection, keyWordOptions, recommendationOptions } from "./utilities";
 import analysisFormSchema from "./validationSchema";
-
-/* Component to render textBox with label and large textarea as well as the error message*/
+/* Component to render textBox with label and large textarea as well as the error message. */
 const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
   return (
     <Form.Field>
@@ -25,19 +24,22 @@ const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
   );
 };
 
-/* Component for rendering error message */
-const ShowError = ({ name }) =>
-  <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
+/* Component for rendering error message. */
+const ShowError = ({ name }) => {
+  return (
+    <ErrorMessage name={name}>
+      { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
+    </ErrorMessage>
+  );
+};
 
 const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  /* Used to control which textboxes are shown. Initially all are hidden,
+  /* Used to control which textboxes are shown. Initially all hidden,
   but when corresponding checkbox is checked, a textboxShow is set to true
-  and textBox appears */
+  and textBox appears. */
   const [textboxShow, setTextboxShow] = useState({
     summary: false,
     basicCompanyInformation: false,

@@ -7,7 +7,7 @@ const FeedContent = ({ analysis }) => {
   /* Determine how many hours ago the analysis was posted */
   const postedAgo = getAgo(analysis.date);
 
-  /* Determine the average of given ratings */
+  /* Determine the average of given ratings. */
   const averageRating = getAverageRating(analysis.comments);
 
   return (
@@ -48,7 +48,7 @@ const getAverageRating = (comments) => {
 };
 
 /* This ugly function parses the date when analysis was posted and
- returs time difference between that date and today in hours  */
+ returs time difference between that date and today in hours.  */
 const getAgo = (unparsedDate) => {
   const dateAndTime = unparsedDate.split(":");
   const postDate = dateAndTime[0];
@@ -70,7 +70,7 @@ const getAgo = (unparsedDate) => {
   const postedOn = new Date(year, month, day, hour, minute);
   const today = new Date();
   /* The subtraction returns the difference between the two dates in milliseconds.
-   36e5 is notation for 60*60*1000 */
+   36e5 is notation for 60*60*1000. */
   return Math.trunc(Math.abs(today - postedOn)/36e5);
 };
 

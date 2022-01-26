@@ -8,7 +8,7 @@ import {
   Rating
 } from "semantic-ui-react";
 
-/* Presents comment feed. Constructed as Semantic Ui Feed component. */
+/* Presents comment feed. Constructed with Semantic Ui Feed component. */
 const CommentFeed = ({ analysis }) => {
   return (
     <Feed>

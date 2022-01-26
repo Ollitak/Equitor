@@ -7,7 +7,7 @@ import {
   Image,
 } from "semantic-ui-react";
 
-/* render label based on recommendation input*/
+/* Render label based on recommendation input. */
 const RecommendationLabel = ({ recommendation }) => {
   switch(recommendation){
   case "BUY":
@@ -63,6 +63,7 @@ const SummarySection = ({ analysis }) => {
   );
 };
 
+/* Conditionally render title and content based on if content exists. */
 const Paragraph = ({ title, content }) => {
   if(!content) return null;
   return (
@@ -73,6 +74,7 @@ const Paragraph = ({ title, content }) => {
   );
 };
 
+/* TextSection presents users written analysis in multiple paragraphs */
 const TextSection = ({ analysis }) => {
   return (
     <Grid.Column width={12}>
@@ -90,8 +92,7 @@ const TextSection = ({ analysis }) => {
   );
 };
 
-/* Presents summary component on the left and analysis header + analysis content
-on the right. */
+/* Presents summary component on the left and written analysis on the right. */
 const AnalysisSection = ({ analysis }) => {
   return(
     <Grid.Row>

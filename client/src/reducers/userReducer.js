@@ -12,6 +12,7 @@ const reducer  = (state = null, action) => {
   }
 };
 
+
 /* used to store user information to both local storage and redux
 user store when client logs in*/
 export const login = (values) => {
@@ -27,7 +28,7 @@ export const login = (values) => {
   };
 };
 
-/* used in useEffect on app launch to set user information from local
+/* Used in useEffect on app launch to set user information from local
 storage to application's state. */
 export const initializeUser = (userJson) => {
   const user = JSON.parse(userJson);
@@ -35,7 +36,7 @@ export const initializeUser = (userJson) => {
   return { type: "LOGIN", user: user };
 };
 
-/* used on log out to reset localstorage, redux user state and token*/
+/* Used on log out to reset localstorage, redux user state and token. */
 export const logout = () => {
   analysesService.setToken(null);
   window.localStorage.clear();

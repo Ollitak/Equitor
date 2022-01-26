@@ -1,7 +1,7 @@
 import React from "react";
 import { Menu } from "semantic-ui-react";
 import { useHistory, useLocation } from "react-router-dom";
-import { logout } from "../reducers/userReducer";
+import { logout } from "../../reducers/userReducer";
 import { useSelector, useDispatch } from "react-redux";
 
 const OnLoggedIn = () => {
@@ -36,6 +36,7 @@ const OnLoggedOut = () => {
 
 };
 
+/* Conditionally render navigation bar based on whether user has logged in */
 const NavigationBar = () => {
   const user = useSelector(state => state.user);
   return user ? <OnLoggedIn /> : <OnLoggedOut />;

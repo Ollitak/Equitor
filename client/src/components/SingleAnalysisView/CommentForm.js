@@ -69,11 +69,11 @@ const CommentForm = ({ id }) => {
   );
 };
 
-export default CommentForm;
-
-
 const ShowError = ({ name }) =>
   <ErrorMessage name={name}>
     { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
   </ErrorMessage>;
+
+export default CommentForm;
+
 

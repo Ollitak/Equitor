@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
-import AnalyseItem from "./AnalyseItem";
+import AnalyseItem from "../AnalyseItem";
 import FilterBar from "./FilterBar";
 import { useSelector } from "react-redux";
 
 
 /* If showFilterBar is set to true, renders FilterBar. Else, renders
-button used to set showFilterBar true */
+button used to set showFilterBar true. */
 const Filter = () => {
   const [showFilterBar, setShowFilterBar] = useState(false);
 
@@ -27,7 +27,6 @@ const Filter = () => {
     </div>
   );
 };
-
 
 /* Component to render analysis feed. It retreives analyses and filters from the
 redux store and applies the filters to the analyses. Then, it renders filter component
@@ -51,6 +50,7 @@ const Feed = () => {
   return(
     <div>
       <Filter />
+
       {analyses.map(analysis =>
         <AnalyseItem
           key={analysis.id}

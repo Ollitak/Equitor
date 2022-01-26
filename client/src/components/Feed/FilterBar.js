@@ -1,11 +1,11 @@
 import React from "react";
 import { Segment, Button  } from "semantic-ui-react";
 import Select from "react-select";
-import { stockSelection, keyWordOptions } from "./AnalysisForm/utilities";
+import { stockSelection, keyWordOptions } from "../AnalysisForm/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { setCompanyFilter, setKeywordFilter, resetFilters } from "../reducers/filterReducer";
+import { setCompanyFilter, setKeywordFilter, resetFilters } from "../../reducers/filterReducer";
 
-/* Custom styles object for react-select */
+/* Custom styles object for react-select. */
 const selectCustomStyle = {
   menu: (provided) => ({
     ...provided,
@@ -36,6 +36,8 @@ const selectCustomStyle = {
   },
 };
 
+/* Filter bar currently has options to filter feed results by either company name or
+keyword. Additionally, it has buttons for resetting filters and hiding filter bar. */
 const FilterBar = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
   const companyFilter = useSelector(state => state.filter.companyFilter);
