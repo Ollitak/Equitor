@@ -4,10 +4,13 @@ import { composeWithDevTools } from "redux-devtools-extension";
 
 import analysisReducer from "./reducers/analysisReducer";
 import userReducer from "./reducers/userReducer";
+import filterReducer from "./reducers/filterReducer";
+
 
 const reducer = combineReducers({
   analyses: analysisReducer,
-  user: userReducer
+  user: userReducer,
+  filter: filterReducer
 });
 
 const store = createStore(
