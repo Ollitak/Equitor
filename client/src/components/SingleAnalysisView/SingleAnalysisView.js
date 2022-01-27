@@ -26,8 +26,8 @@ const SingleAnalysisView = () => {
   return (
     <Segment style={{ padding:"1em" }} vertical>
       <Grid stackable container>
-        <AnalysisSection analysis={analysis} />
         <CommentSection analysis={analysis} id={id} />
+        <AnalysisSection analysis={analysis} />
       </Grid>
     </Segment>
   );

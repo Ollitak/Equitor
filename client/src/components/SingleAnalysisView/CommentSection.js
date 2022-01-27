@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import CommentForm from "./CommentForm";
 import {
-  Grid,
-  Divider,
+  Modal,
+  Button,
   Feed,
   Icon,
-  Rating
+  Rating,
 } from "semantic-ui-react";
 
 /* Presents comment feed. Constructed with Semantic Ui Feed component. */
@@ -19,14 +19,12 @@ const CommentFeed = ({ analysis }) => {
               <Icon name="comment" color="grey"></Icon>
             </Feed.Label>
             <Feed.Content>
-              <Feed.Date>4 days ago</Feed.Date>
+              <Feed.Date>X days ago</Feed.Date>
               <Feed.Summary>
                         Commented and rated by <a>{comment.user.username}</a>
               </Feed.Summary>
               <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="5" />
-              <Feed.Extra>
-                {comment.content}
-              </Feed.Extra>
+              <Feed.Extra content={comment.content} />
               <Feed.Meta>
               </Feed.Meta>
             </Feed.Content>
@@ -37,24 +35,52 @@ const CommentFeed = ({ analysis }) => {
   );
 };
 
-/* Contains structure for comment section. Section is constructed as new grid row
-that includes divider, comment form and comment feed */
+/* Renders button that opens modal for comments. Modal is constructed by two compoents:
+first renders form for writing comments and second renders the comment feed */
 const CommentSection = ({ analysis ,id }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
   return(
-    <Grid.Row columns={1} style={{ marginTop:"2em", marginBottom:"4em" }}>
-      <Grid.Column>
-        <Divider
-          as='h4'
-          className='header'
-          horizontal
-          style={{ margin: "3em 0em", textTransform: "uppercase" }}
-        >
-          <a>Comments</a>
-        </Divider>
+    <Modal
+      open={modalOpen}
+      onOpen={() => setModalOpen(true)}
+      onClose={() => setModalOpen(false)}
+      trigger={
+        <Button
+          content="Comments and ratings"
+          style={{
+            backgroundColor:"white",
+            color: "black",
+            border: "1px solid black",
+            height: "3em",
+            width:"100%",
+            marginBottom:"1em"
+          }}
+        />
+      }
+      size="small"
+      centered={false}
+    >
+      <Modal.Header>
+        Comments & Ratings
+      </Modal.Header>
+
+      <Modal.Content scrolling>
         <CommentForm id={id} />
         <CommentFeed analysis={analysis} />
-      </Grid.Column>
-    </Grid.Row>
+      </Modal.Content>
+
+      <Modal.Actions>
+        <Button
+          onClick={() => setModalOpen(false)}
+          style={{ backgroundColor:"red", color:"white" }}
+        >
+          <Icon name='remove' />
+          Close
+        </Button>
+      </Modal.Actions>
+
+    </Modal>
   );
 };
 

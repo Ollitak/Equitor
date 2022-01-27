@@ -60,7 +60,12 @@ const CommentForm = ({ id }) => {
               <ShowError name={"content"} />
             </Form.Field>
             <Form.Group>
-              <Form.Button color="grey" type="submit" onClick={handleSubmit}>Send</Form.Button>
+              <Form.Button
+                type="submit"
+                content="Submit"
+                onClick={handleSubmit}
+                style={{ backgroundColor:"green", color:"white" }}
+              />
             </Form.Group>
           </Form>
         </div>

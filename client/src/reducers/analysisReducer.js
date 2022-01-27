@@ -63,6 +63,7 @@ export const addComment = (id, values) => {
       dispatch({ type: "UPDATE", data: analysis });
       dispatch(setSuccess("Comment added succesfully!"));
     } catch(e) {
+      console.log(e.response.data);
       dispatch(setError(e.response.data));
     }
   };
