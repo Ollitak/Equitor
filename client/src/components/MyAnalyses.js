@@ -1,5 +1,5 @@
 import React from "react";
-import AnalyseItem from "./AnalyseItem";
+import FeedItem from "./FeedItem";
 import { useSelector } from "react-redux";
 
 /* Component to render logged user's analyses. */
@@ -11,7 +11,7 @@ const MyAnalyses = () => {
   return (
     <div>
       {myAnalyses.map(analysis =>
-        <AnalyseItem
+        <FeedItem
           key={analysis.id}
           analysis={analysis}
           myPage={true}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button } from "semantic-ui-react";
-import AnalyseItem from "../AnalyseItem";
+import FeedItem from "../FeedItem";
 import FilterBar from "./FilterBar";
 import { useSelector } from "react-redux";
 
@@ -52,7 +52,7 @@ const Feed = () => {
       <Filter />
 
       {analyses.map(analysis =>
-        <AnalyseItem
+        <FeedItem
           key={analysis.id}
           analysis={analysis}
         />
