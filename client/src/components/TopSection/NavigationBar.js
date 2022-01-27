@@ -11,7 +11,7 @@ const OnLoggedIn = () => {
   const path = location.pathname;
 
   return (
-    <Menu inverted pagination pointing secondary size="massive" >
+    <Menu stackable inverted pagination pointing secondary size="massive" >
       <Menu.Item onClick={() => history.push("/feed")} active={path==="/feed"}>Feed</Menu.Item>
       <Menu.Item onClick={() => history.push("/my-analyses")} active={path==="/my-analyses"}>My analyses</Menu.Item>
       <Menu.Item onClick={() => history.push("/create-analysis")} active={path==="/create-analysis"}>Create analysis</Menu.Item>
@@ -26,7 +26,7 @@ const OnLoggedOut = () => {
   const path = location.pathname;
 
   return (
-    <Menu inverted pagination pointing secondary size="massive" >
+    <Menu stackable inverted pagination pointing secondary size="massive" >
       <Menu.Item onClick={() => history.push("/")} active={path==="/"}>Home</Menu.Item>
       <Menu.Item onClick={() => history.push("/feed")} active={path==="/feed"}>Feed</Menu.Item>
       <Menu.Item onClick={() => history.push("/login")} active={path==="/login"}>Log in</Menu.Item>
