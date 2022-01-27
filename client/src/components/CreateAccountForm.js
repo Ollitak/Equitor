@@ -99,7 +99,7 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Group>
-              <Form.Button primary type="submit" onClick={handleSubmit}>Create</Form.Button>
+              <Form.Button style={{ backgroundColor:"rgb(10, 40, 230)", color:"white" }} type="submit" onClick={handleSubmit}>Create</Form.Button>
               <Form.Button secondary onClick={() => history.push("/feed")}>Return</Form.Button>
             </Form.Group>
           </Form>

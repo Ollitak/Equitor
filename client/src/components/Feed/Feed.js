@@ -18,10 +18,11 @@ const Filter = () => {
         onClick={() => setShowFilterBar(true)}
         content = {"Apply filters"}
         style={{
-          backgroundColor:"black",
-          color: "white",
-          border: "1px solid white",
+          backgroundColor:"white",
+          color: "black",
+          border: "1px solid black",
           height: "3em",
+          width:"100%",
         }}
       />
     </div>

@@ -10,12 +10,17 @@ const OnLoggedIn = () => {
   const location = useLocation();
   const path = location.pathname;
 
+  const logOut = () => {
+    history.push("/home");
+    dispatch(logout());
+  };
+
   return (
     <Menu stackable inverted pagination pointing secondary size="massive" >
       <Menu.Item onClick={() => history.push("/feed")} active={path==="/feed"}>Feed</Menu.Item>
       <Menu.Item onClick={() => history.push("/my-analyses")} active={path==="/my-analyses"}>My analyses</Menu.Item>
       <Menu.Item onClick={() => history.push("/create-analysis")} active={path==="/create-analysis"}>Create analysis</Menu.Item>
-      <Menu.Item onClick={() => dispatch(logout())}>Log out</Menu.Item>
+      <Menu.Item onClick={logOut}>Log out</Menu.Item>
     </Menu>
   );
 };
