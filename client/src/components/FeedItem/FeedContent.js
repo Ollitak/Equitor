@@ -47,27 +47,9 @@ const getAverageRating = (comments) => {
   return average;
 };
 
-/* This ugly function parses the date when analysis was posted and
- returs time difference between that date and today in hours.  */
+/* Function to return hour difference between post date and date now */
 const getAgo = (unparsedDate) => {
-  const dateAndTime = unparsedDate.split(":");
-  const postDate = dateAndTime[0];
-  const postTime = dateAndTime[1];
-  const splittedDate = postDate.split("-");
-  const dateAndHours = splittedDate[2].split("T");
-  const splittedTime = postTime.split(":");
-
-  const year = splittedDate[0];
-  /* JavaScript counts months from 0 to 11 */
-  const month = splittedDate[1]-1;
-  const day = dateAndHours[0];
-  /*Database has times in GMT+0 timezone, whereas Finland is in GMT+2.
-  For now, just add +2 hours to dates retreived from database. For sure,
-  not a good practice. */
-  const hour = parseInt(dateAndHours[1])+2;
-  const minute = splittedTime[0];
-
-  const postedOn = new Date(year, month, day, hour, minute);
+  const postedOn = new Date(unparsedDate);
   const today = new Date();
   /* The subtraction returns the difference between the two dates in milliseconds.
    36e5 is notation for 60*60*1000. */
