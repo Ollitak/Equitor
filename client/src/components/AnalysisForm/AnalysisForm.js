@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { stockSelection, keyWordOptions, recommendationOptions } from "./utilities";
+import { stockSelection, keyWordOptions, recommendationOptions } from "../../utilities/utilityData";
 import analysisFormSchema from "./validationSchema";
 /* Component to render textBox with label and large textarea as well as the error message. */
 const TextBox = ({ name, label, value, handleChange, handleBlur }) => {

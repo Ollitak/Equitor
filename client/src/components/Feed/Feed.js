@@ -34,8 +34,7 @@ and analysis feed. */
 const Feed = () => {
   var analyses = useSelector(state => state.analyses);
 
-  /* prepareAnalyses adds fields for every analysis element indicating how many hours ago
-  the analysis was posted and what is its average rating */
+  /* Extend analysis objects' fields and apply filtering. */
   analyses = prepareAnalyses(analyses);
 
   return(
