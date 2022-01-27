@@ -63,3 +63,10 @@ export const recommendationOptions = [
   { value: "HOLD", label: "HOLD" },
   { value: "SELL", label: "SELL" },
 ];
+
+export const orderingOptions = [
+  { value: "Most recent", label: "Most recent" },
+  { value: "Oldest", label: "Oldest" },
+  { value: "Highest rated", label: "Highest rated" },
+  { value: "Lowest rated", label: "Lowest rated" }
+];

@@ -1,17 +1,4 @@
-const prepareAnalyses = (analyses) => {
-
-  /* For each element, add additional field to indicate how many hours ago the analysis was posted */
-  analyses = analyses.map(a => {
-    return( { ...a, postedAgo: getAgo(a.date) });
-  });
-
-  /* For each element, add additional field to indicate average user rating */
-  analyses = analyses.map(a => {
-    return( { ...a, averageRating: getAverageRating(a.comments) });
-  });
-
-  return analyses;
-};
+import { useSelector } from "react-redux";
 
 /* Function to return hour difference between post date and date now */
 const getAgo = (unparsedDate) => {
@@ -28,5 +15,63 @@ const getAverageRating = (comments) => {
   return average;
 };
 
+export const orderByDateASC = (analyses) => {
+  return analyses.sort((first, second) => first.postedAgo - second.postedAgo);
+};
+
+export const orderByDateDESC = (analyses) => {
+  return analyses.sort((first, second) => second.postedAgo - first.postedAgo);
+};
+
+export const orderByRatingASC = (analyses) => {
+  return analyses.sort((first, second) => first.averageRating - second.averageRating);
+};
+
+export const orderByRatingDESC = (analyses) => {
+  return analyses.sort((first, second) => second.averageRating - first.averageRating);
+};
+
+
+const prepareAnalyses = (analyses) => {
+  /* For each element, add additional field to indicate how many hours ago the analysis was posted */
+  analyses = analyses.map(a => {
+    return( { ...a, postedAgo: getAgo(a.date) });
+  });
+
+  /* For each element, add additional field to indicate average user rating */
+  analyses = analyses.map(a => {
+    return( { ...a, averageRating: getAverageRating(a.comments) });
+  });
+
+  const filters = useSelector(state => state.filter);
+
+  /* filter analyses by company name */
+  if(filters.companyFilter) {
+    analyses = analyses.filter(analysis =>
+      analysis.stockInformation.name === filters.companyFilter
+    );
+  }
+
+  /* filter analyses by keyword */
+  if(filters.keywordFilter) {
+    analyses = analyses.filter(analysis =>
+      analysis.keyWords.includes(filters.keywordFilter)
+    );
+  }
+
+  /* filter analyses by user selected ordering */
+  switch(filters.orderingFilter) {
+  case("Most recent"):
+    analyses = orderByDateASC(analyses); break;
+  case("Oldest"):
+    analyses = orderByDateDESC(analyses); break;
+  case("Lowest rated"):
+    analyses = orderByRatingASC(analyses); break;
+  case("Highest rated"):
+    analyses = orderByRatingDESC(analyses);
+  }
+
+  return analyses;
+};
 
 export default prepareAnalyses;

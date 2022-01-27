@@ -3,7 +3,7 @@ import { Button } from "semantic-ui-react";
 import FeedItem from "../FeedItem";
 import FilterBar from "./FilterBar";
 import { useSelector } from "react-redux";
-import prepareAnalyses from "../../utilities/prepareAnalyses";
+import prepareAnalyses, { orderByDateASC, orderByDateDESC, orderByRatingASC, orderByRatingDESC } from "../../utilities/prepareAnalyses";
 
 /* If showFilterBar is set to true, renders FilterBar. Else, renders
 button used to set showFilterBar true. */
@@ -49,6 +49,17 @@ const Feed = () => {
     analyses = analyses.filter(analysis =>
       analysis.keyWords.includes(filter.keywordFilter)
     );
+  }
+
+  switch(filter.orderingFilter) {
+  case("Most recent"):
+    analyses = orderByDateASC(analyses); break;
+  case("Oldest"):
+    analyses = orderByDateDESC(analyses); break;
+  case("Lowest rated"):
+    analyses = orderByRatingASC(analyses); break;
+  case("Highest rated"):
+    analyses = orderByRatingDESC(analyses);
   }
 
   return(

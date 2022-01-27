@@ -1,9 +1,9 @@
 import React from "react";
 import { Segment, Button  } from "semantic-ui-react";
 import Select from "react-select";
-import { stockSelection, keyWordOptions } from "../AnalysisForm/utilities";
+import { stockSelection, keyWordOptions, orderingOptions } from "../AnalysisForm/utilities";
 import { useDispatch, useSelector } from "react-redux";
-import { setCompanyFilter, setKeywordFilter, resetFilters } from "../../reducers/filterReducer";
+import { setCompanyFilter, setKeywordFilter, setOrderingFilter, resetFilters } from "../../reducers/filterReducer";
 
 /* Custom styles object for react-select. */
 const selectCustomStyle = {
@@ -42,8 +42,7 @@ const FilterBar = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
   const companyFilter = useSelector(state => state.filter.companyFilter);
   const keywordFilter = useSelector(state => state.filter.keywordFilter);
-
-  console.log(keywordFilter);
+  const orderingFilter = useSelector(state => state.filter.orderingFilter);
 
   return (
     <Segment
@@ -68,6 +67,16 @@ const FilterBar = ({ setShowFilterBar }) => {
           value={{ label: keywordFilter }}
           options={keyWordOptions}
           onChange={(vals) => dispatch(setKeywordFilter(vals.value))}
+        />
+      </div>
+
+      <div style={{ marginTop: "0.5em" }}>
+        <label>Select ordering</label>
+        <Select
+          styles={selectCustomStyle}
+          value={{ label: orderingFilter }}
+          options={orderingOptions}
+          onChange={(vals) => dispatch(setOrderingFilter(vals.value))}
         />
       </div>
 

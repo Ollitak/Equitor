@@ -1,6 +1,7 @@
 const initialState = {
   companyFilter: "",
-  keywordFilter: ""
+  keywordFilter: "",
+  orderingFilter:"Most recent",
 };
 
 const reducer  = (state = initialState, action) => {
@@ -9,6 +10,8 @@ const reducer  = (state = initialState, action) => {
     return { ...state, companyFilter: action.filter };
   case "SET_KEYWORD_FILTER":
     return { ...state, keywordFilter: action.filter };
+  case "SET_ORDER_FILTER":
+    return { ...state, orderingFilter: action.ordering };
   case "RESET_FILTERS":
     return initialState;
   default:
@@ -29,6 +32,14 @@ export const setKeywordFilter = (filter) => {
   return {
     type: "SET_KEYWORD_FILTER",
     filter
+  };
+};
+
+/* Used to order feed. */
+export const setOrderingFilter = (ordering) => {
+  return {
+    type: "SET_ORDER_FILTER",
+    ordering
   };
 };
 
