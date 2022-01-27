@@ -11,6 +11,7 @@ import { initializeUser } from "./reducers/userReducer";
 import { useDispatch } from "react-redux";
 import TopSection from "./components/TopSection";
 import CreateAccountForm from "./components/CreateAccountForm";
+import Notification from "./components/Notification";
 
 import "./App.css";
 
@@ -33,6 +34,7 @@ const App = () => {
   return (
     <Router>
       <TopSection />
+      <Notification />
       <Switch>
         <Route path="/feed">
           <Feed />
