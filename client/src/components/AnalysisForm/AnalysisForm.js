@@ -58,7 +58,7 @@ const AnalysisForm = () => {
       stockInformation: stockSelection.find(s => s.name === values.stockName)
     };
     dispatch(addAnalysis(analysis));
-    history.push("/");
+    history.push("/my-analyses");
   };
 
   return (

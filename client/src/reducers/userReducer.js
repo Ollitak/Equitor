@@ -1,5 +1,6 @@
 import analysesService from "../services/analyses";
 import loginService from "../services/login";
+import { setError, setSuccess } from "./notificationReducer";
 
 const reducer  = (state = null, action) => {
   switch(action.type) {
@@ -22,8 +23,9 @@ export const login = (values) => {
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
       analysesService.setToken(user.token);
       dispatch( { type: "LOGIN", user: user });
+      dispatch(setSuccess("Login successful, you are now logged in!"));
     } catch(e) {
-      console.log(e.response.data);
+      dispatch(setError("Login failed, please check your credentials."));
     }
   };
 };
@@ -38,11 +40,13 @@ export const initializeUser = (userJson) => {
 
 /* Used on log out to reset localstorage, redux user state and token. */
 export const logout = () => {
-  analysesService.setToken(null);
-  window.localStorage.clear();
-  return { type: "LOGOUT" };
+  return async dispatch => {
+    analysesService.setToken(null);
+    window.localStorage.clear();
+    dispatch({ type: "LOGOUT" });
+    dispatch(setSuccess("Successfully logged out!"));
+  };
 };
-
 
 export default reducer;
 

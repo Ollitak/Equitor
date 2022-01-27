@@ -1,4 +1,5 @@
 import analysesService from "../services/analyses";
+import { setError, setSuccess } from "./notificationReducer";
 
 const reducer  = (state = [], action) => {
   switch(action.type) {
@@ -33,8 +34,9 @@ export const deleteAnalysis = (id) => {
     try {
       await analysesService.deleteAnalyse(id);
       dispatch({ type: "DELETE", id: id });
+      dispatch(setSuccess("Analysis deleted succesfully!"));
     } catch(e) {
-      console.log(e.response.data);
+      dispatch(setError(e.response.data));
     }
   };
 };
@@ -45,8 +47,9 @@ export const addAnalysis = (values) => {
     try {
       const analysis = await analysesService.create(values);
       dispatch({ type: "ADD", data: analysis });
+      dispatch(setSuccess("Analysis added succesfully!"));
     } catch(e) {
-      console.log(e.response.data);
+      dispatch(setError(e.response.data));
     }
   };
 };
@@ -58,8 +61,9 @@ export const addComment = (id, values) => {
     try {
       const analysis = await analysesService.newComment(id, values);
       dispatch({ type: "UPDATE", data: analysis });
+      dispatch(setSuccess("Comment added succesfully!"));
     } catch(e) {
-      console.log(e.response.data);
+      dispatch(setError(e.response.data));
     }
   };
 };
