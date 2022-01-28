@@ -21,7 +21,7 @@ const CommentFeed = ({ analysis }) => {
             <Feed.Content>
               <Feed.Date>X days ago</Feed.Date>
               <Feed.Summary>
-                        Commented and rated by <a>{comment.user.username}</a>
+                        Commented and rated by {comment.user.username}
               </Feed.Summary>
               <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="5" />
               <Feed.Extra content={comment.content} />

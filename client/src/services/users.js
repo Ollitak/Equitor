@@ -6,6 +6,8 @@ const createUser = async (userDetails) => {
   return analyses.data;
 };
 
-export default {
+const exportObject = {
   createUser
 };
+
+export default exportObject;

@@ -6,6 +6,8 @@ const login = async (loginDetails) => {
   return analyses.data;
 };
 
-export default {
+const exportObject = {
   login
 };
+
+export default exportObject ;

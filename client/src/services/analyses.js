@@ -31,10 +31,12 @@ const newComment = async (id, comment) => {
   return response.data;
 };
 
-export default {
+const exportObject = {
   getAnalyses,
   create,
   deleteAnalyse,
   newComment,
   setToken
 };
+
+export default exportObject;

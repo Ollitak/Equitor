@@ -34,9 +34,10 @@ redux store and applies the filters to the analyses. Then, it renders filter com
 and analysis feed. */
 const Feed = () => {
   var analyses = useSelector(state => state.analyses);
+  const filters = useSelector(state => state.filter);
 
   /* Extend analysis objects' fields and apply filtering. */
-  analyses = prepareAnalyses(analyses);
+  analyses = prepareAnalyses(analyses, filters);
 
   return(
     <div>

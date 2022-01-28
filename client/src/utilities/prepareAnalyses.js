@@ -1,5 +1,3 @@
-import { useSelector } from "react-redux";
-
 /* Function to return hour difference between post date and date now */
 const getAgo = (unparsedDate) => {
   const postedOn = new Date(unparsedDate);
@@ -32,7 +30,7 @@ export const orderByRatingDESC = (analyses) => {
 };
 
 
-const prepareAnalyses = (analyses) => {
+const prepareAnalyses = (analyses, filters) => {
   /* For each element, add additional field to indicate how many hours ago the analysis was posted */
   analyses = analyses.map(a => {
     return( { ...a, postedAgo: getAgo(a.date) });
@@ -42,8 +40,6 @@ const prepareAnalyses = (analyses) => {
   analyses = analyses.map(a => {
     return( { ...a, averageRating: getAverageRating(a.comments) });
   });
-
-  const filters = useSelector(state => state.filter);
 
   /* filter analyses by company name */
   if(filters.companyFilter) {
@@ -68,7 +64,8 @@ const prepareAnalyses = (analyses) => {
   case("Lowest rated"):
     analyses = orderByRatingASC(analyses); break;
   case("Highest rated"):
-    analyses = orderByRatingDESC(analyses);
+    analyses = orderByRatingDESC(analyses);  break;
+  default:
   }
 
   return analyses;
