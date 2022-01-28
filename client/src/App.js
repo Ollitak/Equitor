@@ -36,27 +36,13 @@ const App = () => {
       <TopSection />
       <Notification />
       <Switch>
-        <Route path="/feed">
-          <Feed />
-        </Route>
-        <Route path="/create-analysis">
-          <AnalysisForm />
-        </Route>
-        <Route path="/create-account">
-          <CreateAccountForm />
-        </Route>
-        <Route path="/login">
-          <LoginForm />
-        </Route>
-        <Route path="/my-analyses">
-          <MyAnalyses />
-        </Route>
-        <Route path="/analysis/:id">
-          <SingleAnalysisView />
-        </Route>
-        <Route path="/">
-          <HomePage />
-        </Route>
+        <Route path="/feed" component={Feed}/>
+        <Route path="/create-analysis" component={AnalysisForm}/>
+        <Route path="/create-account" component={CreateAccountForm}/>
+        <Route path="/login" component={LoginForm}/>
+        <Route path="/my-analyses" component={MyAnalyses}/>
+        <Route path="/analysis/:id" component={SingleAnalysisView}/>
+        <Route path="/" component={HomePage}/>
       </Switch>
     </Router>
   );
