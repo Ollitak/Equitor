@@ -28,4 +28,12 @@
     mahdollista renderöidä textboxeja ehdollisesti.
   * feedin rakentaminen semantic UI:lla
   * koodin jakaminen pienempiin komponentteihin ja moduuleihin
-
+26.1 (11h)
+  * filteröinnin implementointi
+  * styling
+  * käyttäjän luomiseen tarkoitetun formin luominen
+27.1 (8h)
+  * notifikaatioiden implementointi
+  * utiliteettifunktioiden luominen mm. keskimääräisen ratingin laskelmiseen
+  * filteröinnin laajentaminen
+  * modalin implementointi kommentoiti-ikkunaan
