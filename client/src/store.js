@@ -7,7 +7,6 @@ import userReducer from "./reducers/userReducer";
 import filterReducer from "./reducers/filterReducer";
 import notificationReducer from "./reducers/notificationReducer";
 
-
 const reducer = combineReducers({
   analyses: analysisReducer,
   user: userReducer,
@@ -15,11 +14,6 @@ const reducer = combineReducers({
   notification: notificationReducer
 });
 
-const store = createStore(
-  reducer,
-  composeWithDevTools(
-    applyMiddleware(thunk)
-  )
-);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
 export default store;

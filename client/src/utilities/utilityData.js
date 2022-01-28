@@ -11,14 +11,16 @@ export const stockSelection = [
     value: "Wärtsilä",
     name: "Wärtsilä Oyj",
     ticker: "WRT",
-    logoUrl:"https://www.wartsila.com/images/default-source/brand-portal/logo/w-logo-1.png?sfvrsn=9b828545_6"
+    logoUrl:
+      "https://www.wartsila.com/images/default-source/brand-portal/logo/w-logo-1.png?sfvrsn=9b828545_6"
   },
   {
     label: "Nokia",
     value: "Nokia",
     name: "Nokia Oyj",
     ticker: "NOK",
-    logoUrl: "https://www.nokia.com/sites/default/files/styles/scale_720_no_crop/public/media/nokia_white_logo.png"
+    logoUrl:
+      "https://www.nokia.com/sites/default/files/styles/scale_720_no_crop/public/media/nokia_white_logo.png"
   },
   {
     label: "Nordea",
@@ -40,7 +42,7 @@ export const stockSelection = [
     name: "Kone Oyj",
     ticker: "KNEBV",
     logoUrl: "https://www.kone.com/fi/Images/Kone-header-lg_tcm18-99221.png?v=1"
-  },
+  }
 ];
 
 export const keyWordOptions = [
@@ -55,13 +57,13 @@ export const keyWordOptions = [
   { value: "historical analysis", label: "historical analysis" },
   { value: "forecast", label: "forecast" },
   { value: "Excel", label: "Excel" },
-  { value: "PowerPoint", label: "PowerPoint" },
+  { value: "PowerPoint", label: "PowerPoint" }
 ];
 
 export const recommendationOptions = [
   { value: "BUY", label: "BUY" },
   { value: "HOLD", label: "HOLD" },
-  { value: "SELL", label: "SELL" },
+  { value: "SELL", label: "SELL" }
 ];
 
 export const orderingOptions = [

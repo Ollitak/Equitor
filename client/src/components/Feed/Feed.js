@@ -10,19 +10,19 @@ button used to set showFilterBar true. */
 const Filter = () => {
   const [showFilterBar, setShowFilterBar] = useState(false);
 
-  if(showFilterBar) return <FilterBar setShowFilterBar={setShowFilterBar} />;
+  if (showFilterBar) return <FilterBar setShowFilterBar={setShowFilterBar} />;
 
   return (
-    <div style={{ maxWidth:600, margin:"auto", marginBottom:"1em" }}>
+    <div style={{ maxWidth: 600, margin: "auto", marginBottom: "1em" }}>
       <Button
         onClick={() => setShowFilterBar(true)}
-        content = {"Apply filters"}
+        content={"Apply filters"}
         style={{
-          backgroundColor:"white",
+          backgroundColor: "white",
           color: "black",
           border: "1px solid black",
           height: "3em",
-          width:"100%",
+          width: "100%"
         }}
       />
     </div>
@@ -33,22 +33,19 @@ const Filter = () => {
 redux store and applies the filters to the analyses. Then, it renders filter component
 and analysis feed. */
 const Feed = () => {
-  var analyses = useSelector(state => state.analyses);
-  const filters = useSelector(state => state.filter);
+  var analyses = useSelector((state) => state.analyses);
+  const filters = useSelector((state) => state.filter);
 
   /* Extend analysis objects' fields and apply filtering. */
   analyses = prepareAnalyses(analyses, filters);
 
-  return(
+  return (
     <div>
       <Filter />
 
-      {analyses.map(analysis =>
-        <FeedItem
-          key={analysis.id}
-          analysis={analysis}
-        />
-      )}
+      {analyses.map((analysis) => (
+        <FeedItem key={analysis.id} analysis={analysis} />
+      ))}
     </div>
   );
 };

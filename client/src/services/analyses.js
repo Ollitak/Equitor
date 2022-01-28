@@ -3,7 +3,7 @@ const BASE_URL = "/analyses";
 
 let token = null;
 
-const setToken = newToken => {
+const setToken = (newToken) => {
   token = `bearer ${newToken}`;
   console.log("New token set: " + token);
 };
@@ -27,7 +27,7 @@ const deleteAnalyse = async (id) => {
 
 const newComment = async (id, comment) => {
   const config = { headers: { Authorization: token } };
-  const response = await axios.post(`${BASE_URL}/${id}/comment`,comment, config);
+  const response = await axios.post(`${BASE_URL}/${id}/comment`, comment, config);
   return response.data;
 };
 

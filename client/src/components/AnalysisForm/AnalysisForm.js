@@ -28,7 +28,7 @@ const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
 const ShowError = ({ name }) => {
   return (
     <ErrorMessage name={name}>
-      { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
+      {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
     </ErrorMessage>
   );
 };
@@ -49,13 +49,13 @@ const AnalysisForm = () => {
     financialAnalysis: false,
     valuation: false,
     investmentRisks: false,
-    ESGMatters: false,
+    ESGMatters: false
   });
 
   const onSubmit = async (values) => {
     const analysis = {
       ...values,
-      stockInformation: stockSelection.find(s => s.name === values.stockName)
+      stockInformation: stockSelection.find((s) => s.name === values.stockName)
     };
     dispatch(addAnalysis(analysis));
     history.push("/my-analyses");
@@ -66,8 +66,8 @@ const AnalysisForm = () => {
       initialValues={{
         stockName: "",
         targetPrice: "",
-        recommendation:"",
-        keyWords:[],
+        recommendation: "",
+        keyWords: [],
         title: "",
         content: {
           summary: "",
@@ -82,25 +82,17 @@ const AnalysisForm = () => {
         }
       }}
       onSubmit={onSubmit}
-      validationSchema={analysisFormSchema}
-    >
-      {({
-        setFieldValue,
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values
-      }) => (
+      validationSchema={analysisFormSchema}>
+      {({ setFieldValue, handleChange, handleBlur, handleSubmit, values }) => (
         <div style={{ margin: 50 }}>
           <Form>
             <Header as="h1" content="Create analysis" />
-            <Form.Group  widths='equal'>
-
+            <Form.Group widths="equal">
               <Form.Field>
                 <label>Stock name (ticker)</label>
                 <Select
                   options={stockSelection}
-                  onChange={(vals) => setFieldValue("stockName",vals.name)}
+                  onChange={(vals) => setFieldValue("stockName", vals.name)}
                 />
                 <ShowError name={"stockName"} />
               </Form.Field>
@@ -124,7 +116,6 @@ const AnalysisForm = () => {
                 />
                 <ShowError name={"recommendation"} />
               </Form.Field>
-
             </Form.Group>
 
             <Form.Field>
@@ -133,18 +124,18 @@ const AnalysisForm = () => {
                 name={"keyWords"}
                 options={keyWordOptions}
                 isMulti={true}
-                onChange={(vals) => setFieldValue("keyWords", vals.map(val => val.value))}
+                onChange={(vals) =>
+                  setFieldValue(
+                    "keyWords",
+                    vals.map((val) => val.value)
+                  )
+                }
               />
             </Form.Field>
 
             <Form.Field>
               <label>Analysis title</label>
-              <Input
-                name={"title"}
-                type={"text"}
-                onChange={handleChange}
-                onBlur={handleBlur}
-              />
+              <Input name={"title"} type={"text"} onChange={handleChange} onBlur={handleBlur} />
               <ShowError name={"title"} />
             </Form.Field>
 
@@ -156,42 +147,57 @@ const AnalysisForm = () => {
               handleBlur={handleBlur}
             />
 
-
             <Header as="h2" content="Choose more text fields" />
 
             <Checkbox
               style={{ margin: "2em 1em" }}
               label={"basic company information"}
               onChange={() => {
-                setTextboxShow({ ...textboxShow, basicCompanyInformation: !textboxShow.basicCompanyInformation });
+                setTextboxShow({
+                  ...textboxShow,
+                  basicCompanyInformation: !textboxShow.basicCompanyInformation
+                });
               }}
             />
             <Checkbox
               style={{ margin: "2em 1em" }}
               label={"business description"}
               onChange={() => {
-                setTextboxShow({ ...textboxShow, businessDescription: !textboxShow.businessDescription });
+                setTextboxShow({
+                  ...textboxShow,
+                  businessDescription: !textboxShow.businessDescription
+                });
               }}
             />
             <Checkbox
               style={{ margin: "2em 1em" }}
               label={"industry overview and competitive positioning"}
               onChange={() => {
-                setTextboxShow({ ...textboxShow, industryOverviewAndCompetitivePositioning: !textboxShow.industryOverviewAndCompetitivePositioning });
+                setTextboxShow({
+                  ...textboxShow,
+                  industryOverviewAndCompetitivePositioning:
+                    !textboxShow.industryOverviewAndCompetitivePositioning
+                });
               }}
             />
             <Checkbox
               style={{ margin: "2em 1em" }}
               label={"investmen summary"}
               onChange={() => {
-                setTextboxShow({ ...textboxShow, investmentSummary: !textboxShow.investmentSummary });
+                setTextboxShow({
+                  ...textboxShow,
+                  investmentSummary: !textboxShow.investmentSummary
+                });
               }}
             />
             <Checkbox
               style={{ margin: "2em 1em" }}
               label={"financial analysis"}
               onChange={() => {
-                setTextboxShow({ ...textboxShow, financialAnalysis: !textboxShow.financialAnalysis });
+                setTextboxShow({
+                  ...textboxShow,
+                  financialAnalysis: !textboxShow.financialAnalysis
+                });
               }}
             />
             <Checkbox
@@ -216,84 +222,87 @@ const AnalysisForm = () => {
               }}
             />
 
-
-            {textboxShow.basicCompanyInformation
-              ? <TextBox
+            {textboxShow.basicCompanyInformation ? (
+              <TextBox
                 name={"content.basicCompanyInformation"}
                 label={"Basic company information"}
                 value={values.content.basicCompanyInformation}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            {textboxShow.businessDescription
-              ? <TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.businessDescription ? (
+              <TextBox
                 name={"content.businessDescription"}
                 label={"Business description"}
                 value={values.content.businessDescription}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            {textboxShow.industryOverviewAndCompetitivePositioning
-              ? <TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.industryOverviewAndCompetitivePositioning ? (
+              <TextBox
                 name={"content.industryOverviewAndCompetitivePositioning"}
                 label={"Industry overview and competitive positioning"}
                 value={values.content.industryOverviewAndCompetitivePositioning}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            {textboxShow.investmentSummary
-              ? <TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.investmentSummary ? (
+              <TextBox
                 name={"content.investmentSummary"}
                 label={"Investment summary"}
                 value={values.content.investmentSummary}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            {textboxShow.financialAnalysis
-              ? <TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.financialAnalysis ? (
+              <TextBox
                 name={"content.financialAnalysis"}
                 label={"Financial analysis"}
                 value={values.content.financialAnalysis}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
+                handleBlur={handleBlur}
+              />
+            ) : null}
 
-            {textboxShow.valuation
-              ? <TextBox
+            {textboxShow.valuation ? (
+              <TextBox
                 name={"content.valuation"}
                 label={"Valuation"}
                 value={values.content.valuation}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            {textboxShow.investmentRisks
-              ?<TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.investmentRisks ? (
+              <TextBox
                 name={"content.investmentRisks"}
                 label={"Investment risks"}
                 value={values.content.investmentRisks}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
-            { textboxShow.ESGMatters
-              ? <TextBox
+                handleBlur={handleBlur}
+              />
+            ) : null}
+            {textboxShow.ESGMatters ? (
+              <TextBox
                 name={"content.ESGMatters"}
                 label={"ESG matters"}
                 value={values.content.ESGMatters}
                 handleChange={handleChange}
-                handleBlur={handleBlur} />
-              : null
-            }
+                handleBlur={handleBlur}
+              />
+            ) : null}
 
             <Form.Group>
-              <Form.Button primary type="submit" onClick={handleSubmit}>Submit</Form.Button>
-              <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
+              <Form.Button primary type="submit" onClick={handleSubmit}>
+                Submit
+              </Form.Button>
+              <Form.Button secondary onClick={() => history.push("/")}>
+                Return
+              </Form.Button>
             </Form.Group>
           </Form>
         </div>

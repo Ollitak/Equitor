@@ -1,9 +1,14 @@
 import React from "react";
-import { Segment, Button  } from "semantic-ui-react";
+import { Segment, Button } from "semantic-ui-react";
 import Select from "react-select";
 import { stockSelection, keyWordOptions, orderingOptions } from "../../utilities/utilityData";
 import { useDispatch, useSelector } from "react-redux";
-import { setCompanyFilter, setKeywordFilter, setOrderingFilter, resetFilters } from "../../reducers/filterReducer";
+import {
+  setCompanyFilter,
+  setKeywordFilter,
+  setOrderingFilter,
+  resetFilters
+} from "../../reducers/filterReducer";
 
 /* Custom styles object for react-select. */
 const selectCustomStyle = {
@@ -11,7 +16,7 @@ const selectCustomStyle = {
     ...provided,
     backgroundColor: "black",
     padding: 20,
-    border: "0.5px solid white",
+    border: "0.5px solid white"
   }),
   option: (provided) => ({
     ...provided,
@@ -22,33 +27,32 @@ const selectCustomStyle = {
   }),
   control: (provided) => ({
     ...provided,
-    backgroundColor:"black",
-    maxWidth: 600,
+    backgroundColor: "black",
+    maxWidth: 600
   }),
   input: (provided) => ({
     ...provided,
-    color:"white",
+    color: "white"
   }),
   singleValue: (provided) => {
     const color = "white";
 
     return { ...provided, color };
-  },
+  }
 };
 
 /* Filter bar currently has options to filter feed results by either company name or
 keyword. Additionally, it has buttons for resetting filters and hiding filter bar. */
 const FilterBar = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
-  const companyFilter = useSelector(state => state.filter.companyFilter);
-  const keywordFilter = useSelector(state => state.filter.keywordFilter);
-  const orderingFilter = useSelector(state => state.filter.orderingFilter);
+  const companyFilter = useSelector((state) => state.filter.companyFilter);
+  const keywordFilter = useSelector((state) => state.filter.keywordFilter);
+  const orderingFilter = useSelector((state) => state.filter.orderingFilter);
 
   return (
     <Segment
       inverted
-      style={{ margin: "auto", marginBottom: "1em", border:"0.2em solid white", maxWidth:600 }}
-    >
+      style={{ margin: "auto", marginBottom: "1em", border: "0.2em solid white", maxWidth: 600 }}>
       <div>
         <label>Select company</label>
         {/* Select's value attribute expects a shape of object */}
@@ -83,10 +87,10 @@ const FilterBar = ({ setShowFilterBar }) => {
       <Button
         compact
         style={{
-          marginTop:"1em",
-          height:"3em",
-          color:"white",
-          backgroundColor:"black",
+          marginTop: "1em",
+          height: "3em",
+          color: "white",
+          backgroundColor: "black",
           border: "solid 1px white"
         }}
         content="Reset"
@@ -96,10 +100,10 @@ const FilterBar = ({ setShowFilterBar }) => {
       <Button
         compact
         style={{
-          marginTop:"1em",
-          height:"3em",
-          color:"white",
-          backgroundColor:"black",
+          marginTop: "1em",
+          height: "3em",
+          color: "white",
+          backgroundColor: "black",
           border: "solid 1px white"
         }}
         onClick={() => setShowFilterBar(false)}

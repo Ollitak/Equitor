@@ -1,21 +1,21 @@
 const initialState = {
   companyFilter: "",
   keywordFilter: "",
-  orderingFilter:"Most recent",
+  orderingFilter: "Most recent"
 };
 
-const reducer  = (state = initialState, action) => {
-  switch(action.type) {
-  case "SET_COMPANY_FILTER":
-    return { ...state, companyFilter: action.filter };
-  case "SET_KEYWORD_FILTER":
-    return { ...state, keywordFilter: action.filter };
-  case "SET_ORDER_FILTER":
-    return { ...state, orderingFilter: action.ordering };
-  case "RESET_FILTERS":
-    return initialState;
-  default:
-    return state;
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case "SET_COMPANY_FILTER":
+      return { ...state, companyFilter: action.filter };
+    case "SET_KEYWORD_FILTER":
+      return { ...state, keywordFilter: action.filter };
+    case "SET_ORDER_FILTER":
+      return { ...state, orderingFilter: action.ordering };
+    case "RESET_FILTERS":
+      return initialState;
+    default:
+      return state;
   }
 };
 

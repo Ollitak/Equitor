@@ -7,8 +7,8 @@ import { Feed, Segment } from "semantic-ui-react";
 FeedContent to show information about the analysis such as who posted it and
 when it was posted, and Buttons, which enables entering single analysis view.  */
 const AnalyseItem = ({ analysis, myPage }) => {
-  return(
-    <Segment style={{ margin: "auto", marginBottom:"1em", background:"white", maxWidth:600 }}>
+  return (
+    <Segment style={{ margin: "auto", marginBottom: "1em", background: "white", maxWidth: 600 }}>
       <Feed>
         <Feed.Event>
           <FeedContent analysis={analysis} />

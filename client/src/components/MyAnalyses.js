@@ -4,19 +4,17 @@ import { useSelector } from "react-redux";
 
 /* Component to render logged user's analyses. */
 const MyAnalyses = () => {
-  var myAnalyses = useSelector(state => state.analyses.filter(analysis => analysis.user.id === state.user.id));
+  var myAnalyses = useSelector((state) =>
+    state.analyses.filter((analysis) => analysis.user.id === state.user.id)
+  );
 
-  if(!myAnalyses) return <></>;
+  if (!myAnalyses) return <></>;
 
   return (
     <div>
-      {myAnalyses.map(analysis =>
-        <FeedItem
-          key={analysis.id}
-          analysis={analysis}
-          myPage={true}
-        />
-      )}
+      {myAnalyses.map((analysis) => (
+        <FeedItem key={analysis.id} analysis={analysis} myPage={true} />
+      ))}
     </div>
   );
 };

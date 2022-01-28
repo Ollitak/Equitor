@@ -19,29 +19,30 @@ const Buttons = ({ analysis, myPage }) => {
 
   return (
     <Grid verticalAlign="middle">
-      <Grid.Column >
-        {myPage
-          ? <div>
+      <Grid.Column>
+        {myPage ? (
+          <div>
             <Button
               onClick={moveToSingleView}
               content={"View"}
               compact
-              style={{ height:"4em", color:"white", backgroundColor:"rgb(10, 40, 230)" }}
+              style={{ height: "4em", color: "white", backgroundColor: "rgb(10, 40, 230)" }}
             />
             <Button
               onClick={removeItem}
               content={"Delete"}
-              compact style={{ height:"4em", color:"white", backgroundColor:"red" }}
+              compact
+              style={{ height: "4em", color: "white", backgroundColor: "red" }}
             />
           </div>
-          :
+        ) : (
           <Button
             onClick={moveToSingleView}
             content={"Check this out!"}
             compact
-            style={{ height:"4em", color:"white", backgroundColor:"rgb(10, 40, 230)" }}
+            style={{ height: "4em", color: "white", backgroundColor: "rgb(10, 40, 230)" }}
           />
-        }
+        )}
       </Grid.Column>
     </Grid>
   );

@@ -1,12 +1,6 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm";
-import {
-  Modal,
-  Button,
-  Feed,
-  Icon,
-  Rating,
-} from "semantic-ui-react";
+import { Modal, Button, Feed, Icon, Rating } from "semantic-ui-react";
 
 /* Presents comment feed. Constructed with Semantic Ui Feed component. */
 const CommentFeed = ({ analysis }) => {
@@ -20,13 +14,16 @@ const CommentFeed = ({ analysis }) => {
             </Feed.Label>
             <Feed.Content>
               <Feed.Date>X days ago</Feed.Date>
-              <Feed.Summary>
-                        Commented and rated by {comment.user.username}
-              </Feed.Summary>
-              <Rating disabled size="tiny" icon="star" defaultRating={comment.rating} maxRating="5" />
+              <Feed.Summary>Commented and rated by {comment.user.username}</Feed.Summary>
+              <Rating
+                disabled
+                size="tiny"
+                icon="star"
+                defaultRating={comment.rating}
+                maxRating="5"
+              />
               <Feed.Extra content={comment.content} />
-              <Feed.Meta>
-              </Feed.Meta>
+              <Feed.Meta></Feed.Meta>
             </Feed.Content>
           </Feed.Event>
         );
@@ -37,10 +34,10 @@ const CommentFeed = ({ analysis }) => {
 
 /* Renders button that opens modal for comments. Modal is constructed by two compoents:
 first renders form for writing comments and second renders the comment feed */
-const CommentSection = ({ analysis ,id }) => {
+const CommentSection = ({ analysis, id }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  return(
+  return (
     <Modal
       open={modalOpen}
       onOpen={() => setModalOpen(true)}
@@ -49,21 +46,18 @@ const CommentSection = ({ analysis ,id }) => {
         <Button
           content="Comments and ratings"
           style={{
-            backgroundColor:"white",
+            backgroundColor: "white",
             color: "black",
             border: "1px solid black",
             height: "3em",
-            width:"100%",
-            marginBottom:"1em"
+            width: "100%",
+            marginBottom: "1em"
           }}
         />
       }
       size="small"
-      centered={false}
-    >
-      <Modal.Header>
-        Comments & Ratings
-      </Modal.Header>
+      centered={false}>
+      <Modal.Header>Comments & Ratings</Modal.Header>
 
       <Modal.Content scrolling>
         <CommentForm id={id} />
@@ -73,13 +67,11 @@ const CommentSection = ({ analysis ,id }) => {
       <Modal.Actions>
         <Button
           onClick={() => setModalOpen(false)}
-          style={{ backgroundColor:"red", color:"white" }}
-        >
-          <Icon name='remove' />
+          style={{ backgroundColor: "red", color: "white" }}>
+          <Icon name="remove" />
           Close
         </Button>
       </Modal.Actions>
-
     </Modal>
   );
 };

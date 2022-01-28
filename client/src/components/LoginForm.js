@@ -7,10 +7,8 @@ import { Form, Input, Container } from "semantic-ui-react";
 import * as Yup from "yup";
 
 const LoginFormSchema = Yup.object().shape({
-  username: Yup.string()
-    .required("Enter username"),
-  password: Yup.string()
-    .required("Enter password"),
+  username: Yup.string().required("Enter username"),
+  password: Yup.string().required("Enter password")
 });
 
 const LoginForm = () => {
@@ -24,19 +22,13 @@ const LoginForm = () => {
 
   return (
     <Formik
-      initialValues= {{
+      initialValues={{
         username: "",
         password: ""
       }}
       onSubmit={onSubmit}
-      validationSchema={LoginFormSchema}
-    >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values
-      }) => (
+      validationSchema={LoginFormSchema}>
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
           <Form>
             <Form.Field>
@@ -62,8 +54,15 @@ const LoginForm = () => {
               <ShowError name={"password"} />
             </Form.Field>
             <Form.Group>
-              <Form.Button style={{ backgroundColor:"rgb(10, 40, 230)", color:"white" }} type="submit" onClick={handleSubmit}>Log in</Form.Button>
-              <Form.Button secondary onClick={() => history.push("/")}>Return</Form.Button>
+              <Form.Button
+                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
+                type="submit"
+                onClick={handleSubmit}>
+                Log in
+              </Form.Button>
+              <Form.Button secondary onClick={() => history.push("/")}>
+                Return
+              </Form.Button>
             </Form.Group>
           </Form>
         </Container>
@@ -72,10 +71,10 @@ const LoginForm = () => {
   );
 };
 
-const ShowError = ({ name }) =>
+const ShowError = ({ name }) => (
   <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
-
+    {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
+  </ErrorMessage>
+);
 
 export default LoginForm;

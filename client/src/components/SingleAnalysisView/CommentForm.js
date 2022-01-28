@@ -5,17 +5,13 @@ import { useDispatch } from "react-redux";
 import { addComment } from "../../reducers/analysisReducer";
 import * as Yup from "yup";
 
-
 const CommentForm = ({ id }) => {
   const dispatch = useDispatch();
 
   const CommentFormSchema = Yup.object().shape({
-    content: Yup.string()
-      .required("comment is required!"),
-    rating: Yup.number()
-      .required("rating is required!")
+    content: Yup.string().required("comment is required!"),
+    rating: Yup.number().required("rating is required!")
   });
-
 
   const onSubmit = async (values) => {
     dispatch(addComment(id, values));
@@ -24,19 +20,12 @@ const CommentForm = ({ id }) => {
   return (
     <Formik
       initialValues={{
-        content:"",
-        rating:""
+        content: "",
+        rating: ""
       }}
       onSubmit={onSubmit}
-      validationSchema={CommentFormSchema}
-    >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        setFieldValue,
-        values
-      }) => (
+      validationSchema={CommentFormSchema}>
+      {({ handleChange, handleBlur, handleSubmit, setFieldValue, values }) => (
         <div style={{ margin: 50 }}>
           <Form>
             <Form.Field>
@@ -45,7 +34,8 @@ const CommentForm = ({ id }) => {
                 maxRating={5}
                 icon="star"
                 name={"rating"}
-                onRate={(e, { rating }) => setFieldValue("rating", rating)} />
+                onRate={(e, { rating }) => setFieldValue("rating", rating)}
+              />
               <ShowError name={"rating"} />
             </Form.Field>
             <Form.Field>
@@ -64,7 +54,7 @@ const CommentForm = ({ id }) => {
                 type="submit"
                 content="Submit"
                 onClick={handleSubmit}
-                style={{ backgroundColor:"green", color:"white" }}
+                style={{ backgroundColor: "green", color: "white" }}
               />
             </Form.Group>
           </Form>
@@ -74,11 +64,10 @@ const CommentForm = ({ id }) => {
   );
 };
 
-const ShowError = ({ name }) =>
+const ShowError = ({ name }) => (
   <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
+    {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
+  </ErrorMessage>
+);
 
 export default CommentForm;
-
-

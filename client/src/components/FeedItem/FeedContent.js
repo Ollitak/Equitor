@@ -13,18 +13,31 @@ const FeedContent = ({ analysis }) => {
       <Feed.Meta>
         {/* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
               else render hour amount */}
-        { analysis.postedAgo === 0
-          ?<Feed.Date>under hour ago </Feed.Date>
-          :<Feed.Date>{analysis.postedAgo} hours ago </Feed.Date>
-        }
-        <Rating style={{ marginLeft: "0em", marginTop:"0.5em" }} disabled defaultRating={analysis.averageRating} maxRating={5} />
+        {analysis.postedAgo === 0 ? (
+          <Feed.Date>under hour ago </Feed.Date>
+        ) : (
+          <Feed.Date>{analysis.postedAgo} hours ago </Feed.Date>
+        )}
+        <Rating
+          style={{ marginLeft: "0em", marginTop: "0.5em" }}
+          disabled
+          defaultRating={analysis.averageRating}
+          maxRating={5}
+        />
         {/* keywords are mapped in a grid row */}
         <Grid style={{ marginLeft: "0em" }}>
           <Grid.Row>
             {analysis.keyWords.map((keyWord, id) => {
               return (
-                <div key={id} style={{ backgroundColor:"black", borderRadius:"2em",  margin:"0.3em", padding:"0.7em" }}>
-                  <p style={{ fontWeight:"bold", color:"white", fontSize:"1em" }}>{keyWord}</p>
+                <div
+                  key={id}
+                  style={{
+                    backgroundColor: "black",
+                    borderRadius: "2em",
+                    margin: "0.3em",
+                    padding: "0.7em"
+                  }}>
+                  <p style={{ fontWeight: "bold", color: "white", fontSize: "1em" }}>{keyWord}</p>
                 </div>
               );
             })}

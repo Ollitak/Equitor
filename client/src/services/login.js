@@ -10,4 +10,4 @@ const exportObject = {
   login
 };
 
-export default exportObject ;
+export default exportObject;

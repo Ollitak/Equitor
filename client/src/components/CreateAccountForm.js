@@ -6,17 +6,12 @@ import * as Yup from "yup";
 import usersService from "../services/users";
 
 const CreateAccountFormSchema = Yup.object().shape({
-  name: Yup.string()
-    .required("Enter name"),
-  username: Yup.string()
-    .required("Enter username")
-    .min(5),
-  password: Yup.string()
-    .required("Enter password")
-    .min(8),
+  name: Yup.string().required("Enter name"),
+  username: Yup.string().required("Enter username").min(5),
+  password: Yup.string().required("Enter password").min(8),
   passwordConfirmation: Yup.string()
     .required("Confirm your password")
-    .oneOf([Yup.ref("password")],"Must match with password"),
+    .oneOf([Yup.ref("password")], "Must match with password")
 });
 
 const CreateAccountForm = () => {
@@ -26,28 +21,22 @@ const CreateAccountForm = () => {
     try {
       await usersService.createUser(values);
       history.push("/feed");
-    } catch(e) {
+    } catch (e) {
       console.log(e.response.data);
     }
   };
 
   return (
     <Formik
-      initialValues= {{
+      initialValues={{
         name: "",
         username: "",
         password: "",
         passwordConfirmation: ""
       }}
       onSubmit={onSubmit}
-      validationSchema={CreateAccountFormSchema}
-    >
-      {({
-        handleChange,
-        handleBlur,
-        handleSubmit,
-        values
-      }) => (
+      validationSchema={CreateAccountFormSchema}>
+      {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
           <Form>
             <Form.Field>
@@ -99,8 +88,15 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Group>
-              <Form.Button style={{ backgroundColor:"rgb(10, 40, 230)", color:"white" }} type="submit" onClick={handleSubmit}>Create</Form.Button>
-              <Form.Button secondary onClick={() => history.push("/feed")}>Return</Form.Button>
+              <Form.Button
+                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
+                type="submit"
+                onClick={handleSubmit}>
+                Create
+              </Form.Button>
+              <Form.Button secondary onClick={() => history.push("/feed")}>
+                Return
+              </Form.Button>
             </Form.Group>
           </Form>
         </Container>
@@ -109,10 +105,10 @@ const CreateAccountForm = () => {
   );
 };
 
-const ShowError = ({ name }) =>
+const ShowError = ({ name }) => (
   <ErrorMessage name={name}>
-    { error => <div style={{ color:"red", fontWeight:"bold" }}>{error}</div>}
-  </ErrorMessage>;
-
+    {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
+  </ErrorMessage>
+);
 
 export default CreateAccountForm;
