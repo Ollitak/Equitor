@@ -1,8 +1,8 @@
 import axios from "axios";
-const baseUrl = "/users";
+const BASE_URL = "/users";
 
 const createUser = async (userDetails) => {
-  const analyses = await axios.post(baseUrl, userDetails);
+  const analyses = await axios.post(BASE_URL, userDetails);
   return analyses.data;
 };
 

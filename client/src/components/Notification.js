@@ -5,28 +5,19 @@ import { useSelector } from "react-redux";
 const Notification = () => {
   const notification = useSelector(state => state.notification);
 
-  if(notification.success) {
+  if(notification.success || notification.error) {
     return (
       <div style={{
         margin:"auto",
         marginBottom:"1em",
         textAlign:"center"
       }}>
-        <Message positive compact size="big">
-          <Message.Header content={notification.success}/>
-        </Message>
-      </div>
-    );
-  }
-  if(notification.error){
-    return (
-      <div style={{
-        margin:"auto",
-        marginBottom:"1em",
-        textAlign:"center"
-      }}>
-        <Message negative compact size="big">
-          <Message.Header content={notification.error}/>
+        <Message
+          positive={notification.success}
+          negative={notification.error}
+          compact
+          size="big">
+          <Message.Header content={notification.success || notification.error}/>
         </Message>
       </div>
     );

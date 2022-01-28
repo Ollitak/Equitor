@@ -1,5 +1,5 @@
 import axios from "axios";
-const baseUrl = "/analyses";
+const BASE_URL = "/analyses";
 
 let token = null;
 
@@ -9,25 +9,25 @@ const setToken = newToken => {
 };
 
 const getAnalyses = async () => {
-  const analyses = await axios.get(baseUrl);
+  const analyses = await axios.get(BASE_URL);
   return analyses.data;
 };
 
 const create = async (newAnalysis) => {
   const config = { headers: { Authorization: token } };
-  const response = await axios.post(baseUrl, newAnalysis, config);
+  const response = await axios.post(BASE_URL, newAnalysis, config);
   return response.data;
 };
 
 const deleteAnalyse = async (id) => {
   const config = { headers: { Authorization: token } };
-  const response = await axios.delete(`${baseUrl}/${id}`, config);
+  const response = await axios.delete(`${BASE_URL}/${id}`, config);
   return response.data;
 };
 
 const newComment = async (id, comment) => {
   const config = { headers: { Authorization: token } };
-  const response = await axios.post(`${baseUrl}/${id}/comment`,comment, config);
+  const response = await axios.post(`${BASE_URL}/${id}/comment`,comment, config);
   return response.data;
 };
 
