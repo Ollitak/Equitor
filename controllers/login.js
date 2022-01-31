@@ -24,8 +24,6 @@ loginRouter.post("/", async (req, res) => {
     console.log(`generated token: ${token}`);
 
     res.status(200).send({
-        username: user.username,
-        name: user.name,
         id: user._id,
         token
     });

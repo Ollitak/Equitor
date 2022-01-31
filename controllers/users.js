@@ -2,13 +2,14 @@ const usersRouter = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 
-
+/*
 usersRouter.get("/", async (req, res) => {
-    const users = await User.find({});
+    const users = await User.find({})
+        .populate("analyses");
     res.status(200).json(users);
 });
+*/
 
-/*
 usersRouter.get("/:id", async (req, res, next) => {
     const id = req.params.id;
     try {
@@ -18,7 +19,7 @@ usersRouter.get("/:id", async (req, res, next) => {
         next(e);
     }
 });
-*/
+
 
 usersRouter.post("/", async (req, res, next) => {
     const body = req.body;
@@ -30,7 +31,8 @@ usersRouter.post("/", async (req, res, next) => {
     const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
     const user = new User({
-        name: body.name,
+        firstname: body.firstname,
+        lastname: body.lastname,
         username: body.username,
         passwordHash: passwordHash
     });

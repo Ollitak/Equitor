@@ -6,7 +6,8 @@ import * as Yup from "yup";
 import usersService from "../services/users";
 
 const CreateAccountFormSchema = Yup.object().shape({
-  name: Yup.string().required("Enter name"),
+  firstname: Yup.string().required("Enter first name"),
+  lastname: Yup.string().required("Enter last name"),
   username: Yup.string().required("Enter username").min(5),
   password: Yup.string().required("Enter password").min(8),
   passwordConfirmation: Yup.string()
@@ -29,7 +30,8 @@ const CreateAccountForm = () => {
   return (
     <Formik
       initialValues={{
-        name: "",
+        firstname: "",
+        lastname: "",
         username: "",
         password: "",
         passwordConfirmation: ""
@@ -40,15 +42,27 @@ const CreateAccountForm = () => {
         <Container>
           <Form>
             <Form.Field>
-              <label>Name</label>
+              <label>First name</label>
               <Input
-                name={"name"}
-                value={values.name}
+                name={"firstname"}
+                value={values.firstname}
                 type={"string"}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              <ShowError name={"name"} />
+              <ShowError name={"firstname"} />
+            </Form.Field>
+
+            <Form.Field>
+              <label>Last name</label>
+              <Input
+                name={"lastname"}
+                value={values.lastname}
+                type={"string"}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              <ShowError name={"lastname"} />
             </Form.Field>
 
             <Form.Field>

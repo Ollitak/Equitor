@@ -1,4 +1,5 @@
 import analysesService from "../services/analyses";
+import usersService from "../services/users";
 import loginService from "../services/login";
 import { setError, setSuccess } from "./notificationReducer";
 
@@ -13,14 +14,23 @@ const reducer = (state = null, action) => {
   }
 };
 
-/* used to store user information to both local storage and redux
-user store when client logs in*/
+/* Used to store user information to both local storage and redux
+user store when client logs in. Login API endpoint only returns user
+id and token, but as we also want to access other user information, 
+function also does a get request to user API endpoint.  */
 export const login = (values) => {
   return async (dispatch) => {
     try {
-      const user = await loginService.login(values);
+      /* Try to log in. On success, return user's id and token */
+      const userIdAndToken = await loginService.login(values);
+      /* Fetch all user information based on id returned on login */
+      const user = await usersService.findUser(userIdAndToken.id);
+      /* Add token to fetched user information */
+      user.token = userIdAndToken.token;
+      /* Set token for analysesservice and store user data to local storage  */
+      analysesService.setToken(userIdAndToken.token);
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
-      analysesService.setToken(user.token);
+
       dispatch({ type: "LOGIN", user: user });
       dispatch(setSuccess("Login successful, you are now logged in!"));
     } catch (e) {

@@ -6,8 +6,14 @@ const createUser = async (userDetails) => {
   return analyses.data;
 };
 
+const findUser = async (id) => {
+  const user = await axios.get(`${BASE_URL}/${id}`);
+  return user.data;
+};
+
 const exportObject = {
-  createUser
+  createUser,
+  findUser
 };
 
 export default exportObject;

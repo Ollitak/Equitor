@@ -12,6 +12,7 @@ import { useDispatch } from "react-redux";
 import TopSection from "./components/TopSection";
 import CreateAccountForm from "./components/CreateAccountForm";
 import Notification from "./components/Notification";
+import MyAccount from "./components/MyAccount";
 
 import "./App.css";
 
@@ -42,6 +43,7 @@ const App = () => {
         <Route path="/login" component={LoginForm} />
         <Route path="/my-analyses" component={MyAnalyses} />
         <Route path="/analysis/:id" component={SingleAnalysisView} />
+        <Route path="/my-account" component={MyAccount} />
         <Route path="/" component={HomePage} />
       </Switch>
     </Router>
