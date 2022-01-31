@@ -2,6 +2,7 @@ const express = require("express");
 const analysesRouter = require("./controllers/analyses");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
+const commentRouter = require("./controllers/comments");
 const middleware = require("./utils/middleware"); 
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
@@ -18,6 +19,7 @@ app.use(middleware.tokenExtractor);
 app.use("/login", loginRouter);
 app.use("/analyses", analysesRouter);
 app.use("/users", usersRouter);
+app.use("/comment", commentRouter);
 
 
 app.use(middleware.unknownEndpoint);

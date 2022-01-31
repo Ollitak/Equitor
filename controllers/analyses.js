@@ -12,6 +12,7 @@ analysisRouter.get("/", async (req, res) => {
     res.status(200).json(analyses);
 });
 
+/*
 analysisRouter.get("/:id", async (req, res, next) => {
     const id = req.params.id;
     try {
@@ -21,11 +22,13 @@ analysisRouter.get("/:id", async (req, res, next) => {
         next(e);
     }
 });
+*/
 
 analysisRouter.post("/", async (req, res, next) => {
     const body = req.body;
 
     try {
+        /* Parse user information from the token. */
         const decodedToken = jwt.verify(req.token, config.SECRET);
 
         if(!decodedToken.id) {
@@ -43,11 +46,11 @@ analysisRouter.post("/", async (req, res, next) => {
     
         const response = await analysis.save();
 
-        /* add the saved analysis for corresponding user */
+        /* Add the saved analysis for corresponding user. */
         user.analyses = user.analyses.concat(response._id);
         await user.save();
 
-        /* Analysis needs to be retreived again in order to populate it */
+        /* Analysis needs to be retreived again in order to populate it. */
         const savedAnalysis = await Analysis.findById(response._id)
             .populate("comments.user", "name username id")
             .populate("user", "name username id");
@@ -58,50 +61,37 @@ analysisRouter.post("/", async (req, res, next) => {
     }
 });
 
-
-analysisRouter.post("/:id/comment", async (req, res, next) => {
-    const body = req.body;
-    const id = req.params.id;
+analysisRouter.delete("/:id", async (req, res, next) => {
+    /* Parse analysis id from the url. */
+    const analysisId = req.params.id;
 
     try {
+        /* Parse user information from the token. */
         const decodedToken = jwt.verify(req.token, config.SECRET);
 
         if(!decodedToken.id) {
             return res.status(401).json({ error: "missing or invalid token"});
         }
 
+        const analysis = await Analysis.findById(analysisId);
         const user = await User.findById(decodedToken.id);
-        const analysis = await Analysis.findById(id);
+        
+        /* Check if user calling the API is owner of the analysis. */
+        if(user._id.toString() !== analysis.user.toString()) {
+            return res.status(401).json({ error: "trying to delete someone else's analysis"});
+        }
 
-        analysis.comments = analysis.comments.concat({
-            ...body,
-            user: user._id
-        });
-    
-        await analysis.save();
+        await Analysis.findByIdAndRemove(analysisId);
+        
+        /* Also delete analysis from user's analyses. */
+        user.analyses = user.analyses.filter(a => a._id.toString() !== analysisId.toString());
+        await user.save();
 
-        /* Analysis needs to be retreived again in order to populate it */
-        const savedAnalysis = await Analysis.findById(id)
-            .populate("comments.user", "name username id")
-            .populate("user", "name username id");
-
-        res.status(201).json(savedAnalysis);
-    } catch(e) {
-        next(e);
-    }
-});
-
-
-analysisRouter.delete("/:id", async (req, res, next) => {
-    const id = req.params.id;
-    try {
-        await Analysis.findByIdAndRemove(id);
         res.status(204).end(); 
     } catch(e) {
         next(e);
     }
 });
-
 
 
 module.exports = analysisRouter;
