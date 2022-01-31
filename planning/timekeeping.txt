@@ -37,3 +37,7 @@
   * utiliteettifunktioiden luominen mm. keskimääräisen ratingin laskelmiseen
   * filteröinnin laajentaminen
   * modalin implementointi kommentoiti-ikkunaan
+28.1 (4.5h)
+  * eslintin fiksaaminen (ei extendannut react-app:n default configia) ja lintteriongelmien fiksaus
+  * prettierin asentaminen ja konffaaminen
+  * yleinen stailaus
