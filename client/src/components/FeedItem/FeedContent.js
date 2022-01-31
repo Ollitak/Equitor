@@ -1,6 +1,19 @@
 import React from "react";
 import { Feed, Rating, Grid } from "semantic-ui-react";
 
+/* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
+else render hour amount */
+const PostedAgo = ({ postedAgo }) => {
+  if (postedAgo === 0) {
+    return <Feed.Date>under an hour ago </Feed.Date>;
+  } else if (postedAgo <= 24) {
+    return <Feed.Date>{postedAgo} hours ago </Feed.Date>;
+  } else {
+    const days = parseInt(postedAgo / 24);
+    return <Feed.Date>{days} days ago </Feed.Date>;
+  }
+};
+
 /* Component to render feed information, such as who posted the analysis, when it was posted and
 what is the average rating of the analysis. */
 const FeedContent = ({ analysis }) => {
@@ -11,20 +24,14 @@ const FeedContent = ({ analysis }) => {
         {` posted a new analysis on ${analysis.stockInformation.name}`}
       </Feed.Summary>
       <Feed.Meta>
-        {/* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
-              else render hour amount */}
-        {analysis.postedAgo === 0 ? (
-          <Feed.Date>under hour ago </Feed.Date>
-        ) : (
-          <Feed.Date>{analysis.postedAgo} hours ago </Feed.Date>
-        )}
+        <PostedAgo postedAgo={analysis.postedAgo} />
         <Rating
           style={{ marginLeft: "0em", marginTop: "0.5em" }}
           disabled
           defaultRating={analysis.averageRating}
           maxRating={5}
         />
-        {/* keywords are mapped in a grid row */}
+        {/* Keywords are mapped in a grid row. */}
         <Grid style={{ marginLeft: "0em" }}>
           <Grid.Row>
             {analysis.keyWords.map((keyWord, id) => {
