@@ -11,9 +11,15 @@ const findUser = async (id) => {
   return user.data;
 };
 
+const updateUser = async (id, userDetails) => {
+  const updatedUser = await axios.put(`${BASE_URL}/${id}`, userDetails);
+  return updatedUser.data;
+};
+
 const exportObject = {
   createUser,
-  findUser
+  findUser,
+  updateUser
 };
 
 export default exportObject;

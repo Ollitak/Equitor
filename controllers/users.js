@@ -45,6 +45,19 @@ usersRouter.post("/", async (req, res, next) => {
     }
 });
 
+usersRouter.put("/:id", async (req, res, next) => {
+    const id = req.params.id;
+
+    try {
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+        res.json(updatedUser);
+    } catch(e) {
+        next(e);
+    }
+});
+
+
+/*
 usersRouter.delete("/:id", async (req, res, next) => {
     const id = req.params.id;
     try {
@@ -54,7 +67,7 @@ usersRouter.delete("/:id", async (req, res, next) => {
         next(e);
     }
 });
-
+*/
 
 
 module.exports = usersRouter;

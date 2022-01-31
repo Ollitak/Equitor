@@ -7,6 +7,8 @@ const reducer = (state = null, action) => {
   switch (action.type) {
     case "LOGIN":
       return action.user;
+    case "UPDATE_USER":
+      return action.user;
     case "LOGOUT":
       return null;
     default:
@@ -45,6 +47,18 @@ export const initializeUser = (userJson) => {
   const user = JSON.parse(userJson);
   analysesService.setToken(user.token);
   return { type: "LOGIN", user: user };
+};
+
+export const updateUser = (values, id) => {
+  return async (dispatch) => {
+    try {
+      const updatedUser = await usersService.updateUser(id, values);
+      dispatch({ type: "UPDATE_USER", user: updatedUser });
+      dispatch(setSuccess("User update successful!"));
+    } catch (e) {
+      dispatch(setError("User update failed."));
+    }
+  };
 };
 
 /* Used on log out to reset localstorage, redux user state and token. */
