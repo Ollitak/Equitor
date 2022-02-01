@@ -16,10 +16,10 @@ mongoose.connect(config.MONGODB_URI);
 app.use(express.json());
 app.use(middleware.tokenExtractor);
 
-app.use("/login", loginRouter);
-app.use("/analyses", analysesRouter);
-app.use("/users", usersRouter);
-app.use("/comment", commentRouter);
+app.use("/api/login", loginRouter);
+app.use("/api/analyses", analysesRouter);
+app.use("/api/users", usersRouter);
+app.use("/api/comment", commentRouter);
 
 
 app.use(middleware.unknownEndpoint);
