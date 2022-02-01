@@ -41,19 +41,19 @@ const prepareAnalyses = (analyses, filters) => {
   });
 
   /* filter analyses by company name */
-  if (filters.companyFilter) {
+  if (filters && filters.companyFilter) {
     analyses = analyses.filter(
       (analysis) => analysis.stockInformation.name === filters.companyFilter
     );
   }
 
   /* filter analyses by keyword */
-  if (filters.keywordFilter) {
+  if (filters && filters.keywordFilter) {
     analyses = analyses.filter((analysis) => analysis.keyWords.includes(filters.keywordFilter));
   }
 
   /* filter analyses by user selected ordering */
-  switch (filters.orderingFilter) {
+  switch (filters && filters.orderingFilter) {
     case "Most recent":
       analyses = orderByDateASC(analyses);
       break;
