@@ -41,3 +41,7 @@
   * eslintin fiksaaminen (ei extendannut react-app:n default configia) ja lintteriongelmien fiksaus
   * prettierin asentaminen ja konffaaminen
   * yleinen stailaus
+31.1 (7h)
+  * backendin uudelleensuunnittelua: ajatuksena tehdä viesteistä oma kokoelma, mutta päätin olla implementoimatta
+  * backendiin pieniä fiksauksia, esim delete vaatii nyt tokenin
+  * my account -välilehden tekeminen ja tätä varten tarvittavan put endpointin luominen user kokoelmalle
