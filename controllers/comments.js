@@ -1,25 +1,15 @@
 
 const commentRouter = require("express").Router();
 const Analysis = require("../models/analysis");
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-const config = require("../utils/config");
+const middleware = require("../utils/middleware");
 
 
-commentRouter.post("/:id", async (req, res, next) => {
+commentRouter.post("/:id", middleware.userExtractor, async (req, res, next) => {
     const body = req.body;
-    /* Parse analysis id from the url */
+    const user = req.user;
     const analysisId = req.params.id;
 
     try {
-        /* Parse user information from the token */
-        const decodedToken = jwt.verify(req.token, config.SECRET);
-
-        if(!decodedToken.id) {
-            return res.status(401).json({ error: "missing or invalid token"});
-        }
-
-        const user = await User.findById(decodedToken.id);
         const analysis = await Analysis.findById(analysisId);
 
         analysis.comments = analysis.comments.concat({

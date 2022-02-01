@@ -1,8 +1,7 @@
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const config = require("../utils/config");
+const middleware = require("../utils/middleware");
 
 
 usersRouter.get("/", async (req, res) => {
@@ -11,17 +10,11 @@ usersRouter.get("/", async (req, res) => {
 });
 
 
-usersRouter.get("/myAccount", async (req, res, next) => {
+usersRouter.get("/myAccount", middleware.userExtractor, async (req, res, next) => {
+    const user = req.user;
+
     try {
-        /* Parse user information from the token. */
-        const decodedToken = jwt.verify(req.token, config.SECRET);
-
-        if(!decodedToken.id) {
-            return res.status(401).json({ error: "missing or invalid token"});
-        }
-
-        const response =  await User.findById(decodedToken.id);
-        res.status(200).json(response);
+        res.status(200).json(user);
     } catch(e) {
         next(e);
     }
@@ -52,16 +45,15 @@ usersRouter.post("/", async (req, res, next) => {
     }
 });
 
-usersRouter.put("/myAccount", async (req, res, next) => {
+usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) => {
+    const id = req.userId;
     try {
-        /* Parse user information from the token. */
-        const decodedToken = jwt.verify(req.token, config.SECRET);
-
-        if(!decodedToken.id) {
-            return res.status(401).json({ error: "missing or invalid token"});
+        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+        
+        if(!updatedUser) {
+            return  res.status(400).send({error: "user update unsuccessful"});
         }
-    
-        const updatedUser = await User.findByIdAndUpdate(decodedToken.id, req.body, { new: true });
+
         res.json(updatedUser);
     } catch(e) {
         next(e);

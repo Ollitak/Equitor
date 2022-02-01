@@ -1,8 +1,6 @@
 const analysisRouter = require("express").Router();
 const Analysis = require("../models/analysis");
-const User = require("../models/user");
-const jwt = require("jsonwebtoken");
-const config = require("../utils/config");
+const middleware = require("../utils/middleware");
 
 analysisRouter.get("/", async (req, res) => {
     const analyses = await Analysis.find({})
@@ -24,26 +22,16 @@ analysisRouter.get("/:id", async (req, res, next) => {
 });
 */
 
-analysisRouter.post("/", async (req, res, next) => {
+analysisRouter.post("/", middleware.userExtractor, async (req, res, next) => {
     const body = req.body;
+    const user = req.user;
+
+    const analysis = new Analysis({
+        ...body,
+        user: user._id 
+    });
 
     try {
-        /* Parse user information from the token. */
-        const decodedToken = jwt.verify(req.token, config.SECRET);
-
-        if(!decodedToken.id) {
-            return res.status(401).json({ error: "missing or invalid token"});
-        }
-
-        const user = await User.findById(decodedToken.id);
-
-        console.log(body);
-        const analysis = new Analysis({
-            ...body,
-            user: user._id 
-        });
-        
-    
         const response = await analysis.save();
 
         /* Add the saved analysis for corresponding user. */
@@ -61,20 +49,14 @@ analysisRouter.post("/", async (req, res, next) => {
     }
 });
 
-analysisRouter.delete("/:id", async (req, res, next) => {
+analysisRouter.delete("/:id", middleware.userExtractor, async (req, res, next) => {
     /* Parse analysis id from the url. */
     const analysisId = req.params.id;
 
+    const user = req.user;
+
     try {
-        /* Parse user information from the token. */
-        const decodedToken = jwt.verify(req.token, config.SECRET);
-
-        if(!decodedToken.id) {
-            return res.status(401).json({ error: "missing or invalid token"});
-        }
-
         const analysis = await Analysis.findById(analysisId);
-        const user = await User.findById(decodedToken.id);
         
         /* Check if user calling the API is owner of the analysis. */
         if(user._id.toString() !== analysis.user.toString()) {
