@@ -1,5 +1,6 @@
 import axios from "axios";
-const BASE_URL = "/login";
+
+const BASE_URL = "/api/login";
 
 const login = async (loginDetails) => {
   const analyses = await axios.post(BASE_URL, loginDetails);

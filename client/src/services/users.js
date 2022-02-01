@@ -1,7 +1,7 @@
 import axios from "axios";
 import { token } from "./analyses";
 
-const BASE_URL = "/users";
+const BASE_URL = "/api/users";
 
 const createUser = async (userDetails) => {
   const analyses = await axios.post(BASE_URL, userDetails);

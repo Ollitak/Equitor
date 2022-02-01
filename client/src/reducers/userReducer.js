@@ -46,7 +46,7 @@ export const initializeUser = (userJson) => {
       const user = await usersService.findMyAccount();
       dispatch({ type: "LOGIN", user: user });
     } catch (e) {
-      dispatch(setError("Login failed, please check your credentials."));
+      dispatch(setError("User initialization failed"));
     }
   };
 };

@@ -1,4 +1,5 @@
 import analysesService from "../services/analyses";
+import commentService from "../services/comment";
 import { setError, setSuccess } from "./notificationReducer";
 
 const reducer = (state = [], action) => {
@@ -58,7 +59,7 @@ updated analysis that is then saved to the store. */
 export const addComment = (id, values) => {
   return async (dispatch) => {
     try {
-      const analysis = await analysesService.newComment(id, values);
+      const analysis = await commentService.newComment(id, values);
       dispatch({ type: "UPDATE", data: analysis });
       dispatch(setSuccess("Comment added succesfully!"));
     } catch (e) {
