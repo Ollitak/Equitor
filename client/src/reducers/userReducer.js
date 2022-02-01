@@ -8,10 +8,6 @@ const reducer = (state = null, action) => {
     case "LOGIN":
       return action.user;
     case "UPDATE_USER":
-      /* On update, token remains the same.*/
-      action.user = { token: state.token, ...action.user };
-      window.localStorage.setItem("loggedUser", JSON.stringify(action.user));
-      console.log(action.user);
       return action.user;
     case "LOGOUT":
       return null;
@@ -20,23 +16,18 @@ const reducer = (state = null, action) => {
   }
 };
 
-/* Used to store user information to both local storage and redux
-user store when client logs in. Login API endpoint only returns user
-id and token, but as we also want to access other user information, 
-function also does a get request to user API endpoint.  */
+/* On login, token is stored in both local storage and token variable in analyses service.
+Also, user information is fetched from my-account endpoint and stored in redux store. */
 export const login = (values) => {
   return async (dispatch) => {
     try {
-      const userIdAndToken = await loginService.login(values);
-      analysesService.setToken(userIdAndToken.token);
+      const { token } = await loginService.login(values);
+      analysesService.setToken(token);
+      window.localStorage.setItem("loggedUser", JSON.stringify(token));
 
       const user = await usersService.findMyAccount();
-      /* Fetching user from backend does not return token => needs to be a */
-      user.token = userIdAndToken.token;
-
-      window.localStorage.setItem("loggedUser", JSON.stringify(user));
-
       dispatch({ type: "LOGIN", user: user });
+
       dispatch(setSuccess("Login successful, you are now logged in!"));
     } catch (e) {
       dispatch(setError("Login failed, please check your credentials."));
@@ -44,15 +35,24 @@ export const login = (values) => {
   };
 };
 
-/* Used in useEffect on app launch to set user information from local
-storage to application's state. */
+/* Used in useEffect on application launch to set token from local storage to analyses service variable.
+Also, user information is fetched from my-account endpoint and stored in redux store. */
 export const initializeUser = (userJson) => {
-  const user = JSON.parse(userJson);
-  analysesService.setToken(user.token);
-  return { type: "LOGIN", user: user };
+  return async (dispatch) => {
+    try {
+      const token = JSON.parse(userJson);
+      analysesService.setToken(token);
+
+      const user = await usersService.findMyAccount();
+      dispatch({ type: "LOGIN", user: user });
+    } catch (e) {
+      dispatch(setError("Login failed, please check your credentials."));
+    }
+  };
 };
 
-/* Used to update account information via PUT endpoint. Returned user  */
+/* Used to update user information; updated information is stored in redux store. Notice that
+user update does NOT change token and thus token does not need to be manipulated.  */
 export const updateUser = (values) => {
   return async (dispatch) => {
     try {
@@ -65,7 +65,7 @@ export const updateUser = (values) => {
   };
 };
 
-/* Used on log out to reset localstorage, redux user state and token. */
+/* Used on log out to reset localstorage, redux user state and token in analyses service. */
 export const logout = () => {
   return async (dispatch) => {
     analysesService.setToken(null);
