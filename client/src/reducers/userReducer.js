@@ -8,6 +8,10 @@ const reducer = (state = null, action) => {
     case "LOGIN":
       return action.user;
     case "UPDATE_USER":
+      /* On update, token remains the same.*/
+      action.user = { token: state.token, ...action.user };
+      window.localStorage.setItem("loggedUser", JSON.stringify(action.user));
+      console.log(action.user);
       return action.user;
     case "LOGOUT":
       return null;
@@ -23,14 +27,13 @@ function also does a get request to user API endpoint.  */
 export const login = (values) => {
   return async (dispatch) => {
     try {
-      /* Try to log in. On success, return user's id and token */
       const userIdAndToken = await loginService.login(values);
-      /* Fetch all user information based on id returned on login */
-      const user = await usersService.findUser(userIdAndToken.id);
-      /* Add token to fetched user information */
-      user.token = userIdAndToken.token;
-      /* Set token for analysesservice and store user data to local storage  */
       analysesService.setToken(userIdAndToken.token);
+
+      const user = await usersService.findMyAccount();
+      /* Fetching user from backend does not return token => needs to be a */
+      user.token = userIdAndToken.token;
+
       window.localStorage.setItem("loggedUser", JSON.stringify(user));
 
       dispatch({ type: "LOGIN", user: user });
@@ -49,11 +52,12 @@ export const initializeUser = (userJson) => {
   return { type: "LOGIN", user: user };
 };
 
-export const updateUser = (values, id) => {
+/* Used to update account information via PUT endpoint. Returned user  */
+export const updateUser = (values) => {
   return async (dispatch) => {
     try {
-      const updatedUser = await usersService.updateUser(id, values);
-      dispatch({ type: "UPDATE_USER", user: updatedUser });
+      const user = await usersService.updateMyAccount(values);
+      dispatch({ type: "UPDATE_USER", user: user });
       dispatch(setSuccess("User update successful!"));
     } catch (e) {
       dispatch(setError("User update failed."));

@@ -20,7 +20,7 @@ const MyAccount = () => {
   if (!myAccount) return null;
 
   const onSubmit = async (values) => {
-    dispatch(updateUser(values, myAccount.id));
+    dispatch(updateUser(values));
   };
 
   return (

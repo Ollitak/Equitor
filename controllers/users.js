@@ -1,19 +1,26 @@
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const config = require("../utils/config");
 
-/*
+
 usersRouter.get("/", async (req, res) => {
-    const users = await User.find({})
-        .populate("analyses");
+    const users = await User.find({});
     res.status(200).json(users);
 });
-*/
 
-usersRouter.get("/:id", async (req, res, next) => {
-    const id = req.params.id;
+
+usersRouter.get("/myAccount", async (req, res, next) => {
     try {
-        const response =  await User.findById(id);
+        /* Parse user information from the token. */
+        const decodedToken = jwt.verify(req.token, config.SECRET);
+
+        if(!decodedToken.id) {
+            return res.status(401).json({ error: "missing or invalid token"});
+        }
+
+        const response =  await User.findById(decodedToken.id);
         res.status(200).json(response);
     } catch(e) {
         next(e);
@@ -45,11 +52,16 @@ usersRouter.post("/", async (req, res, next) => {
     }
 });
 
-usersRouter.put("/:id", async (req, res, next) => {
-    const id = req.params.id;
-
+usersRouter.put("/myAccount", async (req, res, next) => {
     try {
-        const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+        /* Parse user information from the token. */
+        const decodedToken = jwt.verify(req.token, config.SECRET);
+
+        if(!decodedToken.id) {
+            return res.status(401).json({ error: "missing or invalid token"});
+        }
+    
+        const updatedUser = await User.findByIdAndUpdate(decodedToken.id, req.body, { new: true });
         res.json(updatedUser);
     } catch(e) {
         next(e);

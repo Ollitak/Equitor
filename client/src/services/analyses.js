@@ -2,7 +2,7 @@ import axios from "axios";
 const BASE_URL_ANALYSES = "/analyses";
 const BASE_URL_COMMENT = "/comment";
 
-let token = null;
+export let token = null;
 
 const setToken = (newToken) => {
   token = `bearer ${newToken}`;

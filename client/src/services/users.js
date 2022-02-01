@@ -1,4 +1,6 @@
 import axios from "axios";
+import { token } from "./analyses";
+
 const BASE_URL = "/users";
 
 const createUser = async (userDetails) => {
@@ -6,20 +8,22 @@ const createUser = async (userDetails) => {
   return analyses.data;
 };
 
-const findUser = async (id) => {
-  const user = await axios.get(`${BASE_URL}/${id}`);
+const findMyAccount = async () => {
+  const config = { headers: { Authorization: token } };
+  const user = await axios.get(`${BASE_URL}/myAccount`, config);
   return user.data;
 };
 
-const updateUser = async (id, userDetails) => {
-  const updatedUser = await axios.put(`${BASE_URL}/${id}`, userDetails);
+const updateMyAccount = async (userDetails) => {
+  const config = { headers: { Authorization: token } };
+  const updatedUser = await axios.put(`${BASE_URL}/myAccount`, userDetails, config);
   return updatedUser.data;
 };
 
 const exportObject = {
   createUser,
-  findUser,
-  updateUser
+  findMyAccount,
+  updateMyAccount
 };
 
 export default exportObject;
