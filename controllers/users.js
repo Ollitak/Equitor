@@ -47,6 +47,12 @@ usersRouter.post("/", async (req, res, next) => {
 
 usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) => {
     const id = req.userId;
+
+    if (req.body.password) {
+        const saltRounds = 10;
+        req.body.passwordHash = await bcrypt.hash(req.body.password, saltRounds);
+    }
+
     try {
         const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
         
@@ -59,7 +65,6 @@ usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) =
         next(e);
     }
 });
-
 
 /*
 usersRouter.delete("/:id", async (req, res, next) => {

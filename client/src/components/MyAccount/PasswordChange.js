@@ -22,6 +22,7 @@ const PasswordChange = () => {
   if (!myAccount) return null;
 
   const onSubmit = async (values) => {
+    console.log(values);
     //dispatch(updateUser(values));
   };
 
@@ -42,6 +43,7 @@ const PasswordChange = () => {
                 <label>New password</label>
                 <Input
                   name={"password"}
+                  type={"password"}
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -52,6 +54,7 @@ const PasswordChange = () => {
                 <label>Confirm password</label>
                 <Input
                   name={"passwordConfirmation"}
+                  type={"password"}
                   value={values.passwordConfirmation}
                   onChange={handleChange}
                   onBlur={handleBlur}
