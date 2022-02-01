@@ -8,12 +8,12 @@ import { Grid, Segment } from "semantic-ui-react";
 const SingleAnalysisView = () => {
   const { id } = useParams();
 
-  /* retreive analysis that corresponds the id in url path */
+  /* Retreive analysis that corresponds the id in url path. */
   const analysisListForm = useSelector((state) => state.analyses.filter((a) => a.id === id));
   const analysis = analysisListForm[0];
 
-  /* return null if analysis not defined ie. if page is refreshed
-  with this route */
+  /* Return null if analysis not defined ie. if page is refreshed
+  with this route. */
   if (!analysis) return null;
 
   return (

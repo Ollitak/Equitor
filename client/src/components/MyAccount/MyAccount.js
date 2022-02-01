@@ -4,7 +4,8 @@ import { useHistory } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { updateUser } from "../reducers/userReducer";
+import { updateUser } from "../../reducers/userReducer";
+import PasswordChange from "./PasswordChange";
 import * as Yup from "yup";
 
 const MyAccountSchema = Yup.object().shape({
@@ -34,16 +35,12 @@ const MyAccount = () => {
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
           <div style={{ margin: 50 }}>
-            <Header as="h1" content="My account information" />
+            <Header as="h1" content="Account information" />
             <Form>
               <Form.Group widths={"equal"}>
                 <Form.Field>
                   <label>Username</label>
                   <Input disabled value={myAccount.username} />
-                </Form.Field>
-                <Form.Field>
-                  <label>New password</label>
-                  <Input disabled value={"TO BE IMPLEMENTED"} />
                 </Form.Field>
               </Form.Group>
 
@@ -84,6 +81,8 @@ const MyAccount = () => {
                 </Form.Button>
               </Form.Group>
             </Form>
+
+            <PasswordChange />
           </div>
         </Container>
       )}
