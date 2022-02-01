@@ -1,11 +1,10 @@
 import React from "react";
-import { Form, Input, Container, Header } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
+import { Form, Input, Header } from "semantic-ui-react";
 import { Formik, ErrorMessage } from "formik";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
-import { updateUser } from "../../reducers/userReducer";
 import * as Yup from "yup";
+import usersService from "../../services/users";
+import { useDispatch } from "react-redux";
+import { setError, setSuccess } from "../../reducers/notificationReducer";
 
 const PasswordChangeSchema = Yup.object().shape({
   password: Yup.string().required("Enter a new password").min(8),
@@ -15,15 +14,15 @@ const PasswordChangeSchema = Yup.object().shape({
 });
 
 const PasswordChange = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
-  var myAccount = useSelector((state) => state.user);
-
-  if (!myAccount) return null;
 
   const onSubmit = async (values) => {
-    console.log(values);
-    //dispatch(updateUser(values));
+    try {
+      usersService.updateMyAccount({ password: values.password });
+      dispatch(setSuccess("Password changed successfully!"));
+    } catch {
+      dispatch(setError("Password change failed."));
+    }
   };
 
   return (
