@@ -99,7 +99,7 @@ const Paragraph = ({ title, content }) => {
   );
 };
 
-/* TextSection presents users written analysis in multiple paragraphs */
+/* TextSection presents users written analysis in multiple paragraphs. */
 const TextSection = ({ analysis }) => {
   return (
     <Grid.Column width={12}>

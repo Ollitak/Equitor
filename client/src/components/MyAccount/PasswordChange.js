@@ -62,14 +62,14 @@ const PasswordChange = () => {
               </Form.Field>
             </Form.Group>
 
-            <Form.Group>
+            <div style={{ marginTop: "2em" }}>
               <Form.Button
-                style={{ backgroundColor: "red", color: "white" }}
+                style={{ backgroundColor: "red", color: "white", width: "25%" }}
                 type="submit"
                 onClick={handleSubmit}>
                 Change password
               </Form.Button>
-            </Form.Group>
+            </div>
           </Form>
         </div>
       )}

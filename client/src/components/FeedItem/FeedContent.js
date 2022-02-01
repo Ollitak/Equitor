@@ -20,7 +20,9 @@ const FeedContent = ({ analysis }) => {
   return (
     <Feed.Content>
       <Feed.Summary>
-        <Feed.User>{analysis.user.username}</Feed.User>
+        <Feed.User as="p" style={{ color: "rgb(100, 180, 250)" }}>
+          {analysis.user.username}
+        </Feed.User>
         {` posted a new analysis on ${analysis.stockInformation.name}`}
       </Feed.Summary>
       <Feed.Meta>

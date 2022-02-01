@@ -32,10 +32,11 @@ const CommentFeed = ({ analysis }) => {
   );
 };
 
-/* Renders button that opens modal for comments. Modal is constructed by two componets:
+/* Renders button that opens modal for comments. Modal is constructed with two componets:
 first renders form for writing comments and second renders the comment feed. Form is hidden
-if analysis is posted by current user ie. you cannot comment your own posts. */
-const CommentSection = ({ analysis, id, owner }) => {
+if analysis is posted by current user ie. you cannot comment your own posts. Also, form is 
+hidden if no user has logged in. */
+const CommentSection = ({ analysis, id, owner, user }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -61,7 +62,7 @@ const CommentSection = ({ analysis, id, owner }) => {
       <Modal.Header>Comments & Ratings</Modal.Header>
 
       <Modal.Content scrolling>
-        {!owner && <CommentForm id={id} />}
+        {!owner && user ? <CommentForm id={id} /> : null}
         <CommentFeed analysis={analysis} />
       </Modal.Content>
 

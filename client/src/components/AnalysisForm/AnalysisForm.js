@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Input, TextArea, Checkbox, Header } from "semantic-ui-react";
+import { Form, Input, TextArea, Checkbox, Header, Container } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
@@ -84,7 +84,7 @@ const AnalysisForm = () => {
       onSubmit={onSubmit}
       validationSchema={analysisFormSchema}>
       {({ setFieldValue, handleChange, handleBlur, handleSubmit, values }) => (
-        <div style={{ margin: 50 }}>
+        <Container>
           <Form>
             <Header as="h1" content="Create analysis" />
             <Form.Group widths="equal">
@@ -296,16 +296,19 @@ const AnalysisForm = () => {
               />
             ) : null}
 
-            <Form.Group>
-              <Form.Button primary type="submit" onClick={handleSubmit}>
+            <Form.Group widths="equal">
+              <Form.Button
+                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white", width: "100%" }}
+                type="submit"
+                onClick={handleSubmit}>
                 Submit
               </Form.Button>
-              <Form.Button secondary onClick={() => history.push("/")}>
+              <Form.Button style={{ width: "100%" }} secondary onClick={() => history.push("/")}>
                 Return
               </Form.Button>
             </Form.Group>
           </Form>
-        </div>
+        </Container>
       )}
     </Formik>
   );

@@ -26,19 +26,24 @@ const Buttons = ({ analysis, myPage }) => {
               onClick={moveToSingleView}
               content={"View"}
               compact
-              style={{ height: "4em", color: "white", backgroundColor: "rgb(10, 40, 230)" }}
+              style={{
+                height: "4em",
+                width: "6em",
+                color: "white",
+                backgroundColor: "rgb(10, 40, 230)"
+              }}
             />
             <Button
               onClick={removeItem}
               content={"Delete"}
               compact
-              style={{ height: "4em", color: "white", backgroundColor: "red" }}
+              style={{ height: "4em", width: "6em", color: "white", backgroundColor: "red" }}
             />
           </div>
         ) : (
           <Button
             onClick={moveToSingleView}
-            content={"Check this out!"}
+            content={"View analysis"}
             compact
             style={{ height: "4em", color: "white", backgroundColor: "rgb(10, 40, 230)" }}
           />

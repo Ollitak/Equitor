@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Input, Container, Header } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -14,7 +13,6 @@ const MyAccountSchema = Yup.object().shape({
 });
 
 const MyAccount = () => {
-  const history = useHistory();
   const dispatch = useDispatch();
   var myAccount = useSelector((state) => state.user);
 
@@ -69,17 +67,14 @@ const MyAccount = () => {
                 </Form.Field>
               </Form.Group>
 
-              <Form.Group>
+              <div style={{ marginTop: "2em" }}>
                 <Form.Button
-                  style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
+                  style={{ backgroundColor: "rgb(10, 40, 230)", color: "white", width: "25%" }}
                   type="submit"
                   onClick={handleSubmit}>
-                  Edit
+                  Edit account information
                 </Form.Button>
-                <Form.Button secondary onClick={() => history.push("/feed")}>
-                  Return
-                </Form.Button>
-              </Form.Group>
+              </div>
             </Form>
 
             <PasswordChange />

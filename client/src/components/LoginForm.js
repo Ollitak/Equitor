@@ -53,14 +53,14 @@ const LoginForm = () => {
               />
               <ShowError name={"password"} />
             </Form.Field>
-            <Form.Group>
+            <Form.Group widths="equal">
               <Form.Button
-                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
+                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white", width: "100%" }}
                 type="submit"
                 onClick={handleSubmit}>
                 Log in
               </Form.Button>
-              <Form.Button secondary onClick={() => history.push("/")}>
+              <Form.Button style={{ width: "100%" }} secondary onClick={() => history.push("/")}>
                 Return
               </Form.Button>
             </Form.Group>

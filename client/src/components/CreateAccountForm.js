@@ -101,14 +101,17 @@ const CreateAccountForm = () => {
               <ShowError name={"passwordConfirmation"} />
             </Form.Field>
 
-            <Form.Group>
+            <Form.Group widths="equal">
               <Form.Button
-                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
+                style={{ backgroundColor: "rgb(10, 40, 230)", color: "white", width: "100%" }}
                 type="submit"
                 onClick={handleSubmit}>
                 Create
               </Form.Button>
-              <Form.Button secondary onClick={() => history.push("/feed")}>
+              <Form.Button
+                style={{ width: "100%" }}
+                secondary
+                onClick={() => history.push("/feed")}>
                 Return
               </Form.Button>
             </Form.Group>
