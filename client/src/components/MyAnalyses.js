@@ -5,13 +5,12 @@ import prepareAnalyses from "../utilities/prepareAnalyses";
 
 /* Component to render logged user's analyses. */
 const MyAnalyses = () => {
-  /* Retreiving user is asyncronous, thus on page refrest state.user can be null */
-  var myAnalyses = useSelector((state) => {
-    if (!state.user) return null;
-    return state.analyses.filter((analysis) => analysis.user.id === state.user.id);
-  });
+  const analyses = useSelector((state) => state.analyses);
+  const user = useSelector((state) => state.user);
 
-  if (!myAnalyses) return null;
+  if (!analyses || !user) return null;
+
+  var myAnalyses = analyses.filter((analysis) => analysis.user.id === user.id);
 
   /* Extend analysis objects' fields to include how many hours ago it was posted and average
   rating. */
