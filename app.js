@@ -12,6 +12,7 @@ const app = express();
 console.log(`connecting to ${config.MONGODB_URI}`);
 mongoose.connect(config.MONGODB_URI);
 
+app.use(express.static("build"));
 
 app.use(express.json());
 app.use(middleware.tokenExtractor);
