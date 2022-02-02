@@ -32,7 +32,7 @@ const Buttons = ({ analysis, myPage }) => {
                 height: "4em",
                 width: "6em",
                 color: "white",
-                backgroundColor: "rgb(10, 40, 230)"
+                backgroundColor: "rgb(0, 25, 190)"
               }}
             />
             <Button
@@ -47,7 +47,11 @@ const Buttons = ({ analysis, myPage }) => {
             onClick={moveToSingleView}
             content={"View analysis"}
             compact
-            style={{ height: "4em", color: "white", backgroundColor: "rgb(10, 40, 230)" }}
+            style={{
+              height: "4em",
+              color: "white",
+              backgroundColor: "rgb(0, 25, 190)"
+            }}
           />
         )}
       </Grid.Column>

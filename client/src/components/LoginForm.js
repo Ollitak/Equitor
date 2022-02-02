@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { login } from "../reducers/userReducer";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Input, Container } from "semantic-ui-react";
+import { Form, Input, Container, Header } from "semantic-ui-react";
 import * as Yup from "yup";
 
 const LoginFormSchema = Yup.object().shape({
@@ -30,21 +30,26 @@ const LoginForm = () => {
       validationSchema={LoginFormSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
-          <Form>
+          <Form autoComplete="off">
+            <Header as="h2" content={"Log in"} style={{ color: "white" }} />
             <Form.Field>
-              <label>Username</label>
               <Input
+                style={{ marginBottom: "1em" }}
+                transparent
+                placeholder="Enter username"
                 name={"username"}
                 value={values.username}
-                type={"string"}
+                type={"text"}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
               <ShowError name={"username"} />
             </Form.Field>
             <Form.Field>
-              <label>Password</label>
               <Input
+                style={{ marginBottom: "1em" }}
+                transparent
+                placeholder="Enter password"
                 name={"password"}
                 value={values.password}
                 type={"password"}

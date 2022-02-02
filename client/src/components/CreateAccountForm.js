@@ -40,10 +40,12 @@ const CreateAccountForm = () => {
       validationSchema={CreateAccountFormSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
-          <Form>
+          <Form autoComplete="off">
             <Form.Field>
-              <label>First name</label>
               <Input
+                transparent
+                style={{ marginBottom: "1em" }}
+                placeholder="First name"
                 name={"firstname"}
                 value={values.firstname}
                 type={"string"}
@@ -54,8 +56,10 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Field>
-              <label>Last name</label>
               <Input
+                transparent
+                style={{ marginBottom: "1em" }}
+                placeholder="Last name"
                 name={"lastname"}
                 value={values.lastname}
                 type={"string"}
@@ -66,8 +70,10 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Field>
-              <label>Username</label>
               <Input
+                transparent
+                style={{ marginBottom: "1em" }}
+                placeholder="Username"
                 name={"username"}
                 value={values.username}
                 type={"string"}
@@ -78,8 +84,10 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Field>
-              <label>Password</label>
               <Input
+                transparent
+                style={{ marginBottom: "1em" }}
+                placeholder="Password"
                 name={"password"}
                 value={values.password}
                 type={"password"}
@@ -90,8 +98,10 @@ const CreateAccountForm = () => {
             </Form.Field>
 
             <Form.Field>
-              <label>Re-enter your password</label>
               <Input
+                transparent
+                style={{ marginBottom: "1em" }}
+                placeholder="Re-enter your password"
                 name={"passwordConfirmation"}
                 value={values.passwordConfirmation}
                 type={"password"}

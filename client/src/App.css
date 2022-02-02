@@ -1,4 +1,34 @@
 body {
   font-family: sans-serif;
-  background-color: rgb(220, 220, 220);
+  background-color: rgba(0, 0, 0, 0.87);
+}
+
+p {
+  color:white
+}
+
+.ui.input  {
+  border-bottom: 1px solid white !important;
+}
+
+.ui.input input:focus  {
+  color: white !important;
+}
+
+.ui.input input  {
+  color: white !important;
+}
+
+.ui.checkbox label  {
+  color:white !important;
+}
+
+.ui.form textarea {
+  background-color: transparent !important;
+  color: white !important;
+  border: 1px solid white !important;
+}
+
+.feed-item {
+  background-color: rgb(238, 255, 0);
 }

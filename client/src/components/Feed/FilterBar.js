@@ -52,7 +52,7 @@ const FilterBar = ({ setShowFilterBar }) => {
   return (
     <Segment
       inverted
-      style={{ margin: "auto", marginBottom: "1em", border: "0.2em solid white", maxWidth: 600 }}>
+      style={{ margin: "auto", marginBottom: "1em", border: "2px inset white", maxWidth: 600 }}>
       <div>
         <label>Select company</label>
         {/* Select's value attribute expects a shape of object */}

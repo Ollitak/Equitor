@@ -5,12 +5,12 @@ import { Feed, Rating, Grid } from "semantic-ui-react";
 else render hour amount */
 const PostedAgo = ({ postedAgo }) => {
   if (postedAgo === 0) {
-    return <Feed.Date>under an hour ago </Feed.Date>;
+    return <Feed.Date style={{ color: "white" }}>under an hour ago </Feed.Date>;
   } else if (postedAgo <= 24) {
-    return <Feed.Date>{postedAgo} hours ago </Feed.Date>;
+    return <Feed.Date style={{ color: "white" }}>{postedAgo} hours ago </Feed.Date>;
   } else {
     const days = parseInt(postedAgo / 24);
-    return <Feed.Date>{days} days ago </Feed.Date>;
+    return <Feed.Date style={{ color: "white" }}>{days} days ago </Feed.Date>;
   }
 };
 
@@ -19,7 +19,7 @@ what is the average rating of the analysis. */
 const FeedContent = ({ analysis }) => {
   return (
     <Feed.Content>
-      <Feed.Summary>
+      <Feed.Summary style={{ color: "white" }}>
         <Feed.User as="p" style={{ color: "rgb(100, 180, 250)" }}>
           {analysis.user.username}
         </Feed.User>

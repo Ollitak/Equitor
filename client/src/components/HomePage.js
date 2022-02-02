@@ -25,7 +25,7 @@ const HomePage = () => {
         <Grid stackable container verticalAlign="middle">
           <Grid.Row columns={2}>
             <Grid.Column width={7}>
-              <Header as="h1" style={{ fontSize: "2.5em" }}>
+              <Header as="h1" style={{ fontSize: "2.5em", color: "white" }}>
                 {"Equitor"}
               </Header>
               <p style={{ fontSize: "1.2em" }}>{text1}</p>
@@ -48,7 +48,7 @@ const HomePage = () => {
                   width: "10em",
                   height: "3em",
                   marginTop: "2em",
-                  backgroundColor: "rgb(10, 40, 230)",
+                  backgroundColor: "rgb(0, 25, 190)",
                   color: "white"
                 }}
                 size="massive"
@@ -69,7 +69,7 @@ const HomePage = () => {
                 src="https://images.unsplash.com/photo-1633158829585-23ba8f7c8caf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"></Image>
             </Grid.Column>
             <Grid.Column width={9}>
-              <Header as="h1" style={{ fontSize: "2.5em" }}>
+              <Header as="h1" style={{ fontSize: "2.5em", color: "white" }}>
                 {"About the project"}
               </Header>
               <p style={{ fontSize: "1.2em" }}>{text4}</p>
@@ -81,7 +81,7 @@ const HomePage = () => {
 
           <Grid.Row columns={1}>
             <Grid.Column textAlign="center">
-              <Header as="h1" style={{ fontSize: "2.5em", marginBottom: "1em" }}>
+              <Header as="h1" style={{ fontSize: "2.5em", color: "white", marginBottom: "1em" }}>
                 Happy users
               </Header>
               <p style={{ fontSize: "1.2em", fontStyle: "italic" }}>

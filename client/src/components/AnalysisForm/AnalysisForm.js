@@ -7,11 +7,55 @@ import { useDispatch } from "react-redux";
 import Select from "react-select";
 import { stockSelection, keyWordOptions, recommendationOptions } from "../../utilities/utilityData";
 import analysisFormSchema from "./validationSchema";
+
+/* Custom styles object for react-select. */
+const selectCustomStyle = {
+  menu: (provided) => ({
+    ...provided,
+    backgroundColor: "black",
+    borderBottom: "0.5px solid white"
+  }),
+  option: (provided) => ({
+    ...provided,
+    borderBottom: "0.5px solid white",
+    color: "white",
+    padding: 10,
+    backgroundColor: "black"
+  }),
+  control: (provided) => ({
+    ...provided,
+    backgroundColor: "transparent",
+    borderRadius: 0
+  }),
+  multiValue: (provided) => ({
+    ...provided,
+    backgroundColor: "transparent"
+  }),
+  multiValueLabel: (provided) => ({
+    ...provided,
+    color: "white"
+  }),
+  multiValueRemove: (provided) => ({
+    ...provided,
+    backgroundColor: "transparent",
+    color: "red"
+  }),
+  input: (provided) => ({
+    ...provided,
+    color: "white"
+  }),
+  singleValue: (provided) => {
+    const color = "white";
+
+    return { ...provided, color };
+  }
+};
+
 /* Component to render textBox with label and large textarea as well as the error message. */
 const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
   return (
     <Form.Field>
-      <label>{label}</label>
+      <label style={{ color: "white" }}>{label}</label>
       <TextArea
         value={value}
         name={name}
@@ -86,11 +130,16 @@ const AnalysisForm = () => {
       {({ setFieldValue, handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
           <Form>
-            <Header as="h1" content="Create analysis" />
-            <Form.Group widths="equal">
+            <Header
+              as="h1"
+              content="Create analysis"
+              style={{ color: "white", marginBottom: "1em" }}
+            />
+            <Form.Group widths="equal" style={{ marginBottom: "2em" }}>
               <Form.Field>
-                <label>Stock name (ticker)</label>
+                <label style={{ color: "white" }}>Stock name (ticker)</label>
                 <Select
+                  styles={selectCustomStyle}
                   options={stockSelection}
                   onChange={(vals) => setFieldValue("stockName", vals.name)}
                 />
@@ -98,19 +147,9 @@ const AnalysisForm = () => {
               </Form.Field>
 
               <Form.Field>
-                <label>Target price (€)</label>
-                <Input
-                  name={"targetPrice"}
-                  type={"number"}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-                <ShowError name={"targetPrice"} />
-              </Form.Field>
-
-              <Form.Field>
-                <label>Recommendation</label>
+                <label style={{ color: "white" }}>Recommendation</label>
                 <Select
+                  styles={selectCustomStyle}
                   options={recommendationOptions}
                   onChange={(vals) => setFieldValue("recommendation", vals.value)}
                 />
@@ -118,9 +157,10 @@ const AnalysisForm = () => {
               </Form.Field>
             </Form.Group>
 
-            <Form.Field>
-              <label>Key words</label>
+            <Form.Field style={{ marginBottom: "2em" }}>
+              <label style={{ color: "white" }}>Key words</label>
               <Select
+                styles={selectCustomStyle}
                 name={"keyWords"}
                 options={keyWordOptions}
                 isMulti={true}
@@ -132,12 +172,31 @@ const AnalysisForm = () => {
                 }
               />
             </Form.Field>
+            <Form.Group widths="equal" style={{ marginBottom: "2em" }}>
+              <Form.Field>
+                <label style={{ color: "white" }}>Analysis title</label>
+                <Input
+                  name={"title"}
+                  type={"text"}
+                  transparent
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <ShowError name={"title"} />
+              </Form.Field>
 
-            <Form.Field>
-              <label>Analysis title</label>
-              <Input name={"title"} type={"text"} onChange={handleChange} onBlur={handleBlur} />
-              <ShowError name={"title"} />
-            </Form.Field>
+              <Form.Field>
+                <label style={{ color: "white" }}>Target price (€)</label>
+                <Input
+                  transparent
+                  name={"targetPrice"}
+                  type={"number"}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                <ShowError name={"targetPrice"} />
+              </Form.Field>
+            </Form.Group>
 
             <TextBox
               name={"content.summary"}
@@ -147,10 +206,15 @@ const AnalysisForm = () => {
               handleBlur={handleBlur}
             />
 
-            <Header as="h2" content="Choose more text fields" />
+            <Header
+              as="h2"
+              content="Choose more topics to write about"
+              style={{ color: "white", marginTop: "2em" }}
+            />
 
             <Checkbox
               style={{ margin: "2em 1em" }}
+              labelStyle={{ color: "white" }}
               label={"basic company information"}
               onChange={() => {
                 setTextboxShow({
