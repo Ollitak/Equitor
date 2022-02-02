@@ -19,7 +19,9 @@ const MyAccount = () => {
   if (!myAccount) return null;
 
   const onSubmit = async (values) => {
-    dispatch(updateUser(values));
+    if (window.confirm("Are you sure you want to edit account information?")) {
+      dispatch(updateUser(values));
+    }
   };
 
   return (

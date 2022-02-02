@@ -14,7 +14,9 @@ const Buttons = ({ analysis, myPage }) => {
   };
 
   const removeItem = async () => {
-    dispatch(deleteAnalysis(analysis.id));
+    if (window.confirm("Are you sure you want to delete an analysis?")) {
+      dispatch(deleteAnalysis(analysis.id));
+    }
   };
 
   return (

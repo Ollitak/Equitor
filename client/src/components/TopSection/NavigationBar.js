@@ -11,8 +11,10 @@ const OnLoggedIn = ({ user }) => {
   const path = location.pathname;
 
   const logOut = () => {
-    history.push("/home");
-    dispatch(logout());
+    if (window.confirm("Are you sure you want to log out?")) {
+      history.push("/home");
+      dispatch(logout());
+    }
   };
 
   return (

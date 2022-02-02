@@ -17,11 +17,13 @@ const PasswordChange = () => {
   const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
-    try {
-      usersService.updateMyAccount({ password: values.password });
-      dispatch(setSuccess("Password changed successfully!"));
-    } catch {
-      dispatch(setError("Password change failed."));
+    if (window.confirm("Are you sure you want to change your password?")) {
+      try {
+        usersService.updateMyAccount({ password: values.password });
+        dispatch(setSuccess("Password changed successfully!"));
+      } catch {
+        dispatch(setError("Password change failed."));
+      }
     }
   };
 
