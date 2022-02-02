@@ -6,6 +6,8 @@ const commentRouter = require("./controllers/comments");
 const middleware = require("./utils/middleware"); 
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
+const fallback = require("express-history-api-fallback");
+
 
 const app = express();
 
@@ -22,6 +24,7 @@ app.use("/api/analyses", analysesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/comment", commentRouter);
 
+app.use(fallback("index.html", { root: "build" }));
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
