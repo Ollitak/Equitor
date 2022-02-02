@@ -182,7 +182,7 @@ const AnalysisForm = () => {
             />
             <Checkbox
               style={{ margin: "2em 1em" }}
-              label={"investmen summary"}
+              label={"investment summary"}
               onChange={() => {
                 setTextboxShow({
                   ...textboxShow,
