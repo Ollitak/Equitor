@@ -5,9 +5,10 @@
   "main": "index.js",
   "scripts": {
     "install:frontend": "cd client && npm install",
+    "dev:frontend": "cd client && npm start",
+    "dev": "nodemon index.js",
     "build:frontend": "rm -rf build && cd client && npm run build && mv build ../. ",
     "start": "node index.js",
-    "dev": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "eslint ."
   },
