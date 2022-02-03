@@ -14,7 +14,7 @@ const TopSection = () => {
         marginBottom: "1em"
       }}>
       <NavigationBar />
-      <Header as="h1" content="EQUITOR" style={{ fontSize: "6em", fontFamily: "Courier New" }} />
+      <Header as="h1" content="EQUITOR" style={{ fontSize: "5em", fontFamily: "Courier New" }} />
       <Header
         as="h2"
         content="< keep up with the stock market >"
