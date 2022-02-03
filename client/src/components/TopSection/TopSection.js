@@ -7,13 +7,24 @@ const TopSection = () => {
     <Segment
       inverted
       textAlign="center"
-      style={{ borderRadius: 0, minHeight: 300, paddingTop: "1em", marginBottom: "1em" }}>
+      style={{
+        borderRadius: 0,
+        minHeight: 300,
+        paddingTop: "1em",
+        marginBottom: "1em"
+      }}>
       <NavigationBar />
-      <Header as="h1" content="Equitor" style={{ fontSize: "5em" }} />
+      <Header as="h1" content="EQUITOR" style={{ fontSize: "6em", fontFamily: "Courier New" }} />
       <Header
         as="h2"
-        content="keep up with the stock market"
-        style={{ fontSize: "2em", paddingBottom: "2em" }}
+        content="< keep up with the stock market >"
+        style={{
+          fontSize: "1.5em",
+          marginTop: 0,
+          paddingBottom: "2em",
+          fontFamily: "Courier New",
+          fontStyle: "italic"
+        }}
       />
     </Segment>
   );

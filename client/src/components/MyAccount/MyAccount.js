@@ -35,33 +35,35 @@ const MyAccount = () => {
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <Container>
           <div style={{ margin: 50 }}>
-            <Header as="h1" content="Account information" />
-            <Form>
-              <Form.Group widths={"equal"}>
+            <Header as="h1" content="Account information" style={{ color: "white" }} />
+            <Form autoComplete="off">
+              <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
                 <Form.Field>
-                  <label>Username</label>
-                  <Input disabled value={myAccount.username} />
+                  <label style={{ color: "white" }}>Username</label>
+                  <Input transparent disabled value={myAccount.username} />
                 </Form.Field>
               </Form.Group>
 
-              <Form.Group widths={"equal"}>
+              <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
                 <Form.Field>
-                  <label>First name</label>
+                  <label style={{ color: "white" }}>First name</label>
                   <Input
                     name={"firstname"}
                     value={values.firstname}
                     type={"string"}
+                    transparent
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   <ShowError name={"firstname"} />
                 </Form.Field>
                 <Form.Field>
-                  <label>Last name</label>
+                  <label style={{ color: "white" }}>Last name</label>
                   <Input
                     name={"lastname"}
                     value={values.lastname}
                     type={"string"}
+                    transparent
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -88,9 +90,7 @@ const MyAccount = () => {
 };
 
 const ShowError = ({ name }) => (
-  <ErrorMessage name={name}>
-    {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
-  </ErrorMessage>
+  <ErrorMessage name={name}>{(error) => <div style={{ color: "red" }}>{error}</div>}</ErrorMessage>
 );
 
 export default MyAccount;

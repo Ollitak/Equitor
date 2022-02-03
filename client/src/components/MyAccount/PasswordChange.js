@@ -37,14 +37,15 @@ const PasswordChange = () => {
       validationSchema={PasswordChangeSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <div style={{ marginTop: "5em" }}>
-          <Header as="h1" content="Change password" />
+          <Header as="h1" content="Change password" style={{ color: "white" }} />
           <Form>
-            <Form.Group widths={"equal"}>
+            <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
               <Form.Field>
-                <label>New password</label>
+                <label style={{ color: "white" }}>New password</label>
                 <Input
                   name={"password"}
                   type={"password"}
+                  transparent
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -52,10 +53,11 @@ const PasswordChange = () => {
                 <ShowError name={"password"} />
               </Form.Field>
               <Form.Field>
-                <label>Confirm password</label>
+                <label style={{ color: "white" }}>Confirm password</label>
                 <Input
                   name={"passwordConfirmation"}
                   type={"password"}
+                  transparent
                   value={values.passwordConfirmation}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -80,9 +82,7 @@ const PasswordChange = () => {
 };
 
 const ShowError = ({ name }) => (
-  <ErrorMessage name={name}>
-    {(error) => <div style={{ color: "red", fontWeight: "bold" }}>{error}</div>}
-  </ErrorMessage>
+  <ErrorMessage name={name}>{(error) => <div style={{ color: "red" }}>{error}</div>}</ErrorMessage>
 );
 
 export default PasswordChange;

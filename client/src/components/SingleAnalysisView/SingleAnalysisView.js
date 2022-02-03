@@ -1,9 +1,9 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-import CommentSection from "./CommentSection";
-import AnalysisSection from "./AnalysisSection";
-import { Grid, Segment } from "semantic-ui-react";
+import CommentSectionModal from "./CommentSectionModal";
+import AnalysisSection, { SummarySection, TextSection } from "./AnalysisSection";
+import { Grid, Header, Divider, Segment } from "semantic-ui-react";
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
@@ -16,10 +16,30 @@ const SingleAnalysisView = () => {
   if (!analysis) return null;
 
   return (
-    <Segment style={{ padding: "1em" }} vertical>
-      <Grid stackable container>
-        <CommentSection analysis={analysis} id={id} />
-        <AnalysisSection analysis={analysis} />
+    <Segment>
+      <Grid stackable container style={{ margin: 0, backgroundColor: "rgb(235, 235, 235)" }}>
+        <Grid.Row>
+          <Header
+            as="h1"
+            style={{
+              fontSize: "3em",
+              width: "100%",
+              textAlign: "center",
+              marginTop: "1em",
+              fontWeight: "bold",
+              fontFamily: "Courier New"
+            }}>
+            {analysis.title}
+          </Header>
+        </Grid.Row>
+
+        <Divider horizontal>report published by {analysis.user.username}</Divider>
+
+        <SummarySection analysis={analysis} />
+
+        <TextSection analysis={analysis} />
+
+        <CommentSectionModal analysis={analysis} id={id} />
       </Grid>
     </Segment>
   );

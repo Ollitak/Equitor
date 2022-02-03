@@ -86,7 +86,7 @@ const CommentFeed = ({ analysis }) => {
 
 /* Renders button that opens modal for comments. Modal is constructed with two componets:
 CommentWrite renders form for writing comments and second renders the comment feed. */
-const CommentSection = ({ analysis, id }) => {
+const CommentSectionModal = ({ analysis, id }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (
@@ -98,12 +98,13 @@ const CommentSection = ({ analysis, id }) => {
         <Button
           content="Comments and ratings"
           style={{
-            backgroundColor: "white",
-            color: "black",
-            border: "1px solid black",
+            backgroundColor: "rgb(38, 38, 38)",
+            color: "white",
+            border: "2px inset white",
             height: "3em",
             width: "100%",
-            marginBottom: "1em"
+            borderRadius: 0,
+            margin: "2em"
           }}
         />
       }
@@ -128,4 +129,4 @@ const CommentSection = ({ analysis, id }) => {
   );
 };
 
-export default CommentSection;
+export default CommentSectionModal;

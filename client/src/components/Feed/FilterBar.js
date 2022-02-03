@@ -14,8 +14,7 @@ import {
 const selectCustomStyle = {
   menu: (provided) => ({
     ...provided,
-    backgroundColor: "black",
-    padding: 20,
+    backgroundColor: "rgb(48, 48, 48)",
     border: "0.5px solid white"
   }),
   option: (provided) => ({
@@ -23,12 +22,16 @@ const selectCustomStyle = {
     borderBottom: "0.5px solid white",
     color: "white",
     padding: 10,
-    backgroundColor: "black"
+    backgroundColor: "rgb(48, 48, 48)"
   }),
   control: (provided) => ({
     ...provided,
-    backgroundColor: "black",
-    maxWidth: 600
+    backgroundColor: "transparent",
+    borderRadius: 0
+  }),
+  multiValue: (provided) => ({
+    ...provided,
+    backgroundColor: "transparent"
   }),
   input: (provided) => ({
     ...provided,

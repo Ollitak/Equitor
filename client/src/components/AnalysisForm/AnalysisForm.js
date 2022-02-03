@@ -12,15 +12,15 @@ import analysisFormSchema from "./validationSchema";
 const selectCustomStyle = {
   menu: (provided) => ({
     ...provided,
-    backgroundColor: "black",
-    borderBottom: "0.5px solid white"
+    backgroundColor: "rgb(48, 48, 48)",
+    border: "0.5px solid white"
   }),
   option: (provided) => ({
     ...provided,
     borderBottom: "0.5px solid white",
     color: "white",
     padding: 10,
-    backgroundColor: "black"
+    backgroundColor: "rgb(48, 48, 48)"
   }),
   control: (provided) => ({
     ...provided,
@@ -214,7 +214,6 @@ const AnalysisForm = () => {
 
             <Checkbox
               style={{ margin: "2em 1em" }}
-              labelStyle={{ color: "white" }}
               label={"basic company information"}
               onChange={() => {
                 setTextboxShow({

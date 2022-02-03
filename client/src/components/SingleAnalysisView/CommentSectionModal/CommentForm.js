@@ -2,7 +2,7 @@ import React from "react";
 import { Formik, ErrorMessage } from "formik";
 import { Form, TextArea, Rating } from "semantic-ui-react";
 import { useDispatch } from "react-redux";
-import { addComment } from "../../reducers/analysisReducer";
+import { addComment } from "../../../reducers/analysisReducer";
 import * as Yup from "yup";
 
 const CommentForm = ({ id }) => {

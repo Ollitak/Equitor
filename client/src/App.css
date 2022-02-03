@@ -29,6 +29,6 @@ p {
   border: 1px solid white !important;
 }
 
-.feed-item {
-  background-color: rgb(238, 255, 0);
+.test {
+  color: rgb(235, 235, 235)
 }

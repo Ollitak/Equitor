@@ -1,30 +1,30 @@
 import React from "react";
-import { Grid, Header, Segment, Label, Image } from "semantic-ui-react";
+import { Grid, Header, Segment, Label, Image, Divider } from "semantic-ui-react";
 
 /* Render label based on recommendation input. */
 const RecommendationLabel = ({ recommendation }) => {
   switch (recommendation) {
     case "BUY":
       return (
-        <Label color="green" size="huge">
+        <Label color="green" size="medium">
           BUY
         </Label>
       );
     case "HOLD":
       return (
-        <Label color="yellow" size="huge">
+        <Label color="yellow" size="medium">
           HOLD
         </Label>
       );
     case "SELL":
       return (
-        <Label color="red" size="huge">
+        <Label color="red" size="medium">
           SELL
         </Label>
       );
     default:
       return (
-        <Label color="black" size="huge">
+        <Label color="black" size="medium">
           N/A
         </Label>
       );
@@ -34,55 +34,47 @@ const RecommendationLabel = ({ recommendation }) => {
 /* Presents general information on the left side, such as company name, user that
 made the analysis, recommendation and target price. Constructed as Semantic UI
 column with multiple rows. */
-const SummarySection = ({ analysis }) => {
+export const SummarySection = ({ analysis }) => {
   return (
-    <Grid.Column width={4} textAlign="center">
-      <Grid.Row columns={1} style={{ marginBottom: "1.5em" }}>
-        <Grid.Column>
-          <Segment vertical>
-            <Header dividing as="h3" style={{ fontSize: "1.5em" }}>
-              Equity
+    <Grid.Row>
+      <Grid stackable container style={{ margin: "auto", marginTop: "3em" }}>
+        <Grid.Row columns="6">
+          <Grid.Column textAlign="center" verticalAlign="middle">
+            <Header as="h3" style={{ fontSize: "1em", fontFamily: "Courier New" }}>
+              Company name:
             </Header>
-            <Image verticalAlign="middle" size="small" src={analysis.stockInformation.logoUrl} />
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={1} style={{ marginBottom: "1.5em" }}>
-        <Grid.Column>
-          <Segment vertical>
-            <Header dividing as="h3" style={{ fontSize: "1.5em" }}>
-              Analysis by
+          </Grid.Column>
+
+          <Grid.Column textAlign="left" verticalAlign="middle">
+            <Image verticalAlign="middle" size="tiny" src={analysis.stockInformation.logoUrl} />
+          </Grid.Column>
+          <Grid.Column textAlign="center" verticalAlign="middle">
+            <Header
+              as="h3"
+              style={{ fontSize: "1em", fontFamily: "Courier New", fontStyle: "italic" }}>
+              BUY,HOLD or SELL:
             </Header>
-            <Header as="h3" color="blue" style={{ fontSize: "1.5em" }}>
-              {analysis.user.username}
-            </Header>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={1} style={{ marginBottom: "1.5em" }}>
-        <Grid.Column>
-          <Segment vertical>
-            <Header dividing as="h3" style={{ fontSize: "1.5em" }}>
-              Recommendation
-            </Header>
+          </Grid.Column>
+          <Grid.Column textAlign="left" verticalAlign="middle">
             <RecommendationLabel recommendation={analysis.recommendation} />
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-      <Grid.Row columns={1}>
-        <Grid.Column>
-          <Segment vertical>
-            <Header dividing as="h3" style={{ fontSize: "1.5em" }}>
-              Target price
+          </Grid.Column>
+
+          <Grid.Column textAlign="center" verticalAlign="middle">
+            <Header
+              as="h3"
+              style={{ fontSize: "1em", fontFamily: "Courier New", fontStyle: "italic" }}>
+              Target price:
             </Header>
-            <Label tag color="black" size="huge">
+          </Grid.Column>
+          <Grid.Column textAlign="left" verticalAlign="middle">
+            <Label tag color="black" size="small">
               {" "}
               € {analysis.targetPrice}
             </Label>
-          </Segment>
-        </Grid.Column>
-      </Grid.Row>
-    </Grid.Column>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+    </Grid.Row>
   );
 };
 
@@ -90,48 +82,51 @@ const SummarySection = ({ analysis }) => {
 const Paragraph = ({ title, content }) => {
   if (!content) return null;
   return (
-    <div style={{ marginBottom: "3em" }}>
-      <Header as="h3" style={{ fontSize: "1.5em" }}>
+    <Grid.Row style={{ marginBottom: "3em" }}>
+      <Header as="h3" style={{ fontSize: "1.5em", textAlign: "center" }}>
         {title}
       </Header>
-      <p style={{ fontSize: "1.0em" }}>{content}</p>
-    </div>
+      <p style={{ fontSize: "1.0em", color: "black" }}>{content}</p>
+    </Grid.Row>
   );
 };
 
 /* TextSection presents users written analysis in multiple paragraphs. */
-const TextSection = ({ analysis }) => {
+export const TextSection = ({ analysis }) => {
   return (
-    <Grid.Column width={12}>
-      <Header as="h1" style={{ fontSize: "2.5em" }}>
-        {analysis.title}
-      </Header>
-      <Paragraph title={"Summary"} content={analysis.content.summary} />
-      <Paragraph
-        title={"Basic company information"}
-        content={analysis.content.basicCompanyInformation}
-      />
-      <Paragraph title={"Business description"} content={analysis.content.businessDescription} />
-      <Paragraph
-        title={"Industry overview and competitive positioning"}
-        content={analysis.content.industryOverviewAndCompetitivePositioning}
-      />
-      <Paragraph title={"Investment summary"} content={analysis.content.investmentSummary} />
-      <Paragraph title={"Financial analysis"} content={analysis.content.financialAnalysis} />
-      <Paragraph title={"Valuation"} content={analysis.content.valuation} />
-      <Paragraph title={"Investment risks"} content={analysis.content.investmentRisks} />
-      <Paragraph title={"ESG matters"} content={analysis.content.ESGMatters} />
-    </Grid.Column>
+    <Grid.Row style={{ maxWidth: "800px", margin: "auto" }}>
+      <Grid.Column>
+        <Paragraph title={"Summary"} content={analysis.content.summary} />
+        <Paragraph
+          title={"Basic company information"}
+          content={analysis.content.basicCompanyInformation}
+        />
+        <Paragraph title={"Business description"} content={analysis.content.businessDescription} />
+        <Paragraph
+          title={"Industry overview and competitive positioning"}
+          content={analysis.content.industryOverviewAndCompetitivePositioning}
+        />
+        <Paragraph title={"Investment summary"} content={analysis.content.investmentSummary} />
+        <Paragraph title={"Financial analysis"} content={analysis.content.financialAnalysis} />
+        <Paragraph title={"Valuation"} content={analysis.content.valuation} />
+        <Paragraph title={"Investment risks"} content={analysis.content.investmentRisks} />
+        <Paragraph title={"ESG matters"} content={analysis.content.ESGMatters} />
+      </Grid.Column>
+    </Grid.Row>
   );
 };
 
 /* Presents summary component on the left and written analysis on the right. */
 const AnalysisSection = ({ analysis }) => {
   return (
-    <Grid.Row>
-      <SummarySection analysis={analysis} />
-      <TextSection analysis={analysis} />
-    </Grid.Row>
+    <Grid>
+      <Grid.Row>
+        <SummarySection analysis={analysis} />
+      </Grid.Row>
+      <Grid.Row>
+        <TextSection analysis={analysis} />
+      </Grid.Row>
+    </Grid>
   );
 };
 
