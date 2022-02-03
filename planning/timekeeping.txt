@@ -8,13 +8,11 @@
   * alustavan backend-version viimeistely ja frontendin aloitus
   * user-scheman luominen databaseen ja schemojen väliset yhteydet
   * react front-endin aloitus, alustava versio aloitussivusta visualisointeineen 
-
 19.1 (9h)
   * front-endin jatkaminen
   * alustavien toiminnallisuuksien lisääminen: sisäänkirjautumissivu, analyysin luontisivu,
     uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
   * token-perusteisen kirjautumisen implementointi
-  
 20.1 (9h)
   *  reduxin implementointi ja kommentointimahdollisuuden lisääminen
 21.1 (12h)
@@ -45,3 +43,17 @@
   * backendin uudelleensuunnittelua: ajatuksena tehdä viesteistä oma kokoelma, mutta päätin olla implementoimatta
   * backendiin pieniä fiksauksia, esim delete vaatii nyt tokenin
   * my account -välilehden tekeminen ja tätä varten tarvittavan put endpointin luominen user kokoelmalle
+1.2 (9h)
+  * muutos miten käyttäjä tallentaan frontendin tilaan, aikaisemmin tilaan tallennettiin login API:n vastaus, kun nyt käyttäjä haetaan erillisellä API-pyynnöllä. Local storagessa nyt vain token.
+  * muun koodin muokkaaminen toimivaksi (nyt käyttäjän hakeminen esimerkiksi sivun refreshauksen yhteydessä asynkroninen toimenpide).
+  * backendin api endpointtien uudelleennimeäminen ja tästä aiheutuneet pienoiset haasteet (oli unohtunut "/"-merkki endpointin polkumäärittelystä...)
+  * salasanan muuttamisen implementointi front- ja backendiin
+  * omia analyysejä ei voi enää kommentoida
+  * pientä ui stailausta
+2.2 (12h)
+  * alert ilmoitusten implementointi
+  * tämänhetkisen version deployaaminen herokuun ja ongelmien selvittely (heroku esimerkiksi yritti automaattisesti buildata frontendiä, vaikka tarkoitus oli käyttää valmista, ennen deployaamista tehtyä buildia)
+  * express bugin korjaus, joka aiheutui frontendin routeista ja staattisen build-kansion tarjoamisesta backendissä. Sivun refreshaaminen frontendin routen kanssa aiheutti unknown-endpoint errorin, koska backend ei osannut
+    routea sovellusta frontendin routeen. Tätä varten asensin "express history api fallbackin" joka korjasin ongelman
+  * uuden teeman implementointi (ui styling)
+
