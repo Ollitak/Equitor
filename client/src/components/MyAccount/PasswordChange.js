@@ -68,7 +68,7 @@ const PasswordChange = () => {
 
             <div style={{ marginTop: "2em" }}>
               <Form.Button
-                style={{ backgroundColor: "red", color: "white", width: "25%" }}
+                style={{ backgroundColor: "red", color: "white" }}
                 type="submit"
                 onClick={handleSubmit}>
                 Change password

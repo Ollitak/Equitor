@@ -73,7 +73,7 @@ const MyAccount = () => {
 
               <div style={{ marginTop: "2em" }}>
                 <Form.Button
-                  style={{ backgroundColor: "rgb(10, 40, 230)", color: "white", width: "25%" }}
+                  style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
                   type="submit"
                   onClick={handleSubmit}>
                   Edit account information

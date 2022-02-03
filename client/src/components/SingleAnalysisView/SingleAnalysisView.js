@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
-import AnalysisSection, { SummarySection, TextSection } from "./AnalysisSection";
+import { SummarySection, TextSection } from "./AnalysisSection";
 import { Grid, Header, Divider, Segment } from "semantic-ui-react";
 
 const SingleAnalysisView = () => {

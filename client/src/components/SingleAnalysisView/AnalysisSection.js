@@ -1,30 +1,30 @@
 import React from "react";
-import { Grid, Header, Segment, Label, Image, Divider } from "semantic-ui-react";
+import { Grid, Header, Label, Image } from "semantic-ui-react";
 
 /* Render label based on recommendation input. */
 const RecommendationLabel = ({ recommendation }) => {
   switch (recommendation) {
     case "BUY":
       return (
-        <Label color="green" size="medium">
+        <Label color="green" size="big">
           BUY
         </Label>
       );
     case "HOLD":
       return (
-        <Label color="yellow" size="medium">
+        <Label color="yellow" size="big">
           HOLD
         </Label>
       );
     case "SELL":
       return (
-        <Label color="red" size="medium">
+        <Label color="red" size="big">
           SELL
         </Label>
       );
     default:
       return (
-        <Label color="black" size="medium">
+        <Label color="black" size="big">
           N/A
         </Label>
       );
@@ -37,17 +37,19 @@ column with multiple rows. */
 export const SummarySection = ({ analysis }) => {
   return (
     <Grid.Row>
-      <Grid stackable container style={{ margin: "auto", marginTop: "3em" }}>
-        <Grid.Row columns="6">
+      <Grid stackable style={{ margin: "auto" }}>
+        <Grid.Row
+          columns="equal"
+          style={{ maxWidth: "600px", marginTop: "2em", marginBottom: "2em" }}>
           <Grid.Column textAlign="center" verticalAlign="middle">
             <Header as="h3" style={{ fontSize: "1em", fontFamily: "Courier New" }}>
               Company name:
             </Header>
           </Grid.Column>
-
-          <Grid.Column textAlign="left" verticalAlign="middle">
+          <Grid.Column textAlign="center" verticalAlign="middle">
             <Image verticalAlign="middle" size="tiny" src={analysis.stockInformation.logoUrl} />
           </Grid.Column>
+
           <Grid.Column textAlign="center" verticalAlign="middle">
             <Header
               as="h3"
@@ -55,7 +57,7 @@ export const SummarySection = ({ analysis }) => {
               BUY,HOLD or SELL:
             </Header>
           </Grid.Column>
-          <Grid.Column textAlign="left" verticalAlign="middle">
+          <Grid.Column textAlign="center" verticalAlign="middle">
             <RecommendationLabel recommendation={analysis.recommendation} />
           </Grid.Column>
 
@@ -66,8 +68,9 @@ export const SummarySection = ({ analysis }) => {
               Target price:
             </Header>
           </Grid.Column>
-          <Grid.Column textAlign="left" verticalAlign="middle">
-            <Label tag color="black" size="small">
+
+          <Grid.Column textAlign="center" verticalAlign="middle">
+            <Label tag color="black" size="medium">
               {" "}
               € {analysis.targetPrice}
             </Label>
@@ -115,19 +118,3 @@ export const TextSection = ({ analysis }) => {
     </Grid.Row>
   );
 };
-
-/* Presents summary component on the left and written analysis on the right. */
-const AnalysisSection = ({ analysis }) => {
-  return (
-    <Grid>
-      <Grid.Row>
-        <SummarySection analysis={analysis} />
-      </Grid.Row>
-      <Grid.Row>
-        <TextSection analysis={analysis} />
-      </Grid.Row>
-    </Grid>
-  );
-};
-
-export default AnalysisSection;
