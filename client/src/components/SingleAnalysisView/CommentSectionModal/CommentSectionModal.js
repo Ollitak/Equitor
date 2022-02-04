@@ -17,13 +17,13 @@ const CommentWrite = ({ analysis, id }) => {
   if (!user) {
     if (analysis.comments.length === 0) {
       return (
-        <Header as="h2" textAlign="center">
+        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
           No one has yet commented, log in and be the first!
         </Header>
       );
     } else {
       return (
-        <Header as="h2" textAlign="center">
+        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
           Log in to leave your comment
         </Header>
       );
@@ -31,7 +31,7 @@ const CommentWrite = ({ analysis, id }) => {
   } else if (owner) {
     if (analysis.comments.length === 0) {
       return (
-        <Header as="h2" textAlign="center">
+        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
           Your analysis has not yet been commented
         </Header>
       );
@@ -42,14 +42,21 @@ const CommentWrite = ({ analysis, id }) => {
     if (analysis.comments.length === 0) {
       return (
         <div>
-          <Header as="h2" textAlign="center">
+          <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
             No one has yet commented, be the first!
           </Header>
           <CommentForm id={id} />
         </div>
       );
     } else {
-      return <CommentForm id={id} />;
+      return (
+        <div>
+          <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
+            WRITE A COMMENT
+          </Header>
+          <CommentForm id={id} />
+        </div>
+      );
     }
   }
 };
@@ -62,11 +69,12 @@ const CommentFeed = ({ analysis }) => {
         return (
           <Feed.Event key={id} style={{ marginBottom: "1em" }}>
             <Feed.Label>
-              <Icon name="comment" color="grey"></Icon>
+              <Icon name="comment" style={{ color: "white" }}></Icon>
             </Feed.Label>
             <Feed.Content>
-              <Feed.Date>X days ago</Feed.Date>
-              <Feed.Summary>Commented and rated by {comment.user.username}</Feed.Summary>
+              <Feed.Summary style={{ color: "white" }}>
+                Commented and rated by {comment.user.username}
+              </Feed.Summary>
               <Rating
                 disabled
                 size="tiny"
@@ -74,8 +82,7 @@ const CommentFeed = ({ analysis }) => {
                 defaultRating={comment.rating}
                 maxRating="5"
               />
-              <Feed.Extra content={comment.content} />
-              <Feed.Meta></Feed.Meta>
+              <Feed.Extra content={comment.content} style={{ color: "white" }} />
             </Feed.Content>
           </Feed.Event>
         );
@@ -110,17 +117,30 @@ const CommentSectionModal = ({ analysis, id }) => {
       }
       size="small"
       centered={false}>
-      <Modal.Header>Comments & Ratings</Modal.Header>
+      <Modal.Header
+        style={{
+          color: "white",
+          backgroundColor: "rgb(18, 18, 18)",
+          borderBottom: "1px solid white",
+          fontFamily: "Courier New"
+        }}>
+        Comments & Ratings
+      </Modal.Header>
 
-      <Modal.Content scrolling>
+      <Modal.Content scrolling style={{ color: "white", backgroundColor: "rgb(48, 48, 48)" }}>
         <CommentWrite analysis={analysis} id={id} />
         <CommentFeed analysis={analysis} />
       </Modal.Content>
 
-      <Modal.Actions>
+      <Modal.Actions
+        style={{
+          color: "white",
+          backgroundColor: "rgb(18, 18, 18)",
+          borderTop: "1px solid white"
+        }}>
         <Button
           onClick={() => setModalOpen(false)}
-          style={{ backgroundColor: "red", color: "white" }}>
+          style={{ backgroundColor: "red", color: "white", fontFamily: "Courier New" }}>
           <Icon name="remove" />
           Close
         </Button>

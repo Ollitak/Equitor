@@ -26,10 +26,17 @@ const CommentForm = ({ id }) => {
       onSubmit={onSubmit}
       validationSchema={CommentFormSchema}>
       {({ handleChange, handleBlur, handleSubmit, setFieldValue, values }) => (
-        <div style={{ margin: 50 }}>
+        <div
+          style={{
+            padding: "30px",
+            marginBottom: "2em",
+            backgroundColor: "rgb(68, 68, 68)",
+            borderTop: "1px solid white",
+            borderBottom: "1px solid white"
+          }}>
           <Form>
             <Form.Field>
-              <label>Rating</label>
+              <label style={{ color: "white", fontFamily: "Courier New" }}>Rating</label>
               <Rating
                 maxRating={5}
                 icon="star"
@@ -39,13 +46,14 @@ const CommentForm = ({ id }) => {
               <ShowError name={"rating"} />
             </Form.Field>
             <Form.Field>
-              <label>Write a comment</label>
+              <label style={{ color: "white", fontFamily: "Courier New" }}>Comment</label>
               <TextArea
                 name={"content"}
                 value={values.content}
                 type={"string"}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                style={{ fontFamily: "Courier New" }}
               />
               <ShowError name={"content"} />
             </Form.Field>
@@ -54,7 +62,7 @@ const CommentForm = ({ id }) => {
                 type="submit"
                 content="Submit"
                 onClick={handleSubmit}
-                style={{ backgroundColor: "green", color: "white" }}
+                style={{ backgroundColor: "green", color: "white", fontFamily: "Courier New" }}
               />
             </Form.Group>
           </Form>
