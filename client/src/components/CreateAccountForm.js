@@ -4,6 +4,8 @@ import { Formik, ErrorMessage } from "formik";
 import { Form, Input, Container } from "semantic-ui-react";
 import * as Yup from "yup";
 import usersService from "../services/users";
+import { useDispatch } from "react-redux";
+import { setSuccess, setError } from "../reducers/notificationReducer";
 
 const CreateAccountFormSchema = Yup.object().shape({
   firstname: Yup.string().required("Enter first name"),
@@ -17,13 +19,16 @@ const CreateAccountFormSchema = Yup.object().shape({
 
 const CreateAccountForm = () => {
   const history = useHistory();
+  const dispatch = useDispatch();
 
   const onSubmit = async (values) => {
     try {
       await usersService.createUser(values);
+      dispatch(setSuccess("Account is now created. Please log in."));
       history.push("/feed");
     } catch (e) {
       console.log(e.response.data);
+      dispatch(setError("Account is failed."));
     }
   };
 
