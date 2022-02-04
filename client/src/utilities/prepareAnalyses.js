@@ -4,7 +4,7 @@ const getAgo = (unparsedDate) => {
   const today = new Date();
   /* The subtraction returns the difference between the two dates in milliseconds.
    36e5 is notation for 60*60*1000. */
-  return Math.trunc(Math.abs(today - postedOn) / 36e5);
+  return Math.abs(today - postedOn) / 36e5;
 };
 
 const getAverageRating = (comments) => {
@@ -29,7 +29,13 @@ export const orderByRatingDESC = (analyses) => {
   return analyses.sort((first, second) => second.averageRating - first.averageRating);
 };
 
+/* Prepares list of analyses after every render based on filters parameter */
 const prepareAnalyses = (analyses, filters) => {
+  /* If no filter is set, default functionality is to order by publish date */
+  if (!filters) {
+    filters = { orderingFilter: "Most recent" };
+  }
+
   /* For each element, add additional field to indicate how many hours ago the analysis was posted */
   analyses = analyses.map((a) => {
     return { ...a, postedAgo: getAgo(a.date) };
@@ -40,19 +46,19 @@ const prepareAnalyses = (analyses, filters) => {
     return { ...a, averageRating: getAverageRating(a.comments) };
   });
 
-  /* filter analyses by company name */
+  /* Filter analyses by company name. */
   if (filters && filters.companyFilter) {
     analyses = analyses.filter(
       (analysis) => analysis.stockInformation.name === filters.companyFilter
     );
   }
 
-  /* filter analyses by keyword */
+  /* Filter analyses by keyword. */
   if (filters && filters.keywordFilter) {
     analyses = analyses.filter((analysis) => analysis.keyWords.includes(filters.keywordFilter));
   }
 
-  /* filter analyses by user selected ordering */
+  /* Filter analyses by user selected ordering. */
   switch (filters && filters.orderingFilter) {
     case "Most recent":
       analyses = orderByDateASC(analyses);

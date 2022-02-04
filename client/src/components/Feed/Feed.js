@@ -37,7 +37,7 @@ const Feed = () => {
   var analyses = useSelector((state) => state.analyses);
   const filters = useSelector((state) => state.filter);
 
-  /* Extend analysis objects' fields and apply filtering. */
+  /* Apply filters to analyses. */
   analyses = prepareAnalyses(analyses, filters);
 
   return (

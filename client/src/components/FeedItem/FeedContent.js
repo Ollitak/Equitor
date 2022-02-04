@@ -4,13 +4,13 @@ import { Feed, Rating, Grid } from "semantic-ui-react";
 /* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
 else render hour amount */
 const PostedAgo = ({ postedAgo }) => {
-  if (postedAgo === 0) {
+  if (postedAgo < 1) {
     return <Feed.Date style={{ color: "white" }}>under an hour ago </Feed.Date>;
   } else if (postedAgo <= 24) {
-    return <Feed.Date style={{ color: "white" }}>{postedAgo} hours ago </Feed.Date>;
+    return <Feed.Date style={{ color: "white" }}>{Math.trunc(postedAgo)} hours ago </Feed.Date>;
   } else {
     const days = parseInt(postedAgo / 24);
-    return <Feed.Date style={{ color: "white" }}>{days} days ago </Feed.Date>;
+    return <Feed.Date style={{ color: "white" }}>{Math.trunc(days)} days ago </Feed.Date>;
   }
 };
 
