@@ -6,7 +6,7 @@ import { Feed, Segment } from "semantic-ui-react";
 /* Renders two components:
 FeedContent to show information about the analysis such as who posted it and
 when it was posted, and Buttons, which enables entering single analysis view.  */
-const AnalyseItem = ({ analysis, myPage }) => {
+const FeedItem = ({ analysis, myPage }) => {
   return (
     <Segment
       style={{
@@ -27,4 +27,4 @@ const AnalyseItem = ({ analysis, myPage }) => {
   );
 };
 
-export default AnalyseItem;
+export default FeedItem;
