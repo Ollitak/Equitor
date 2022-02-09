@@ -56,4 +56,6 @@
   * express bugin korjaus, joka aiheutui frontendin routeista ja staattisen build-kansion tarjoamisesta backendissä. Sivun refreshaaminen frontendin routen kanssa aiheutti unknown-endpoint errorin, koska backend ei osannut
     routea sovellusta frontendin routeen. Tätä varten asensin "express history api fallbackin" joka korjasin ongelman
   * uuden teeman implementointi (ui styling)
+3.2 (3.5h)
+  * uuden teeman implemennoinnin jatkaminen
 
