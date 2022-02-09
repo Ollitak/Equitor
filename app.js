@@ -3,11 +3,10 @@ const analysesRouter = require("./controllers/analyses");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const commentRouter = require("./controllers/comments");
-const middleware = require("./utils/middleware"); 
+const middleware = require("./utils/middleware");
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
 const fallback = require("express-history-api-fallback");
-
 
 const app = express();
 
