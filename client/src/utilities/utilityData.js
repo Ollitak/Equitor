@@ -46,18 +46,19 @@ export const stockSelection = [
 ];
 
 export const keyWordOptions = [
-  { value: "DCF", label: "DCF" },
-  { value: "multiples analysis", label: "multiples analysis" },
+  { value: "business description", label: "business description" },
+  { value: "competitors analysis", label: "competitors analysis" },
+  { value: "financial analysis", label: "financial analysis" },
+  { value: "industry overview", label: "industry overview" },
+  { value: "investment summary", label: "investment summary" },
   { value: "qualitative analysis", label: "qualitative analysis" },
   { value: "quantitative analysis", label: "quantitative analysis" },
-  { value: "numerical analysis", label: "numerical analysis" },
-  { value: "competitors analysis", label: "market analysis" },
-  { value: "market analysis", label: "analysis" },
+  { value: "risks", label: "risks" },
   { value: "valuation", label: "valuation" },
-  { value: "historical analysis", label: "historical analysis" },
-  { value: "forecast", label: "forecast" },
-  { value: "Excel", label: "Excel" },
-  { value: "PowerPoint", label: "PowerPoint" }
+  { value: "Q1", label: "Q1" },
+  { value: "Q2", label: "Q2" },
+  { value: "Q3", label: "Q3" },
+  { value: "Q4", label: "Q4" }
 ];
 
 export const recommendationOptions = [
