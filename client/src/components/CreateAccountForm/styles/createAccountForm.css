@@ -1,0 +1,62 @@
+.caf-container {
+  display: flex;
+  justify-content: center;
+}
+
+.caf-wrapper {
+  margin: 20px 0px 100px 0px;
+  width: 50%;
+}
+
+
+.caf-header {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  margin-bottom: 70px;
+}
+
+.caf-input-wrapper {
+  max-width: 700px;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.caf-button-container {
+  display: flex;
+}
+
+.caf-button {
+  width: 50%;
+  height: 50px;
+  font-weight: bold;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.caf-button-create {
+  background-color: transparent;
+  border: 1px solid #ff7d00;
+  color: #ff7d00;
+}
+
+.caf-button-create:hover {
+  background-color: #ff7d00;
+  color: white;
+}
+
+
+.caf-button-return {
+  background-color: transparent;
+  border: 1px solid red;
+  color: red;
+}
+
+.caf-button-return:hover {
+  background-color: red;
+  color: white;
+}
+
+.ui.input.caf-input {
+  margin-bottom: 1em;
+}
