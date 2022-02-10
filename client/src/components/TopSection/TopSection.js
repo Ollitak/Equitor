@@ -1,32 +1,18 @@
 import React from "react";
-import { Segment, Header } from "semantic-ui-react";
 import NavigationBar from "./NavigationBar";
+import Background from "../../images/background.jpg";
+import "./styles/topSection.css";
 
 const TopSection = () => {
   return (
-    <Segment
-      inverted
-      textAlign="center"
-      style={{
-        borderRadius: 0,
-        minHeight: 300,
-        paddingTop: "1em",
-        marginBottom: "1em"
-      }}>
+    <div className="ts">
+      <img src={Background} alt="" className="ts-image" />
       <NavigationBar />
-      <Header as="h1" content="EQUITOR" style={{ fontSize: "5em", fontFamily: "Courier New" }} />
-      <Header
-        as="h2"
-        content="< keep up with the stock market >"
-        style={{
-          fontSize: "1.5em",
-          marginTop: 0,
-          paddingBottom: "2em",
-          fontFamily: "Courier New",
-          fontStyle: "italic"
-        }}
-      />
-    </Segment>
+      <div className="ts-text-container">
+        <h1 className="ts-text-appname">EQUITOR</h1>
+        <p className="ts-text-subheader">/ keep up with the stock market</p>
+      </div>
+    </div>
   );
 };
 

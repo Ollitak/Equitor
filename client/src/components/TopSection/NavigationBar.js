@@ -18,7 +18,7 @@ const OnLoggedIn = ({ user }) => {
   };
 
   return (
-    <Menu stackable inverted pagination pointing secondary size="massive">
+    <Menu stackable inverted pointing secondary size="massive">
       <Menu.Item onClick={() => history.push("/feed")} active={path === "/feed"}>
         Feed
       </Menu.Item>
@@ -44,7 +44,7 @@ const OnLoggedOut = () => {
   const path = location.pathname;
 
   return (
-    <Menu stackable inverted pagination pointing secondary size="massive">
+    <Menu stackable inverted pointing secondary size="massive">
       <Menu.Item onClick={() => history.push("/")} active={path === "/"}>
         Home
       </Menu.Item>
