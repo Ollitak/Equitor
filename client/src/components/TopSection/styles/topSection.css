@@ -31,7 +31,7 @@
 }
 
 .ts-text-subheader {
-  border-right: 3px solid orange;
+  border-right: 3px solid #ff7d00;
   padding-right: 5px;
   font-size: 2em;
   white-space: nowrap;
@@ -48,5 +48,5 @@
 
 @keyframes blinkTextCursor{
   from, to { border-color: transparent }
-  50% { border-color: orange; }
+  50% { border-color: #ff7d00; }
 }

@@ -1,0 +1,49 @@
+.hp {
+  margin-top: 3em;
+}
+
+.hp-header {
+  font-size: 2.5em;
+  color: white;
+}
+
+.hp-desc {
+  font-size: 1em;
+}
+
+.hp-join-button {
+  background-color: transparent;
+  padding: 20px 40px;
+  border-radius: 4px;
+  font-size: 18px;
+  border: 2px solid #ff7d00;
+  color: #ff7d00;
+  cursor: pointer;
+  transition: 1.5s
+}
+
+.hp-join-button:hover {
+  background-color: #ff7d00;
+    color: white;
+}
+
+.row+.ui.divider.hp-divider {
+  margin: 6em 2em 6em 2em !important;
+}
+
+.hp-quote {
+  font-size: 1.2em;
+  font-style: italic;
+}
+
+.hp-quoter {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.row+.ui.divider.hp-divider-quotes {
+  margin: 3em 0em 3em 0em !important;
+}
+
+
+
