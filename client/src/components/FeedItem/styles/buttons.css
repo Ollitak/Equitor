@@ -1,0 +1,32 @@
+.feed-item-buttons {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.feed-item-button {
+  width: 50%;
+  height: 50px;
+  font-weight: bold;
+  margin: 3px;
+}
+
+.feed-item-button-modify {
+  background-color: rgb(48, 48, 48);
+  color: #ff7d00;
+}
+
+.feed-item-button-modify:hover {
+  background-color: #ff7d00;
+  color: white;
+}
+
+.feed-item-button-delete {
+  background-color: rgb(48, 48, 48);
+  color: red;
+}
+
+.feed-item-button-delete:hover {
+  background-color: red;
+  color: white;
+}

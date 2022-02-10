@@ -2,7 +2,7 @@
   background-color: rgb(48, 48, 48);
   padding: 10px;
   margin-bottom: 10px;
-  width: 32vh;
+  width: 300px;
   border: 1px solid rgb(88, 88, 88);
 }
 
@@ -12,7 +12,6 @@
   align-items: center;
   text-align: center;
 }
-
 
 .feed-item-user {
   color: white;
@@ -61,4 +60,29 @@
 .feed-item-keyword-content {
   color: white;
   font-size: 12px;
+}
+
+
+.feed-item-wrapper:hover {
+  background-color: #ff7d00;
+}
+
+.feed-item-wrapper:hover  .feed-item-stockname{
+  color: white;
+}
+
+.feed-item-wrapper:hover  feed-item-user{
+  color: black;
+}
+
+.feed-item-wrapper:hover  .feed-item-subline{
+  color: black;
+}
+
+.feed-item-wrapper:hover  .feed-item-ago{
+  color: black;
+}
+
+.feed-item-wrapper:hover  .feed-item-rating-text{
+  color: black;
 }

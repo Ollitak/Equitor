@@ -1,16 +1,13 @@
 import React from "react";
-import { Button, Grid } from "semantic-ui-react";
-import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { deleteAnalysis } from "../../reducers/analysisReducer";
+import "./styles/buttons.css";
 
-/* Conditionally render buttons: if myPage set to true also render delete buttons. */
-const Buttons = ({ analysis, myPage }) => {
-  const history = useHistory();
+const Buttons = ({ analysis }) => {
   const dispatch = useDispatch();
 
   const moveToSingleView = () => {
-    history.push(`analysis/${analysis.id}`);
+    window.confirm("Modification is not yet implemented :(");
   };
 
   const removeItem = async () => {
@@ -20,42 +17,14 @@ const Buttons = ({ analysis, myPage }) => {
   };
 
   return (
-    <Grid verticalAlign="middle">
-      <Grid.Column>
-        {myPage ? (
-          <div>
-            <Button
-              onClick={moveToSingleView}
-              content={"View"}
-              compact
-              style={{
-                height: "4em",
-                width: "6em",
-                color: "white",
-                backgroundColor: "rgb(0, 25, 190)"
-              }}
-            />
-            <Button
-              onClick={removeItem}
-              content={"Delete"}
-              compact
-              style={{ height: "4em", width: "6em", color: "white", backgroundColor: "red" }}
-            />
-          </div>
-        ) : (
-          <Button
-            onClick={moveToSingleView}
-            content={"View analysis"}
-            compact
-            style={{
-              height: "4em",
-              color: "white",
-              backgroundColor: "rgb(0, 25, 190)"
-            }}
-          />
-        )}
-      </Grid.Column>
-    </Grid>
+    <div className="feed-item-buttons">
+      <button onClick={moveToSingleView} className="feed-item-button feed-item-button-modify">
+        MODIFY
+      </button>
+      <button onClick={removeItem} className="feed-item-button feed-item-button-delete">
+        DELETE
+      </button>
+    </div>
   );
 };
 

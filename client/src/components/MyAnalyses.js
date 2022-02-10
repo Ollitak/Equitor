@@ -3,7 +3,7 @@ import FeedItem from "./FeedItem";
 import { useSelector } from "react-redux";
 import prepareAnalyses from "../utilities/prepareAnalyses";
 
-/* Component to render logged user's analyses. */
+/* Component to render logged user's analyses. Currently shares the .css file in Feed-component. */
 const MyAnalyses = () => {
   const analyses = useSelector((state) => state.analyses);
   const user = useSelector((state) => state.user);
@@ -17,10 +17,14 @@ const MyAnalyses = () => {
   myAnalyses = prepareAnalyses(myAnalyses);
 
   return (
-    <div>
-      {myAnalyses.map((analysis) => (
-        <FeedItem key={analysis.id} analysis={analysis} myPage={true} />
-      ))}
+    <div className="feed">
+      <div className="feed-wrapper">
+        <div className="feed-items">
+          {myAnalyses.map((analysis) => (
+            <FeedItem key={analysis.id} analysis={analysis} myPage={true} />
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
