@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Segment, Button } from "semantic-ui-react";
 import Select from "react-select";
 import { stockSelection, keyWordOptions, orderingOptions } from "../../utilities/utilityData";
@@ -9,6 +9,7 @@ import {
   setOrderingFilter,
   resetFilters
 } from "../../reducers/filterReducer";
+import "./styles/filter.css";
 
 /* Custom styles object for react-select. */
 const selectCustomStyle = {
@@ -46,18 +47,16 @@ const selectCustomStyle = {
 
 /* Filter bar currently has options to filter feed results by either company name or
 keyword. Additionally, it has buttons for resetting filters and hiding filter bar. */
-const FilterBar = ({ setShowFilterBar }) => {
+const FilterContent = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
   const companyFilter = useSelector((state) => state.filter.companyFilter);
   const keywordFilter = useSelector((state) => state.filter.keywordFilter);
   const orderingFilter = useSelector((state) => state.filter.orderingFilter);
 
   return (
-    <Segment
-      inverted
-      style={{ margin: "auto", marginBottom: "1em", border: "2px inset white", maxWidth: 600 }}>
+    <div className="filter-content">
       <div>
-        <label>Select company</label>
+        <label className="filter-content-label">Filter by company name</label>
         {/* Select's value attribute expects a shape of object */}
         <Select
           styles={selectCustomStyle}
@@ -68,7 +67,7 @@ const FilterBar = ({ setShowFilterBar }) => {
       </div>
 
       <div style={{ marginTop: "0.5em" }}>
-        <label>Select keyword</label>
+        <label className="filter-content-label">Filter by keyword</label>
         <Select
           styles={selectCustomStyle}
           value={{ label: keywordFilter }}
@@ -78,7 +77,7 @@ const FilterBar = ({ setShowFilterBar }) => {
       </div>
 
       <div style={{ marginTop: "0.5em" }}>
-        <label>Select ordering</label>
+        <label className="filter-content-label">Order</label>
         <Select
           styles={selectCustomStyle}
           value={{ label: orderingFilter }}
@@ -87,33 +86,34 @@ const FilterBar = ({ setShowFilterBar }) => {
         />
       </div>
 
-      <Button
-        compact
-        style={{
-          marginTop: "1em",
-          height: "3em",
-          color: "white",
-          backgroundColor: "black",
-          border: "solid 1px white"
-        }}
-        content="Reset"
-        onClick={() => dispatch(resetFilters())}
-      />
-
-      <Button
-        compact
-        style={{
-          marginTop: "1em",
-          height: "3em",
-          color: "white",
-          backgroundColor: "black",
-          border: "solid 1px white"
-        }}
-        onClick={() => setShowFilterBar(false)}
-        content="Close filter"
-      />
-    </Segment>
+      <div className="filter-content-button-wrapper">
+        <button className="filter-content-button" onClick={() => dispatch(resetFilters())}>
+          RESET
+        </button>
+        <button className="filter-content-button" onClick={() => setShowFilterBar(false)}>
+          CLOSE
+        </button>
+      </div>
+    </div>
   );
 };
 
-export default FilterBar;
+/* If showFilterBar is set to true, renders FilterBar. Else, renders
+button used to set showFilterBar true. */
+const Filter = () => {
+  const [showFilterBar, setShowFilterBar] = useState(false);
+
+  return (
+    <div className="filter-wrapper">
+      {showFilterBar ? (
+        <FilterContent setShowFilterBar={setShowFilterBar} />
+      ) : (
+        <button onClick={() => setShowFilterBar(true)} className="filter-show-button">
+          FILTER RESULTS
+        </button>
+      )}
+    </div>
+  );
+};
+
+export default Filter;

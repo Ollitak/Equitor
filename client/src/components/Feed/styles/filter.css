@@ -1,0 +1,52 @@
+.filter-wrapper {
+  margin-bottom: 20px;
+}
+
+.filter-show-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  font-size: 10px;
+  height: 4em;
+  width: 100%;
+  cursor: pointer;
+  transition: .5s
+}
+
+
+.filter-show-button:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}
+
+.filter-content {
+  border: 2px solid white;
+  padding: 20px;
+}
+
+.filter-content-label {
+  color: white
+}
+
+.filter-content-button-wrapper {
+  margin-top: 10px;
+}
+
+.filter-content-button {
+  background-color: transparent;
+  color: white;
+  border: 2px solid white;
+  font-size: 10px;
+  height: 40px;
+  width: 80px;
+  cursor: pointer;
+  margin-right: 5px;
+  transition: .5s;
+}
+
+.filter-content-button:hover {
+  background-color: white;
+  color: black;
+  font-weight: bold;
+}

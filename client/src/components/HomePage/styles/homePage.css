@@ -19,12 +19,12 @@
   border: 2px solid #ff7d00;
   color: #ff7d00;
   cursor: pointer;
-  transition: 1.5s
+  transition: .5s
 }
 
 .hp-join-button:hover {
   background-color: #ff7d00;
-    color: white;
+  color: white;
 }
 
 .row+.ui.divider.hp-divider {
