@@ -19,9 +19,11 @@ const Feed = () => {
     <div className="feed">
       <div className="feed-wrapper">
         <Filter />
-        {analyses.map((analysis) => (
-          <FeedItem key={analysis.id} analysis={analysis} />
-        ))}
+        <div className="feed-items">
+          {analyses.map((analysis) => (
+            <FeedItem key={analysis.id} analysis={analysis} />
+          ))}
+        </div>
       </div>
     </div>
   );

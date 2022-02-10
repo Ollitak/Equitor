@@ -1,0 +1,64 @@
+.feed-item-wrapper {
+  background-color: rgb(48, 48, 48);
+  padding: 10px;
+  margin-bottom: 10px;
+  width: 32vh;
+  border: 1px solid rgb(88, 88, 88);
+}
+
+.feed-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+
+.feed-item-user {
+  color: white;
+  font-size: 30px;
+  margin: 5px 0px 20px 0px;
+}
+
+.feed-item-subline {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+}
+
+.feed-item-stockname {
+  color: #ff7d00;
+  font-size: 30px;
+  margin: 40px 0px 25px 0px;
+}
+
+.feed-item-ago {
+  color: white;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.feed-item-rating-text {
+  color: white;
+  font-size: 10px;
+  margin-bottom: 20px;
+}
+
+.feed-item-keywords-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.feed-item-keyword {
+  background-color: black;
+  text-align: center;
+  border-radius: 15em;
+  margin: 5px;
+  padding: 8px;
+}
+
+.feed-item-keyword-content {
+  color: white;
+  font-size: 12px;
+}

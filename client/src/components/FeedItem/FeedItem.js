@@ -1,29 +1,45 @@
 import React from "react";
-import FeedContent from "./FeedContent";
-import Buttons from "./Buttons";
-import { Feed, Segment } from "semantic-ui-react";
+import { Rating, Grid } from "semantic-ui-react";
+import "./styles/feedItem.css";
+
+/* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
+else render hour amount */
+const PostedAgo = ({ postedAgo }) => {
+  if (postedAgo < 1) {
+    return <h2 className="feed-item-ago">UNDER AN HOUR AGO</h2>;
+  } else if (postedAgo <= 24) {
+    return <h2 className="feed-item-ago">{Math.trunc(postedAgo)} HOURS AGO</h2>;
+  } else {
+    const days = parseInt(postedAgo / 24);
+    return <h2 className="feed-item-ago">{Math.trunc(days)} DAYS AGO</h2>;
+  }
+};
 
 /* Renders two components:
 FeedContent to show information about the analysis such as who posted it and
 when it was posted, and Buttons, which enables entering single analysis view.  */
 const FeedItem = ({ analysis, myPage }) => {
   return (
-    <Segment
-      style={{
-        margin: "auto",
-        marginBottom: "1em",
-        background: "white",
-        maxWidth: 600,
-        backgroundColor: "rgb(48, 48, 48)",
-        border: "1px solid rgb(88, 88, 88)"
-      }}>
-      <Feed>
-        <Feed.Event>
-          <FeedContent analysis={analysis} />
-          <Buttons analysis={analysis} myPage={myPage} />
-        </Feed.Event>
-      </Feed>
-    </Segment>
+    <div className="feed-item-wrapper">
+      <div className="feed-item-container">
+        <h1 className="feed-item-user">{analysis.user.username}</h1>
+        <h1 className="feed-item-subline">POSTED A NEW ANALYSIS ON</h1>
+        <h1 className="feed-item-stockname">{analysis.stockInformation.name}</h1>
+        <PostedAgo postedAgo={analysis.postedAgo} />
+        <Rating disabled defaultRating={analysis.averageRating} maxRating={5} />
+        <p className="feed-item-rating-text">{`BASED ON ${analysis.comments.length} RATINGS`}</p>
+        {/* Keywords are mapped in a grid row. */}
+        <div className="feed-item-keywords-container">
+          {analysis.keyWords.map((keyWord, id) => {
+            return (
+              <div key={id} className="feed-item-keyword">
+                <p className="feed-item-keyword-content">{keyWord}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
   );
 };
 

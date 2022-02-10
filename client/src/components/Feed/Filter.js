@@ -30,17 +30,12 @@ const selectCustomStyle = {
     backgroundColor: "transparent",
     borderRadius: 0
   }),
-  multiValue: (provided) => ({
-    ...provided,
-    backgroundColor: "transparent"
-  }),
   input: (provided) => ({
     ...provided,
     color: "white"
   }),
   singleValue: (provided) => {
     const color = "white";
-
     return { ...provided, color };
   }
 };
