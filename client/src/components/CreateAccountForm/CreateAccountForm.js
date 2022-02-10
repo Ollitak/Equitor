@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Input, Container } from "semantic-ui-react";
+import { Form, Input } from "semantic-ui-react";
 import * as Yup from "yup";
 import usersService from "../../services/users";
 import { useDispatch } from "react-redux";
