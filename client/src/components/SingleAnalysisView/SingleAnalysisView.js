@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
-import { TextSection } from "./AnalysisSection";
-import { Divider, Label, Rating } from "semantic-ui-react";
+import FullAnalysisModal from "./FullAnalysisModal";
+import { Divider, Label } from "semantic-ui-react";
 
 import "./styles/singleAnalysisView.css";
 
@@ -51,8 +51,8 @@ const SingleAnalysisView = () => {
       <div className="sav-left">
         <div className="sav-left-wrapper">
           <h1 className="sav-title">OPTIONS</h1>
-          <button className="sav-left-button">FULL ANALYSIS</button>
           <button className="sav-left-button">CHARTS</button>
+          <FullAnalysisModal analysis={analysis} id={id} />
           <CommentSectionModal analysis={analysis} id={id} />
           <button className="sav-left-button">RETURN</button>
         </div>

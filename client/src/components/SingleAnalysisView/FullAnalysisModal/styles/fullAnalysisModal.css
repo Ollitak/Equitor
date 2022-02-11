@@ -1,0 +1,33 @@
+.fa {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 2px solid rgb(71, 71, 71);
+}
+
+.fa-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  margin: 20px 0px 20px 0px;
+}
+
+.fa-header {
+  font-size: 30px;
+  color: #ff7d00;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.fa-paragraph{
+  padding-top: 20px;
+}
+
+.fa-paragraph-header{
+  color: white;
+}
+
+.fa-paragraph-content{
+  color: white;  
+}

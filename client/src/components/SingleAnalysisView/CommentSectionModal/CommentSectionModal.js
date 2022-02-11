@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommentForm from "./CommentForm";
-import { Modal, Button, Feed, Icon, Rating, Header } from "semantic-ui-react";
+import { Modal, Feed, Icon, Rating } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
 import "./styles/commentSectionModal.css";
@@ -109,37 +109,6 @@ const CommentSectionModal = ({ analysis, id }) => {
           </Modal.Content>
         </div>
       </div>
-
-      {/*
-      <Modal.Header
-        style={{
-          color: "white",
-          backgroundColor: "rgb(18, 18, 18)",
-          borderBottom: "1px solid white",
-          fontFamily: "Courier New"
-        }}>
-        Comments & Ratings
-      </Modal.Header>
-
-      <Modal.Content scrolling style={{ color: "white", backgroundColor: "rgb(48, 48, 48)" }}>
-        <CommentWrite analysis={analysis} id={id} />
-        <CommentFeed analysis={analysis} />
-      </Modal.Content>
-
-      <Modal.Actions
-        style={{
-          color: "white",
-          backgroundColor: "rgb(18, 18, 18)",
-          borderTop: "1px solid white"
-        }}>
-        <Button
-          onClick={() => setModalOpen(false)}
-          style={{ backgroundColor: "red", color: "white", fontFamily: "Courier New" }}>
-          <Icon name="remove" />
-          Close
-        </Button>
-      </Modal.Actions>
-      */}
     </Modal>
   );
 };
