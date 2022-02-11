@@ -5,6 +5,7 @@ import * as Yup from "yup";
 import usersService from "../../services/users";
 import { useDispatch } from "react-redux";
 import { setError, setSuccess } from "../../reducers/notificationReducer";
+import "./styles/passwordChange.css";
 
 const PasswordChangeSchema = Yup.object().shape({
   password: Yup.string().required("Enter a new password").min(8),
@@ -36,12 +37,12 @@ const PasswordChange = () => {
       onSubmit={onSubmit}
       validationSchema={PasswordChangeSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <div style={{ marginTop: "5em" }}>
-          <Header as="h1" content="Change password" style={{ color: "white" }} />
+        <div className="pc-wrapper">
+          <h1 className="ma-header">Change password</h1>
           <Form>
             <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
               <Form.Field>
-                <label style={{ color: "white" }}>New password</label>
+                <label className="af-label">New password</label>
                 <Input
                   name={"password"}
                   type={"password"}
@@ -53,7 +54,7 @@ const PasswordChange = () => {
                 <ShowError name={"password"} />
               </Form.Field>
               <Form.Field>
-                <label style={{ color: "white" }}>Confirm password</label>
+                <label className="af-label">Confirm password</label>
                 <Input
                   name={"passwordConfirmation"}
                   type={"password"}
@@ -66,13 +67,11 @@ const PasswordChange = () => {
               </Form.Field>
             </Form.Group>
 
-            <div style={{ marginTop: "2em" }}>
-              <Form.Button
-                style={{ backgroundColor: "red", color: "white" }}
-                type="submit"
-                onClick={handleSubmit}>
+            <div className="af-button-container">
+              <button className="af-button af-button-submit" type="submit" onClick={handleSubmit}>
+                {" "}
                 Change password
-              </Form.Button>
+              </button>
             </div>
           </Form>
         </div>

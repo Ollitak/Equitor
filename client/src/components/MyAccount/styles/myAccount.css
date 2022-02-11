@@ -1,0 +1,44 @@
+.ma-container {
+  display: flex;
+  justify-content: center;
+}
+
+.ma-wrapper {
+  margin: 20px 0px 100px 0px;
+  width: 50%;
+}
+
+.ma-header {
+  text-align: center;
+  font-size: 25px;
+  color: white;
+  margin-bottom: 70px;
+}
+
+.af-label {
+  color: white !important;
+}
+
+.af-button-container {
+  display: flex;
+  justify-content: center;
+}
+
+.af-button {
+  width: 50%;
+  height: 50px;
+  font-weight: bold;
+  margin: 3px;
+  cursor: pointer;
+}
+
+.af-button-submit {
+  background-color: transparent;
+  border: 1px solid #ff7d00;
+  color: #ff7d00;
+}
+
+.af-button-submit:hover {
+  background-color: #ff7d00;
+  color: white;
+}

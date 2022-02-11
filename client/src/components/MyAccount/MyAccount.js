@@ -7,6 +7,8 @@ import { updateUser } from "../../reducers/userReducer";
 import PasswordChange from "./PasswordChange";
 import * as Yup from "yup";
 
+import "./styles/myAccount.css";
+
 const MyAccountSchema = Yup.object().shape({
   firstname: Yup.string().required("Enter username"),
   lastname: Yup.string().required("Enter username")
@@ -33,20 +35,20 @@ const MyAccount = () => {
       onSubmit={onSubmit}
       validationSchema={MyAccountSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
-        <Container>
-          <div style={{ margin: 50 }}>
-            <Header as="h1" content="Account information" style={{ color: "white" }} />
+        <div className="ma-container">
+          <div className="ma-wrapper">
+            <h1 className="ma-header">Account information</h1>
             <Form autoComplete="off">
               <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
                 <Form.Field>
-                  <label style={{ color: "white" }}>Username</label>
+                  <label className="af-label">Username</label>
                   <Input transparent disabled value={myAccount.username} />
                 </Form.Field>
               </Form.Group>
 
               <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
                 <Form.Field>
-                  <label style={{ color: "white" }}>First name</label>
+                  <label className="af-label">First name</label>
                   <Input
                     name={"firstname"}
                     value={values.firstname}
@@ -58,7 +60,7 @@ const MyAccount = () => {
                   <ShowError name={"firstname"} />
                 </Form.Field>
                 <Form.Field>
-                  <label style={{ color: "white" }}>Last name</label>
+                  <label className="af-label">Last name</label>
                   <Input
                     name={"lastname"}
                     value={values.lastname}
@@ -71,19 +73,16 @@ const MyAccount = () => {
                 </Form.Field>
               </Form.Group>
 
-              <div style={{ marginTop: "2em" }}>
-                <Form.Button
-                  style={{ backgroundColor: "rgb(10, 40, 230)", color: "white" }}
-                  type="submit"
-                  onClick={handleSubmit}>
+              <div className="af-button-container">
+                <button className="af-button af-button-submit" type="submit" onClick={handleSubmit}>
                   Edit account information
-                </Form.Button>
+                </button>
               </div>
             </Form>
 
             <PasswordChange />
           </div>
-        </Container>
+        </div>
       )}
     </Formik>
   );
