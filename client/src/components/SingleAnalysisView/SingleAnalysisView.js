@@ -1,8 +1,9 @@
 import React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
 import FullAnalysisModal from "./FullAnalysisModal";
+import ChartsModal from "./ChartsModal";
 import { Divider, Label } from "semantic-ui-react";
 
 import "./styles/singleAnalysisView.css";
@@ -38,6 +39,7 @@ const RecommendationLabel = ({ recommendation }) => {
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
+  const history = useHistory();
 
   /* Retreive analysis that corresponds to the id in url path */
   const analysis = useSelector((state) => state.analyses.find((a) => a.id === id));
@@ -51,10 +53,12 @@ const SingleAnalysisView = () => {
       <div className="sav-left">
         <div className="sav-left-wrapper">
           <h1 className="sav-title">OPTIONS</h1>
-          <button className="sav-left-button">CHARTS</button>
+          <ChartsModal />
           <FullAnalysisModal analysis={analysis} id={id} />
           <CommentSectionModal analysis={analysis} id={id} />
-          <button className="sav-left-button">RETURN</button>
+          <button className="sav-left-button" onClick={() => history.push("/feed")}>
+            BACK TO FEED
+          </button>
         </div>
       </div>
 
