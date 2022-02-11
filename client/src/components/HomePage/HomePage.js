@@ -1,6 +1,6 @@
 import React from "react";
 import { useHistory } from "react-router-dom";
-import { Grid, Image, Header, Segment, Button, Divider } from "semantic-ui-react";
+import { Grid, Image, Divider } from "semantic-ui-react";
 import "./styles/homePage.css";
 
 const text1 =

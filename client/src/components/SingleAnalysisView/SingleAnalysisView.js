@@ -3,7 +3,38 @@ import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
 import { SummarySection, TextSection } from "./AnalysisSection";
-import { Grid, Header, Divider, Segment } from "semantic-ui-react";
+import { Divider, Label } from "semantic-ui-react";
+
+import "./styles/singleAnalysisView.css";
+
+const RecommendationLabel = ({ recommendation }) => {
+  switch (recommendation) {
+    case "BUY":
+      return (
+        <Label color="green" size="huge">
+          BUY
+        </Label>
+      );
+    case "HOLD":
+      return (
+        <Label color="yellow" size="huge">
+          HOLD
+        </Label>
+      );
+    case "SELL":
+      return (
+        <Label color="red" size="huge">
+          SELL
+        </Label>
+      );
+    default:
+      return (
+        <Label color="black" size="huge">
+          N/A
+        </Label>
+      );
+  }
+};
 
 const SingleAnalysisView = () => {
   const { id } = useParams();
@@ -16,32 +47,49 @@ const SingleAnalysisView = () => {
   if (!analysis) return null;
 
   return (
-    <Segment>
-      <Grid stackable container style={{ margin: 0, backgroundColor: "rgb(235, 235, 235)" }}>
-        <Grid.Row>
-          <Header
-            as="h1"
-            style={{
-              fontSize: "3em",
-              width: "100%",
-              textAlign: "center",
-              marginTop: "1em",
-              fontWeight: "bold",
-              fontFamily: "Courier New"
-            }}>
-            {analysis.title}
-          </Header>
-        </Grid.Row>
+    <div className="sav">
+      <div className="sav-left">
+        <div className="sav-left-wrapper">
+          <h1 className="sav-title">OPTIONS</h1>
+          <button className="sav-left-button">FULL ANALYSIS</button>
+          <button className="sav-left-button">COMMENTS & RATINGS</button>
+          <button className="sav-left-button">RETURN</button>
+        </div>
+      </div>
 
-        <Divider horizontal>report published by {analysis.user.username}</Divider>
-
-        <SummarySection analysis={analysis} />
-
-        <TextSection analysis={analysis} />
-
-        <CommentSectionModal analysis={analysis} id={id} />
-      </Grid>
-    </Segment>
+      <div className="sav-center">
+        <div className="sav-center-wrapper">
+          <h1 className="sav-title">{analysis.title}</h1>
+          <Divider horizontal className="sav-center-divider">
+            report published by {analysis.user.username}
+          </Divider>
+          <div className="sav-summary-container">
+            <p className="sav-summary">{analysis.content.summary}</p>
+          </div>
+        </div>
+      </div>
+      <div className="sav-right">
+        <div className="sav-right-wrapper">
+          <h1 className="sav-title">SUMMARY</h1>
+          <div className="sav-right-item-container">
+            <div>
+              <h1 className="sav-right-item-title">COMPANY</h1>
+            </div>
+            <div className="sav-right-image-container">
+              <img className="sav-right-image" src={analysis.stockInformation.logoUrl} alt=""></img>
+            </div>
+          </div>
+          <div className="sav-right-item-container">
+            <h1 className="sav-right-item-title">RECOMMENDATION</h1>
+            <RecommendationLabel recommendation={analysis.recommendation} />
+          </div>
+          <div className="sav-right-item-container">
+            <h1 className="sav-right-item-title">RECOMMENDATION</h1>
+            <RecommendationLabel recommendation={analysis.recommendation} />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 };
 

@@ -38,7 +38,7 @@ const PasswordChange = () => {
       validationSchema={PasswordChangeSchema}>
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <div className="pc-wrapper">
-          <h1 className="ma-header">Change password</h1>
+          <h1 className="ma-header">CHANGE PASSWORD</h1>
           <Form>
             <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
               <Form.Field>

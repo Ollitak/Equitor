@@ -1,0 +1,96 @@
+.sav {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+}
+
+.sav-left {
+  flex: 1;
+  display:flex;
+  justify-content: center;
+  height: 350px;
+}
+
+.sav-left-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.sav-left-button {
+  background-color: transparent;
+  width: 250px;
+  height: 70px;
+  border-radius: 4px;
+  font-size: 14px;
+  border: 2px solid #ff7d00;
+  color: #ff7d00;
+  cursor: pointer;
+  transition: .4s
+}
+
+.sav-left-button:hover {
+  background-color: #ff7d00;
+  color: white;
+}
+
+.sav-center {
+  flex: 2;
+  display:flex;
+  justify-content: center;  
+}
+
+.sav-center-wrapper {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.sav-title {
+  color: white;
+}
+
+.ui.horizontal.divider.sav-center-divider {
+  color: white;
+}
+
+.sav-summary-container {
+  padding: 20px 20px 0px 20px;
+}
+
+.sav-summary {
+  color: white
+}
+
+.sav-right {
+  flex: 1;
+  display:flex;
+  justify-content: center;
+}
+
+.sav-right-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+
+.sav-right-item-container {
+  height: 150px;
+}
+
+.sav-right-item-title {
+  color: white;
+  font-size: 20px;
+}
+
+.sav-right-image-container {
+  height: 100px;
+  padding: 15px;
+}
+
+.sav-right-image {
+  height: 100%;
+  max-width: 200px;
+}

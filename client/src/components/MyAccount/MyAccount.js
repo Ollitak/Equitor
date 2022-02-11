@@ -37,7 +37,7 @@ const MyAccount = () => {
       {({ handleChange, handleBlur, handleSubmit, values }) => (
         <div className="ma-container">
           <div className="ma-wrapper">
-            <h1 className="ma-header">Account information</h1>
+            <h1 className="ma-header">ACCOUNT INFORMATION</h1>
             <Form autoComplete="off">
               <Form.Group widths={"equal"} style={{ marginBottom: "2em" }}>
                 <Form.Field>
