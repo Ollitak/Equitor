@@ -2,8 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
-import { SummarySection, TextSection } from "./AnalysisSection";
-import { Divider, Label } from "semantic-ui-react";
+import { TextSection } from "./AnalysisSection";
+import { Divider, Label, Rating } from "semantic-ui-react";
 
 import "./styles/singleAnalysisView.css";
 
@@ -52,7 +52,8 @@ const SingleAnalysisView = () => {
         <div className="sav-left-wrapper">
           <h1 className="sav-title">OPTIONS</h1>
           <button className="sav-left-button">FULL ANALYSIS</button>
-          <button className="sav-left-button">COMMENTS & RATINGS</button>
+          <button className="sav-left-button">CHARTS</button>
+          <CommentSectionModal analysis={analysis} id={id} />
           <button className="sav-left-button">RETURN</button>
         </div>
       </div>
@@ -84,8 +85,10 @@ const SingleAnalysisView = () => {
             <RecommendationLabel recommendation={analysis.recommendation} />
           </div>
           <div className="sav-right-item-container">
-            <h1 className="sav-right-item-title">RECOMMENDATION</h1>
-            <RecommendationLabel recommendation={analysis.recommendation} />
+            <h1 className="sav-right-item-title">TARGET PRICE</h1>
+            <Label tag size="big">
+              € {analysis.targetPrice}
+            </Label>
           </div>
         </div>
       </div>

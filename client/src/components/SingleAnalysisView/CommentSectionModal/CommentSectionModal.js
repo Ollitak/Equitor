@@ -3,9 +3,11 @@ import CommentForm from "./CommentForm";
 import { Modal, Button, Feed, Icon, Rating, Header } from "semantic-ui-react";
 import { useSelector } from "react-redux";
 
+import "./styles/commentSectionModal.css";
+
 /* Form is hidden if either user hasn't logged in or analysis is posted by current user
  (can't comment own posts). */
-const CommentWrite = ({ analysis, id }) => {
+const DisplayCommentForm = ({ analysis, id }) => {
   const user = useSelector((state) => state.user);
 
   /* Indicates whether the analysis is posted by currently logged user */
@@ -17,23 +19,21 @@ const CommentWrite = ({ analysis, id }) => {
   if (!user) {
     if (analysis.comments.length === 0) {
       return (
-        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
-          No one has yet commented, log in and be the first!
-        </Header>
+        <h1 className="cs-form-header cs-form-header-centered">
+          No comments yet. Log in and leave the first comment!
+        </h1>
       );
     } else {
       return (
-        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
-          Log in to leave your comment
-        </Header>
+        <h1 className="cs-form-header cs-form-header-centered">Log in and leave your comment!</h1>
       );
     }
   } else if (owner) {
     if (analysis.comments.length === 0) {
       return (
-        <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
-          Your analysis has not yet been commented
-        </Header>
+        <h1 className="cs-form-header cs-form-header-centered">
+          Your analysis has not yet been commented!
+        </h1>
       );
     } else {
       return <></>;
@@ -41,19 +41,15 @@ const CommentWrite = ({ analysis, id }) => {
   } else {
     if (analysis.comments.length === 0) {
       return (
-        <div>
-          <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
-            No one has yet commented, be the first!
-          </Header>
+        <div className="cs-form-container">
+          <h1 className="cs-form-header">No comments yet. You can be the first one to comment!</h1>
           <CommentForm id={id} />
         </div>
       );
     } else {
       return (
-        <div>
-          <Header as="h2" textAlign="center" style={{ color: "white", fontFamily: "Courier New" }}>
-            WRITE A COMMENT
-          </Header>
+        <div className="cs-form-container">
+          <h1 className="cs-form-header">WRITE A NEW COMMENT</h1>
           <CommentForm id={id} />
         </div>
       );
@@ -72,7 +68,7 @@ const CommentFeed = ({ analysis }) => {
               <Icon name="comment" style={{ color: "white" }}></Icon>
             </Feed.Label>
             <Feed.Content>
-              <Feed.Summary style={{ color: "white" }}>
+              <Feed.Summary style={{ color: "white", marginBottom: "5px" }}>
                 Commented and rated by {comment.user.username}
               </Feed.Summary>
               <Rating
@@ -101,22 +97,20 @@ const CommentSectionModal = ({ analysis, id }) => {
       open={modalOpen}
       onOpen={() => setModalOpen(true)}
       onClose={() => setModalOpen(false)}
-      trigger={
-        <Button
-          content="Comments and ratings"
-          style={{
-            backgroundColor: "rgb(38, 38, 38)",
-            color: "white",
-            border: "2px inset white",
-            height: "3em",
-            width: "100%",
-            borderRadius: 0,
-            margin: "2em"
-          }}
-        />
-      }
-      size="small"
-      centered={false}>
+      trigger={<button className="sav-left-button">COMMENTS & RATINGS</button>}
+      size="large">
+      <div className="cs">
+        <div className="cs-wrapper">
+          <div className="cs-header"> COMMENTS & RATINGS</div>
+          <DisplayCommentForm analysis={analysis} id={id} />
+          <h1 className="cs-feed-header">COMMENT FEED</h1>
+          <Modal.Content scrolling>
+            <CommentFeed analysis={analysis} />
+          </Modal.Content>
+        </div>
+      </div>
+
+      {/*
       <Modal.Header
         style={{
           color: "white",
@@ -145,6 +139,7 @@ const CommentSectionModal = ({ analysis, id }) => {
           Close
         </Button>
       </Modal.Actions>
+      */}
     </Modal>
   );
 };

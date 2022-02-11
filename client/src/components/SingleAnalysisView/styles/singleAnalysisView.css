@@ -1,14 +1,14 @@
 .sav {
   display: flex;
   flex-wrap: wrap;
-  padding: 10px;
 }
 
 .sav-left {
   flex: 1;
   display:flex;
   justify-content: center;
-  height: 350px;
+  height: 450px;
+  padding: 15px;
 }
 
 .sav-left-wrapper {
@@ -16,6 +16,7 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
+  padding-top: 5px;
 }
 
 .sav-left-button {
@@ -39,12 +40,14 @@
   flex: 2;
   display:flex;
   justify-content: center;  
+  padding: 15px;
 }
 
 .sav-center-wrapper {
   display: flex;
   flex-direction: column;
   text-align: center;
+  padding-top: 5px;
 }
 
 .sav-title {
@@ -52,7 +55,7 @@
 }
 
 .ui.horizontal.divider.sav-center-divider {
-  color: white;
+  color: #ff7d00;
 }
 
 .sav-summary-container {
@@ -67,18 +70,25 @@
   flex: 1;
   display:flex;
   justify-content: center;
+  padding: 15px;
+  height: 470px;
+  position: relative;
 }
 
 .sav-right-wrapper {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   text-align: center;
+  justify-content: space-between;
+  position: relative;
+  padding-top: 5px;
 }
 
+/*
 .sav-right-item-container {
-  height: 150px;
+  
 }
+*/
 
 .sav-right-item-title {
   color: white;
@@ -86,8 +96,8 @@
 }
 
 .sav-right-image-container {
+  padding: 10px;
   height: 100px;
-  padding: 15px;
 }
 
 .sav-right-image {

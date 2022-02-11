@@ -1,0 +1,40 @@
+.cs {
+  display: flex;
+  justify-content: center;
+  height: 80vh;
+  background-color: rgba(0, 0, 0, 0.9);
+  border: 2px solid rgb(71, 71, 71);
+  overflow: hidden;
+}
+
+.cs-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px 0px 20px 0px;
+}
+
+.cs-header {
+  font-size: 30px;
+  color: #ff7d00;
+  text-align: center;
+}
+
+.cs-form-container {
+  padding: 10px;
+}
+
+.cs-form-header {
+  color: white;
+  font-size: 20px;
+}
+
+.cs-form-header-centered {
+  text-align: center;
+}
+
+.cs-feed-header {
+  color: white;
+  font-size: 20px;
+  margin: 10px 0px 20px 0px;
+}
