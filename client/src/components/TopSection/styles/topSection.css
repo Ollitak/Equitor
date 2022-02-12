@@ -4,7 +4,7 @@
   align-items: center;
   text-align: center;
   margin-bottom: 1em;
-  height: 400px;
+  height: 430px;
   position: relative;
   border-end-start-radius: 0;
   overflow: hidden;
@@ -34,7 +34,7 @@
 .ts-text-subheader {
   border-right: 3px solid #ff7d00;
   padding-right: 5px;
-  font-size: 2em;
+  font-size: 1.3em;
   white-space: nowrap;
   overflow: hidden;
   font-family: 'Courier New';

@@ -65,35 +65,6 @@ const HomePage = () => {
         </Grid.Row>
 
         <Divider className="hp-divider" />
-
-        <Grid.Row columns={1}>
-          <Grid.Column textAlign="center">
-            <h1 className="hp-header">Happy users</h1>
-            <Divider hidden className="hp-divider-quotes" />
-            <p className="hp-quote">Best site for cathing up with the market</p>
-            <p className="hp-quoter">Matti Meikäläinen</p>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Divider hidden className="hp-divider-quotes" />
-
-        <Grid.Row columns={1}>
-          <Grid.Column textAlign="center">
-            <p className="hp-quote">Never seen anything like this</p>
-            <p className="hp-quoter">Matti Teikäläinen</p>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Divider hidden className="hp-divider-quotes" />
-
-        <Grid.Row columns={1}>
-          <Grid.Column textAlign="center">
-            <p className="hp-quote">Simply wow</p>
-            <p className="hp-quoter">Matti Reikäläinen</p>
-          </Grid.Column>
-        </Grid.Row>
-
-        <Divider className="hp-divider" />
       </Grid>
     </div>
   );

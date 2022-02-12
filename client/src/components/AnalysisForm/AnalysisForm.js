@@ -438,7 +438,7 @@ const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
 /* Component to render year and forecast input fields for financial forecasts. */
 const ForecastFields = ({ setFieldValue, handleChange, handleBlur, fieldName }) => {
   return (
-    <div style={{ textAlign: "center" }}>
+    <div className="af-forecastfield">
       <Form.Field>
         <label className="af-label">Forecast year</label>
         <Select
@@ -465,7 +465,7 @@ const ForecastFields = ({ setFieldValue, handleChange, handleBlur, fieldName }) 
 /* Component to render group of fields for financial forecasts. */
 const ForecastFieldGroup = ({ setFieldValue, handleChange, handleBlur, fieldName }) => {
   return (
-    <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
+    <div className="af-forecastfieldgroup">
       <ForecastFields
         setFieldValue={setFieldValue}
         handleChange={handleChange}

@@ -103,7 +103,6 @@ const CommentSectionModal = ({ analysis, id }) => {
         <div className="cs-wrapper">
           <div className="cs-header"> COMMENTS & RATINGS</div>
           <DisplayCommentForm analysis={analysis} id={id} />
-          <h1 className="cs-feed-header">COMMENT FEED</h1>
           <Modal.Content scrolling>
             <CommentFeed analysis={analysis} />
           </Modal.Content>

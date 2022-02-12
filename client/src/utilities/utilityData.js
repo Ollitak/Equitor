@@ -11,8 +11,7 @@ export const stockSelection = [
     value: "Wärtsilä",
     name: "Wärtsilä Oyj",
     ticker: "WRT",
-    logoUrl:
-      "https://www.wartsila.com/images/default-source/brand-portal/logo/w-logo-1.png?sfvrsn=9b828545_6"
+    logoUrl: "https://muistoja.wartsila.com/wp-content/uploads/2019/09/wartsila-logo-white.png"
   },
   {
     label: "Nokia",
@@ -42,6 +41,20 @@ export const stockSelection = [
     name: "Kone Oyj",
     ticker: "KNEBV",
     logoUrl: "https://www.kone.com/fi/Images/Kone-header-lg_tcm18-99221.png?v=1"
+  },
+  {
+    label: "Rovio",
+    value: "Rovio",
+    name: "Rovio Oyj",
+    ticker: "ROVIO",
+    logoUrl: "https://mb.cision.com/Public/5549/2278243/913175e3401e6672_org.jpg"
+  },
+  {
+    label: "Neste",
+    value: "Neste",
+    name: "Neste Oyj",
+    ticker: "NESTE",
+    logoUrl: "https://www.neste.com/sites/all/themes/custom/nestecorecom/logo.png"
   }
 ];
 

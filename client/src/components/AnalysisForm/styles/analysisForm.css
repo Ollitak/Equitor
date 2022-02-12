@@ -66,3 +66,15 @@
 .ui.checkbox.af-checkbox {
   margin: 2em 1em;
 }
+
+.af-forecastfieldgroup {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin: 5px;
+}
+
+.af-forecastfield {
+  text-align: center;
+  margin: 15px;
+}

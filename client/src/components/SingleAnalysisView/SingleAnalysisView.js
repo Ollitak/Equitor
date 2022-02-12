@@ -77,12 +77,8 @@ const SingleAnalysisView = () => {
         <div className="sav-right-wrapper">
           <h1 className="sav-title">SUMMARY</h1>
           <div className="sav-right-item-container">
-            <div>
-              <h1 className="sav-right-item-title">COMPANY</h1>
-            </div>
-            <div className="sav-right-image-container">
-              <img className="sav-right-image" src={analysis.stockInformation.logoUrl} alt=""></img>
-            </div>
+            <h1 className="sav-right-item-title">COMPANY</h1>
+            <h1 className="sav-right-company-name">{analysis.stockInformation.name}</h1>
           </div>
           <div className="sav-right-item-container">
             <h1 className="sav-right-item-title">RECOMMENDATION</h1>
@@ -90,9 +86,13 @@ const SingleAnalysisView = () => {
           </div>
           <div className="sav-right-item-container">
             <h1 className="sav-right-item-title">TARGET PRICE</h1>
-            <Label tag size="big">
+            <Label tag color="grey" size="big">
               € {analysis.targetPrice}
             </Label>
+          </div>
+          <div className="sav-right-item-container">
+            <h1 className="sav-right-item-title">HISTORICAL STOCK PRICE</h1>
+            <h1 className="sav-right-company-name">TBD</h1>
           </div>
         </div>
       </div>

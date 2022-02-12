@@ -13,6 +13,7 @@ import TopSection from "./components/TopSection";
 import CreateAccountForm from "./components/CreateAccountForm";
 import Notification from "./components/Notification";
 import MyAccount from "./components/MyAccount";
+import { Divider } from "semantic-ui-react";
 
 import "./App.css";
 
@@ -46,6 +47,7 @@ const App = () => {
         <Route path="/my-account" component={MyAccount} />
         <Route path="/" component={HomePage} />
       </Switch>
+      <Divider className="bottom-divider" />
     </Router>
   );
 };
