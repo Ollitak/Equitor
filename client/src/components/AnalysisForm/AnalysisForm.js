@@ -83,9 +83,8 @@ const AnalysisForm = () => {
       ...values,
       stockInformation: stockSelection.find((s) => s.name === values.stockName)
     };
-    console.log(analysis.financialForecasts);
-    //dispatch(addAnalysis(analysis));
-    //history.push("/my-analyses");
+    dispatch(addAnalysis(analysis));
+    history.push("/my-analyses");
   };
 
   return (

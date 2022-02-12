@@ -53,7 +53,7 @@ const SingleAnalysisView = () => {
       <div className="sav-left">
         <div className="sav-left-wrapper">
           <h1 className="sav-title">OPTIONS</h1>
-          <ChartsModal />
+          <ChartsModal analysis={analysis} />
           <FullAnalysisModal analysis={analysis} id={id} />
           <CommentSectionModal analysis={analysis} id={id} />
           <button className="sav-left-button" onClick={() => history.push("/feed")}>
