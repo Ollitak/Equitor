@@ -4,7 +4,96 @@ import BarPlot from "./BarPlot";
 
 import "./styles/chartsModal.css";
 
-const data = [2.2, 3.5, 6.2, 2.1, 3.2];
+const financialForecasts = {
+  revenueForecasts: [
+    {
+      year: "2021",
+      forecast: 2.1
+    },
+    {
+      year: "2022",
+      forecast: 2.3
+    },
+    {
+      year: "2023",
+      forecast: 2.5
+    },
+    {
+      year: "2024",
+      forecast: 2.7
+    },
+    {
+      year: "2025",
+      forecast: 2.8
+    }
+  ],
+  ebitForecasts: [
+    {
+      year: "2021",
+      forecast: 2.1
+    },
+    {
+      year: "2022",
+      forecast: 2.7
+    },
+    {
+      year: "2023",
+      forecast: 2.9
+    },
+    {
+      year: "2024",
+      forecast: 3.1
+    },
+    {
+      year: "2025",
+      forecast: 6.2
+    }
+  ],
+  ebitdaForecasts: [
+    {
+      year: "2021",
+      forecast: 2.1
+    },
+    {
+      year: "2022",
+      forecast: 2.3
+    },
+    {
+      year: "2023",
+      forecast: 2.5
+    },
+    {
+      year: "2024",
+      forecast: 2.7
+    },
+    {
+      year: "2025",
+      forecast: 2.8
+    }
+  ],
+  netIncomeForecasts: [
+    {
+      year: "2021",
+      forecast: 2.1
+    },
+    {
+      year: "2022",
+      forecast: 2.3
+    },
+    {
+      year: "2023",
+      forecast: 2.5
+    },
+    {
+      year: "2024",
+      forecast: 2.7
+    },
+    {
+      year: "2025",
+      forecast: 2.8
+    }
+  ]
+};
 
 const ChartsModal = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -22,19 +111,19 @@ const ChartsModal = () => {
           <Modal.Content scrolling>
             <div className="cm-chart-container">
               <h1 className="cm-chart-title">REVENUE FORECASTS</h1>
-              <BarPlot values={data} />
+              <BarPlot values={financialForecasts.revenueForecasts} />
             </div>
             <div className="cm-chart-container">
               <h1 className="cm-chart-title">EBIT FORECASTS</h1>
-              <BarPlot values={data} />
+              <BarPlot values={financialForecasts.ebitdaForecasts} />
             </div>
             <div className="cm-chart-container">
               <h1 className="cm-chart-title">EBITDA FORECASTS</h1>
-              <BarPlot values={data} />
+              <BarPlot values={financialForecasts.ebitForecasts} />
             </div>
             <div className="cm-chart-container">
               <h1 className="cm-chart-title">NET INCOME FORECASTS</h1>
-              <BarPlot values={data} />
+              <BarPlot values={financialForecasts.netIncomeForecasts} />
             </div>
           </Modal.Content>
         </div>

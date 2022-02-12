@@ -66,6 +66,48 @@ const analysisSchema = mongoose.Schema({
     enum: ["BUY", "HOLD", "SELL"],
     required: true
   },
+  financialForecasts: [
+    {
+      revenueForecast: {
+        year: {
+          type: String
+        },
+        forecast: {
+          type: Number
+        }
+      }
+    },
+    {
+      ebitdaForecast: {
+        year: {
+          type: String
+        },
+        forecast: {
+          type: Number
+        }
+      }
+    },
+    {
+      ebitForecast: {
+        year: {
+          type: String
+        },
+        forecast: {
+          type: Number
+        }
+      }
+    },
+    {
+      netIncomeForecast: {
+        year: {
+          type: String
+        },
+        forecast: {
+          type: Number
+        }
+      }
+    }
+  ],
   comments: [
     {
       content: {

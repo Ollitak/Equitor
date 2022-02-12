@@ -4,9 +4,6 @@ import "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
 const BarPlot = ({ values }) => {
-  const labels = [2021, 2022, 2023, 2024, 2025];
-  const yMax = Math.trunc(Math.max(...values) * 1.5);
-
   const options = {
     maintainAspectRatio: false,
     scales: {
@@ -25,8 +22,7 @@ const BarPlot = ({ values }) => {
         ticks: {
           color: "white",
           font: 100
-        },
-        suggestedMax: yMax
+        }
       }
     },
     backgroundColor: "#ff7d00",
@@ -35,6 +31,7 @@ const BarPlot = ({ values }) => {
         display: false
       },
       datalabels: {
+        formatter: (value) => value.forecast,
         color: "white",
         align: "end",
         anchor: "end",
@@ -46,14 +43,16 @@ const BarPlot = ({ values }) => {
           }
         }
       }
+    },
+    parsing: {
+      xAxisKey: "year",
+      yAxisKey: "forecast"
     }
   };
 
   const data = {
-    labels: labels,
     datasets: [
       {
-        label: "",
         data: values,
         borderWidth: 1
       }

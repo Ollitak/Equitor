@@ -58,4 +58,14 @@
   * uuden teeman implementointi (ui styling)
 3.2 (3.5h)
   * uuden teeman implemennoinnin jatkaminen
+4.2 (1.5h)
+  * muutama bugifiksi pääasiassa liittyen filteröintiin
+9.2 (1h)
+  * prettierin asentaminen backendiin ja prettierin ajaminen
+10.2 (9.5h)
+  * inline css tyylittämisen eroittaminen erillisiin .css filuihin
+11.2 (8h)
+  * inline css tyylittämisen eroittaminen erillisiin .css filuihin
+  * chart.js:n implementointi dummy datalla
+  * deployaus
 
