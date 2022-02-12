@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { Formik, ErrorMessage } from "formik";
-import { Form, Input, TextArea, Checkbox, Header, Container } from "semantic-ui-react";
+import { Form, Input, TextArea, Checkbox } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
 import { addAnalysis } from "../../reducers/analysisReducer";
 import { useDispatch } from "react-redux";
 import Select from "react-select";
-import { stockSelection, keyWordOptions, recommendationOptions } from "../../utilities/utilityData";
+import {
+  stockSelection,
+  keyWordOptions,
+  recommendationOptions,
+  forecastYearOptions
+} from "../../utilities/utilityData";
 import analysisFormSchema from "./validationSchema";
 
 import "./styles/analysisForm.css";
@@ -53,32 +58,6 @@ const selectCustomStyle = {
   }
 };
 
-/* Component to render textBox with label and large textarea as well as the error message. */
-const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
-  return (
-    <Form.Field>
-      <label className="af-label">{label}</label>
-      <TextArea
-        value={value}
-        name={name}
-        type={"text"}
-        onChange={handleChange}
-        onBlur={handleBlur}
-      />
-      <ShowError name={name} />
-    </Form.Field>
-  );
-};
-
-/* Component for rendering error message. */
-const ShowError = ({ name }) => {
-  return (
-    <ErrorMessage name={name}>
-      {(error) => <div style={{ color: "red" }}>{error}</div>}
-    </ErrorMessage>
-  );
-};
-
 const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -87,6 +66,7 @@ const AnalysisForm = () => {
   but when corresponding checkbox is checked, a textboxShow is set to true
   and textBox appears. */
   const [textboxShow, setTextboxShow] = useState({
+    forecasts: false,
     summary: false,
     basicCompanyInformation: false,
     businessDescription: false,
@@ -103,8 +83,9 @@ const AnalysisForm = () => {
       ...values,
       stockInformation: stockSelection.find((s) => s.name === values.stockName)
     };
-    dispatch(addAnalysis(analysis));
-    history.push("/my-analyses");
+    console.log(analysis.financialForecasts);
+    //dispatch(addAnalysis(analysis));
+    //history.push("/my-analyses");
   };
 
   return (
@@ -125,6 +106,36 @@ const AnalysisForm = () => {
           valuation: "",
           investmentRisks: "",
           ESGMatters: ""
+        },
+        financialForecasts: {
+          revenueForecast: [
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" }
+          ],
+          ebitForecast: [
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" }
+          ],
+          ebitdaForecast: [
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" }
+          ],
+          netIncomeForecast: [
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" },
+            { year: "", forecast: "" }
+          ]
         }
       }}
       onSubmit={onSubmit}
@@ -144,7 +155,6 @@ const AnalysisForm = () => {
                   />
                   <ShowError name={"stockName"} />
                 </Form.Field>
-
                 <Form.Field>
                   <label className="af-label">Recommendation</label>
                   <Select
@@ -171,6 +181,7 @@ const AnalysisForm = () => {
                   }
                 />
               </Form.Field>
+
               <Form.Group widths="equal" style={{ marginBottom: "2em" }}>
                 <Form.Field>
                   <label className="af-label">Analysis title</label>
@@ -183,7 +194,6 @@ const AnalysisForm = () => {
                   />
                   <ShowError name={"title"} />
                 </Form.Field>
-
                 <Form.Field>
                   <label className="af-label">Target price (€)</label>
                   <Input
@@ -205,8 +215,50 @@ const AnalysisForm = () => {
                 handleBlur={handleBlur}
               />
 
-              <h1 className="af-subheader">CHOOSE MORE TOPICS TO BEST DESCRIPE YOUR ANALYSIS</h1>
+              <Checkbox
+                className="af-checkbox"
+                label={"Do you want to add financial forecasts?"}
+                onChange={() => {
+                  setTextboxShow({
+                    ...textboxShow,
+                    financialForecasts: !textboxShow.financialForecasts
+                  });
+                }}
+              />
+              {textboxShow.financialForecasts && (
+                <div>
+                  <h1 className="af-subheader">Revenue forecasts</h1>
+                  <ForecastFieldGroup
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    fieldName={"financialForecasts.revenueForecast"}
+                  />
+                  <h1 className="af-subheader">EBITDA forecasts</h1>
+                  <ForecastFieldGroup
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    fieldName={"financialForecasts.ebitdaForecast"}
+                  />
+                  <h1 className="af-subheader">EBIT forecasts</h1>
+                  <ForecastFieldGroup
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    fieldName={"financialForecasts.ebitForecast"}
+                  />
+                  <h1 className="af-subheader">Net income forecasts</h1>
+                  <ForecastFieldGroup
+                    setFieldValue={setFieldValue}
+                    handleChange={handleChange}
+                    handleBlur={handleBlur}
+                    fieldName={"financialForecasts.netIncomeForecast"}
+                  />
+                </div>
+              )}
 
+              <h1 className="af-subheader">CHOOSE MORE TOPICS TO BEST DESCRIPE YOUR ANALYSIS</h1>
               <Checkbox
                 className="af-checkbox"
                 label={"basic company information"}
@@ -279,8 +331,7 @@ const AnalysisForm = () => {
                   setTextboxShow({ ...textboxShow, ESGMatters: !textboxShow.ESGMatters });
                 }}
               />
-
-              {textboxShow.basicCompanyInformation ? (
+              {textboxShow.basicCompanyInformation && (
                 <TextBox
                   name={"content.basicCompanyInformation"}
                   label={"Basic company information"}
@@ -288,8 +339,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.businessDescription ? (
+              )}
+              {textboxShow.businessDescription && (
                 <TextBox
                   name={"content.businessDescription"}
                   label={"Business description"}
@@ -297,8 +348,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.industryOverviewAndCompetitivePositioning ? (
+              )}
+              {textboxShow.industryOverviewAndCompetitivePositioning && (
                 <TextBox
                   name={"content.industryOverviewAndCompetitivePositioning"}
                   label={"Industry overview and competitive positioning"}
@@ -306,8 +357,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.investmentSummary ? (
+              )}
+              {textboxShow.investmentSummary && (
                 <TextBox
                   name={"content.investmentSummary"}
                   label={"Investment summary"}
@@ -315,8 +366,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.financialAnalysis ? (
+              )}
+              {textboxShow.financialAnalysis && (
                 <TextBox
                   name={"content.financialAnalysis"}
                   label={"Financial analysis"}
@@ -324,9 +375,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-
-              {textboxShow.valuation ? (
+              )}
+              {textboxShow.valuation && (
                 <TextBox
                   name={"content.valuation"}
                   label={"Valuation"}
@@ -334,8 +384,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.investmentRisks ? (
+              )}
+              {textboxShow.investmentRisks && (
                 <TextBox
                   name={"content.investmentRisks"}
                   label={"Investment risks"}
@@ -343,8 +393,8 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-              {textboxShow.ESGMatters ? (
+              )}
+              {textboxShow.ESGMatters && (
                 <TextBox
                   name={"content.ESGMatters"}
                   label={"ESG matters"}
@@ -352,8 +402,7 @@ const AnalysisForm = () => {
                   handleChange={handleChange}
                   handleBlur={handleBlur}
                 />
-              ) : null}
-
+              )}
               <div className="af-button-container">
                 <button className="af-button af-button-submit" type="submit" onClick={handleSubmit}>
                   SUBMIT
@@ -367,6 +416,97 @@ const AnalysisForm = () => {
         </div>
       )}
     </Formik>
+  );
+};
+
+/* Component to render textBox with label and large textarea as well as the error message. */
+const TextBox = ({ name, label, value, handleChange, handleBlur }) => {
+  return (
+    <Form.Field>
+      <label className="af-label">{label}</label>
+      <TextArea
+        value={value}
+        name={name}
+        type={"text"}
+        onChange={handleChange}
+        onBlur={handleBlur}
+      />
+      <ShowError name={name} />
+    </Form.Field>
+  );
+};
+
+/* Component to render year and forecast input fields for financial forecasts. */
+const ForecastFields = ({ setFieldValue, handleChange, handleBlur, fieldName }) => {
+  return (
+    <div style={{ textAlign: "center" }}>
+      <Form.Field>
+        <label className="af-label">Forecast year</label>
+        <Select
+          styles={selectCustomStyle}
+          options={forecastYearOptions}
+          onChange={(vals) => setFieldValue(`${fieldName}.year`, vals.value)}
+        />
+      </Form.Field>
+
+      <Form.Field>
+        <label className="af-label">Forecast value (€)</label>
+        <Input
+          transparent
+          name={`${fieldName}.forecast`}
+          type={"number"}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
+      </Form.Field>
+    </div>
+  );
+};
+
+/* Component to render group of fields for financial forecasts. */
+const ForecastFieldGroup = ({ setFieldValue, handleChange, handleBlur, fieldName }) => {
+  return (
+    <div style={{ display: "flex", justifyContent: "space-between", flexWrap: "wrap" }}>
+      <ForecastFields
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        fieldName={`${fieldName}[0]`}
+      />
+      <ForecastFields
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        fieldName={`${fieldName}[1]`}
+      />
+      <ForecastFields
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        fieldName={`${fieldName}[2]`}
+      />
+      <ForecastFields
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        fieldName={`${fieldName}[3]`}
+      />
+      <ForecastFields
+        setFieldValue={setFieldValue}
+        handleChange={handleChange}
+        handleBlur={handleBlur}
+        fieldName={`${fieldName}[4]`}
+      />
+    </div>
+  );
+};
+
+/* Component for rendering error message. */
+const ShowError = ({ name }) => {
+  return (
+    <ErrorMessage name={name}>
+      {(error) => <div style={{ color: "red" }}>{error}</div>}
+    </ErrorMessage>
   );
 };
 

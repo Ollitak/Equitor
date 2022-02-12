@@ -66,9 +66,9 @@ const analysisSchema = mongoose.Schema({
     enum: ["BUY", "HOLD", "SELL"],
     required: true
   },
-  financialForecasts: [
-    {
-      revenueForecast: {
+  financialForecasts: {
+    revenueForecast: [
+      {
         year: {
           type: String
         },
@@ -76,9 +76,9 @@ const analysisSchema = mongoose.Schema({
           type: Number
         }
       }
-    },
-    {
-      ebitdaForecast: {
+    ],
+    ebitForecast: [
+      {
         year: {
           type: String
         },
@@ -86,9 +86,9 @@ const analysisSchema = mongoose.Schema({
           type: Number
         }
       }
-    },
-    {
-      ebitForecast: {
+    ],
+    ebitdaForecast: [
+      {
         year: {
           type: String
         },
@@ -96,15 +96,25 @@ const analysisSchema = mongoose.Schema({
           type: Number
         }
       }
-    },
-    {
-      netIncomeForecast: {
+    ],
+    netIncomeForecast: [
+      {
         year: {
           type: String
         },
         forecast: {
           type: Number
         }
+      }
+    ]
+  },
+  netIncomeForecast: [
+    {
+      year: {
+        type: String
+      },
+      forecast: {
+        type: Number
       }
     }
   ],

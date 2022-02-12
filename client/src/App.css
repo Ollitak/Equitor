@@ -9,6 +9,7 @@ p {
 
 .ui.input  {
   border-bottom: 1px solid white !important;
+  height: 50%;
 }
 
 .ui.input input:focus  {
