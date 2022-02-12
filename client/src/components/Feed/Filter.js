@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Segment, Button } from "semantic-ui-react";
 import Select from "react-select";
 import { stockSelection, keyWordOptions, orderingOptions } from "../../utilities/utilityData";
 import { useDispatch, useSelector } from "react-redux";
