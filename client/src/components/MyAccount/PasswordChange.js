@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Input, Header } from "semantic-ui-react";
+import { Form, Input } from "semantic-ui-react";
 import { Formik, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import usersService from "../../services/users";
