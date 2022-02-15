@@ -3,6 +3,7 @@ const analysesRouter = require("./controllers/analyses");
 const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const commentRouter = require("./controllers/comments");
+const stockPriceRouter = require("./controllers/stockPrice");
 const middleware = require("./utils/middleware");
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
@@ -22,6 +23,7 @@ app.use("/api/login", loginRouter);
 app.use("/api/analyses", analysesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/comment", commentRouter);
+app.use("/api/stockdata", stockPriceRouter);
 
 app.use(fallback("index.html", { root: "build" }));
 
