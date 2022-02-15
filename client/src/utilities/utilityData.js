@@ -3,14 +3,14 @@ export const stockSelection = [
     label: "Valmet",
     value: "Valmet",
     name: "Valmet Oyj",
-    ticker: "VALMT",
+    ticker: "VALMT.HE",
     logoUrl: "https://www.valmet.com/globalassets/media/media-gallery/logos/valmet_logo_rgb.jpg"
   },
   {
     label: "Wärtsilä",
     value: "Wärtsilä",
     name: "Wärtsilä Oyj",
-    ticker: "WRT",
+    ticker: "WRT1V.HE",
     logoUrl: "https://muistoja.wartsila.com/wp-content/uploads/2019/09/wartsila-logo-white.png"
   },
   {
@@ -25,35 +25,35 @@ export const stockSelection = [
     label: "Nordea",
     value: "Nordea",
     name: "Nordea Bank Oyj",
-    ticker: "NDA",
+    ticker: "NDA-FI.HE",
     logoUrl: "https://www.nordea.fi/Images/147-169221/Nordea-logo%20(2017).svg"
   },
   {
     label: "Raisio",
     value: "Raisio",
     name: "Raisio Oyj",
-    ticker: "RAIVV",
+    ticker: "RAIVV.HE",
     logoUrl: "https://www.raisio.com/wp-content/themes/everblox/dist/78716bfdd2a03985bbfe.svg"
   },
   {
     label: "Kone",
     value: "Kone",
     name: "Kone Oyj",
-    ticker: "KNEBV",
+    ticker: "KNEBV.HE",
     logoUrl: "https://www.kone.com/fi/Images/Kone-header-lg_tcm18-99221.png?v=1"
   },
   {
     label: "Rovio",
     value: "Rovio",
     name: "Rovio Oyj",
-    ticker: "ROVIO",
+    ticker: "ROVIO.HE",
     logoUrl: "https://mb.cision.com/Public/5549/2278243/913175e3401e6672_org.jpg"
   },
   {
     label: "Neste",
     value: "Neste",
     name: "Neste Oyj",
-    ticker: "NESTE",
+    ticker: "NESTE.HE",
     logoUrl: "https://www.neste.com/sites/all/themes/custom/nestecorecom/logo.png"
   }
 ];

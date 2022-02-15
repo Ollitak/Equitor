@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
 import CommentSectionModal from "./CommentSectionModal";
 import FullAnalysisModal from "./FullAnalysisModal";
 import ChartsModal from "./ChartsModal";
 import { Divider, Label } from "semantic-ui-react";
+import StockPriceChart from "./StockPriceChart";
+import stockDataService from "../../services/stockData";
+import { useDispatch } from "react-redux";
+import { setError } from "../../reducers/notificationReducer";
 
 import "./styles/singleAnalysisView.css";
 
@@ -40,9 +44,25 @@ const RecommendationLabel = ({ recommendation }) => {
 const SingleAnalysisView = () => {
   const { id } = useParams();
   const history = useHistory();
+  const dispatch = useDispatch();
+  const [stockData, setStockData] = useState(null);
 
   /* Retreive analysis that corresponds to the id in url path */
   const analysis = useSelector((state) => state.analyses.find((a) => a.id === id));
+
+  /* Retreive stock price data from Yahoo Finance API for price chart when analysis-constant is set. */
+  useEffect(() => {
+    if (analysis) {
+      stockDataService
+        .getStockData(analysis.stockInformation.ticker)
+        .then((stockData) => {
+          setStockData(stockData);
+        })
+        .catch((e) => {
+          dispatch(setError("Sorry, could not load historical stock data."));
+        });
+    }
+  }, [analysis, dispatch]);
 
   /* Return null if analysis is not defined ie. if the page is refreshed
   with current route or incorrect route is used. */
@@ -92,7 +112,7 @@ const SingleAnalysisView = () => {
           </div>
           <div className="sav-right-item-container">
             <h1 className="sav-right-item-title">HISTORICAL STOCK PRICE</h1>
-            <h1 className="sav-right-company-name">TBD</h1>
+            <StockPriceChart stockData={stockData} />
           </div>
         </div>
       </div>
