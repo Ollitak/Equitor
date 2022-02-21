@@ -63,9 +63,15 @@
 9.2 (1h)
   * prettierin asentaminen backendiin ja prettierin ajaminen
 10.2 (9.5h)
-  * inline css tyylittämisen eroittaminen erillisiin .css filuihin
+  * inline css tyylittämisen erottaminen erillisiin .css filuihin
 11.2 (8h)
-  * inline css tyylittämisen eroittaminen erillisiin .css filuihin
+  * inline css tyylittämisen erottaminen erillisiin .css filuihin continued
   * chart.js:n implementointi dummy datalla
   * deployaus
-
+12.2 (9.5h)
+  * Käyttäjä voi nyt lisätä analyysiin talouslukuennusteita
+  * Analyysiformin muokkaus
+  * Ennusteiden plottaus chart.js kirjastolla uuteen modaliin
+15.2 (4h)
+  * Yahoo Finance API:n käyttöönotto
+  * Osakedatan plottaus chart.js kirjastolla analyysinäkymään
