@@ -1,0 +1,9 @@
+services:
+  equitor:
+    image: equitor
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3001
+    container_name: equitor
