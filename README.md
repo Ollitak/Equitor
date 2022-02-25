@@ -34,11 +34,11 @@ Back-end is coded with Node.js and the underlying web framework is [Express.js](
 Front-end, on the other hand, is coded with React. The UI itself is mostly pure css divided into separate .css files. Each React component has a corresponding css-file that can be found in styles-folder within each component folder. Also, [Semantic UI](https://react.semantic-ui.com/) is used in some places, but I aim to transition to pure css as soon as possible. Charts within the Single Analysis view are plotted with [chartJS](https://www.chartjs.org/) and [React Chart JS](https://github.com/reactchartjs/react-chartjs-2), and forms are validated with [Yup schema](https://www.npmjs.com/package/yup) and controlled with [Formik](https://formik.org/). As already mentioned, stock price information is fetched from the [Yahoo Finance API](https://www.yahoofinanceapi.com/) by making a GET request first from the frontend to the backend and then calling the Yahoo API from the backend.
 
 ## How to run it?
-#### OPTION 1
+#### OPTION 1: visit deployed application
 Feel free to test the application in the following url:  https://equitor.herokuapp.com/
 
-#### OPTION 2
 
+#### OPTION 2: run locally
 1) Clone the repository
 
 2) Install dependencies
@@ -68,7 +68,7 @@ In the project root, run the following commands to start the backend with Nodemo
 npm run dev
 npm run dev:frontend
 ```
-#### OR
+### OR
 
 4) Run the application in production
 
@@ -78,6 +78,26 @@ In the project root, run the following commands to create a frontend production 
 npm run build:frontend
 npm start
 ```
+
+
+#### OPTION 3: start application inside container
+Application has a simple docker setup implemented.
+
+1) To start the container, first create .env file to the project root including the following environment variables.
+
+```javascript
+MONGODB_URI = your_mongodb_database_url
+SECRET = your_secret_key_for_jwt
+YAHOO_FINANCE_API_KEY = your-yahoo-finance-api-key
+```
+*alternatively feel free to pass envs via docker configs by adding environment variable key to either Dockerfile or docker-compose.yml*
+
+2) Next,run the following docker-compose command in the root folder to build the image and start the container. Be aware that the build process may take couple of minutes. Afterwards the application can be accessed with localhost:3000.
+
+```javascript
+docker-compose -f docker-compose.yml up
+```
+
 
 ## Some extra things to notice
 * Heroku deployment uses my free subscription of Yahoo Finance API that allows 100 requests per day. Thus be aware that if stock price charts are not plotted, it is possible that the free requests are exhausted for the day.
