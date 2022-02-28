@@ -1,0 +1,18 @@
+.pnf-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 20vh;
+}
+
+.pnf-text {
+  text-align: center;
+  color: white;
+  font-size: 100px;
+  animation: color-change infinite 3s alternate;
+}
+
+@keyframes color-change {
+  0%  {color:white;}
+  100%  {color:#ff7d00;}
+}

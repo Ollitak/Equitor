@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import AnalysisForm from "./components/AnalysisForm";
@@ -13,6 +13,7 @@ import TopSection from "./components/TopSection";
 import CreateAccountForm from "./components/CreateAccountForm";
 import Notification from "./components/Notification";
 import MyAccount from "./components/MyAccount";
+import PageNotFound from "./components/PageNotFound";
 import { Divider } from "semantic-ui-react";
 
 import "./App.css";
@@ -38,6 +39,7 @@ const App = () => {
       <TopSection />
       <Notification />
       <Switch>
+        <Route path="/about" component={HomePage} />
         <Route path="/feed" component={Feed} />
         <Route path="/create-analysis" component={AnalysisForm} />
         <Route path="/create-account" component={CreateAccountForm} />
@@ -45,7 +47,8 @@ const App = () => {
         <Route path="/my-analyses" component={MyAnalyses} />
         <Route path="/analysis/:id" component={SingleAnalysisView} />
         <Route path="/my-account" component={MyAccount} />
-        <Route path="/" component={HomePage} />
+        <Redirect from="/" to="about" exact />
+        <Route path="/" component={PageNotFound} />
       </Switch>
       <Divider className="bottom-divider" />
     </Router>
