@@ -1,16 +1,21 @@
+/** Module defines API endpoints that control users. */
+
 const usersRouter = require("express").Router();
 const User = require("../models/user");
 const bcrypt = require("bcrypt");
 const middleware = require("../utils/middleware");
+
+/** GET endpoint to fetch all users. */
 
 usersRouter.get("/", async (req, res) => {
   const users = await User.find({});
   res.status(200).json(users);
 });
 
+/** GET endpoint to fetch one user based on id. */
+
 usersRouter.get("/myAccount", middleware.userExtractor, async (req, res, next) => {
   const user = req.user;
-
   try {
     res.status(200).json(user);
   } catch (e) {
@@ -18,12 +23,15 @@ usersRouter.get("/myAccount", middleware.userExtractor, async (req, res, next) =
   }
 });
 
+/** POST endpoint to save new user. */
+
 usersRouter.post("/", async (req, res, next) => {
   const body = req.body;
   if (!body.password || !body.username) {
     return res.status(400).send({ error: "missing username or password" });
   }
 
+  // Apply salting to the hashing process
   const saltRounds = 10;
   const passwordHash = await bcrypt.hash(body.password, saltRounds);
 
@@ -41,6 +49,8 @@ usersRouter.post("/", async (req, res, next) => {
     next(e);
   }
 });
+
+/** PUT endpoint to edit user information. */
 
 usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) => {
   const id = req.userId;
@@ -62,17 +72,5 @@ usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) =
     next(e);
   }
 });
-
-/*
-usersRouter.delete("/:id", async (req, res, next) => {
-    const id = req.params.id;
-    try {
-        await User.findByIdAndRemove(id);
-        res.status(204).json.end(); 
-    } catch(e) {
-        next(e);
-    }
-});
-*/
 
 module.exports = usersRouter;

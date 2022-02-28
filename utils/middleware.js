@@ -1,3 +1,5 @@
+/** Module all Express middlewares used in the application. */
+
 const jwt = require("jsonwebtoken");
 const config = require("../utils/config");
 const User = require("../models/user");
@@ -14,6 +16,8 @@ const errorHandler = (error, req, res, next) => {
   next(error);
 };
 
+/** Extract token from the HTTP headers and add it as a part of request. */
+
 const tokenExtractor = (req, res, next) => {
   const authorization = req.get("authorization");
   if (authorization && authorization.toLowerCase().startsWith("bearer ")) {
@@ -23,9 +27,10 @@ const tokenExtractor = (req, res, next) => {
   next();
 };
 
+/** Extract user information from the token and add it as a part of request. */
+
 const userExtractor = async (req, res, next) => {
   try {
-    /* Parse user information from the token. */
     const decodedToken = jwt.verify(req.token, config.SECRET);
 
     if (!decodedToken.id) {

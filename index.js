@@ -1,12 +1,10 @@
 const config = require("./utils/config.js");
 
-/**Ensure that correct environment variables are passed before launching the express app. */
+/** Before launching the express app, ensure that the correct environment variables are passed. */
 
 if (!config.MONGODB_URI || !config.SECRET || !config.YAHOO_FINANCE_API_KEY) {
   console.log("Please provide valid environment variables. Check README.md for more information.");
 } else {
-  /**Create express server and run it in the given TCP port (defaults to 3001). */
-
   const http = require("http");
   const app = require("./app.js");
 

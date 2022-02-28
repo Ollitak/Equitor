@@ -25,6 +25,7 @@ app.use("/api/users", usersRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/stockdata", stockPriceRouter);
 
+// Fallback to index.html in case of undefined route
 app.use(fallback("index.html", { root: "build" }));
 
 app.use(middleware.unknownEndpoint);

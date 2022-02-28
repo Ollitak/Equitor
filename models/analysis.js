@@ -1,3 +1,5 @@
+/** Module creates Mongoose schema for equity analyses and exports corresponding Mongoose model. */
+
 const mongoose = require("mongoose");
 
 const analysisSchema = mongoose.Schema({
