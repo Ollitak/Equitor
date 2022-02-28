@@ -1,5 +1,7 @@
 import * as Yup from "yup";
 
+/** Yup validation schema for AnalysisForm */
+
 const validationSchema = Yup.object().shape({
   stockName: Yup.string().required("Stock must be specified!"),
   title: Yup.string().required("Title is required!"),

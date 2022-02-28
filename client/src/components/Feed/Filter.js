@@ -10,7 +10,8 @@ import {
 } from "../../reducers/filterReducer";
 import "./styles/filter.css";
 
-/* Custom styles object for react-select. */
+/** Custom styles object for react-select. */
+
 const selectCustomStyle = {
   menu: (provided) => ({
     ...provided,
@@ -39,8 +40,12 @@ const selectCustomStyle = {
   }
 };
 
-/* Filter bar currently has options to filter feed results by either company name or
-keyword. Additionally, it has buttons for resetting filters and hiding filter bar. */
+/** Component to display filter options.
+ *  Component currently has options to filter feed results by either company name or keyword.
+ *  Additionally, it has buttons for resetting filters and hiding filter bar. Hiding the filter
+ *  bar sets showFilterBar to false.
+ */
+
 const FilterContent = ({ setShowFilterBar }) => {
   const dispatch = useDispatch();
   const companyFilter = useSelector((state) => state.filter.companyFilter);
@@ -92,8 +97,11 @@ const FilterContent = ({ setShowFilterBar }) => {
   );
 };
 
-/* If showFilterBar is set to true, renders FilterBar. Else, renders
-button used to set showFilterBar true. */
+/** Component to conditionally render filtering. Filter options are set visible
+ *  when user clicks the "FILTER RESULTS" button. When the button is clicked,
+ *  showFilterBar is set to true and FilterContent component is rendered.
+ */
+
 const Filter = () => {
   const [showFilterBar, setShowFilterBar] = useState(false);
 

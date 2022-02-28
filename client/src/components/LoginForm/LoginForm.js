@@ -12,6 +12,13 @@ const LoginFormSchema = Yup.object().shape({
   password: Yup.string().required("Enter password")
 });
 
+/** Component renders a form that enables to login.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const LoginForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();

@@ -19,7 +19,8 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-/* Used to filter feed by company name. */
+/** Used to filter feed by company name. */
+
 export const setCompanyFilter = (filter) => {
   return {
     type: "SET_COMPANY_FILTER",
@@ -27,7 +28,8 @@ export const setCompanyFilter = (filter) => {
   };
 };
 
-/* Used to filter feed by keyword. */
+/** Used to filter feed by keyword. */
+
 export const setKeywordFilter = (filter) => {
   return {
     type: "SET_KEYWORD_FILTER",
@@ -35,7 +37,7 @@ export const setKeywordFilter = (filter) => {
   };
 };
 
-/* Used to order feed. */
+/** Used to order feed. */
 export const setOrderingFilter = (ordering) => {
   return {
     type: "SET_ORDER_FILTER",
@@ -43,7 +45,7 @@ export const setOrderingFilter = (ordering) => {
   };
 };
 
-/* Used to reset all filters. */
+/** Used to reset all filters. */
 export const resetFilters = () => {
   return {
     type: "RESET_FILTERS"

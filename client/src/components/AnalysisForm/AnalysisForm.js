@@ -12,10 +12,10 @@ import {
   forecastYearOptions
 } from "../../utilities/utilityData";
 import analysisFormSchema from "./validationSchema";
-
 import "./styles/analysisForm.css";
 
-/* Custom styles object for react-select. */
+/** Custom styles object for react-select. */
+
 const selectCustomStyle = {
   menu: (provided) => ({
     ...provided,
@@ -58,13 +58,22 @@ const selectCustomStyle = {
   }
 };
 
+/** Component renders a form that enables analysis creation.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const AnalysisForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  /* Used to control which textboxes are shown. Initially all hidden,
-  but when corresponding checkbox is checked, a textboxShow is set to true
-  and textBox appears. */
+  /** The following state is used to control which textboxes are shown. Initially all textboxes are
+   *  hidden, but when the corresponding checkbox is checked, a textboxShow is set to true and
+   *  the textBox appears.
+   */
+
   const [textboxShow, setTextboxShow] = useState({
     forecasts: false,
     summary: false,

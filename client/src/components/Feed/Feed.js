@@ -5,14 +5,16 @@ import { useSelector } from "react-redux";
 import prepareAnalyses from "../../utilities/prepareAnalyses";
 import "./styles/feed.css";
 
-/* Component to render analysis feed. It retreives analyses and filters from the
-redux store and applies the filters to the analyses. Then, it renders filter component
-and analysis feed. */
+/** Component that renders analysis feed. It retreives analyses and filters from the Redux store
+ *  and applies the filters to the analyses. Then, it renders Filter component and Feed
+ *  component.
+ */
+
 const Feed = () => {
   var analyses = useSelector((state) => state.analyses);
   const filters = useSelector((state) => state.filter);
 
-  /* Apply filters to analyses. */
+  // Apply filters to analyses
   analyses = prepareAnalyses(analyses, filters);
 
   return (

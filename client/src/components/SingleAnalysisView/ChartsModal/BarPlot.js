@@ -3,6 +3,8 @@ import { Bar } from "react-chartjs-2";
 import "chart.js/auto";
 import ChartDataLabels from "chartjs-plugin-datalabels";
 
+/** Uses Chart.js and react-chartjs-2 to render bar plot from the given "values" props. */
+
 const BarPlot = ({ values }) => {
   const options = {
     maintainAspectRatio: false,

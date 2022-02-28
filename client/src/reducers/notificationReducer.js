@@ -3,6 +3,8 @@ const initialState = {
   error: ""
 };
 
+const NOTIFICATION_TIME = 4000; // Determines how long notification pop-up is visible
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case "SET_ERROR":
@@ -16,23 +18,29 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-/* Used to set error notification. */
+/** Used to set error notification.
+ *  Notification resets based on the static constant named NOTIFICATION_TIME.
+ */
+
 export const setError = (notification) => {
   return (dispatch) => {
     dispatch({ type: "SET_ERROR", notification });
     setTimeout(function () {
       dispatch({ type: "RESET_NOTIFICATIONS" });
-    }, 4000);
+    }, NOTIFICATION_TIME);
   };
 };
 
-/* Used to set succesnotification. */
+/** Used to set success notification.
+ *  Notification resets based on the static constant named NOTIFICATION_TIME.
+ */
+
 export const setSuccess = (notification) => {
   return (dispatch) => {
     dispatch({ type: "SET_SUCCESS", notification });
     setTimeout(function () {
       dispatch({ type: "RESET_NOTIFICATIONS" });
-    }, 4000);
+    }, NOTIFICATION_TIME);
   };
 };
 

@@ -5,8 +5,13 @@ import { useSelector } from "react-redux";
 
 import "./styles/commentSectionModal.css";
 
-/* Form is hidden if either user hasn't logged in or analysis is posted by current user
- (can't comment own posts). */
+/** Component conditionally renders a CommentForm component. CommentForm component can be found in
+ *  a separate module named CommentForm.js.
+ *
+ *  Form is hidden if user hasn't logged in or analysis is posted by the current user
+ *  (i.e. can't comment own analyses).
+ */
+
 const DisplayCommentForm = ({ analysis, id }) => {
   const user = useSelector((state) => state.user);
 
@@ -57,7 +62,8 @@ const DisplayCommentForm = ({ analysis, id }) => {
   }
 };
 
-/* Presents comment feed. Constructed with Semantic Ui Feed component. */
+/** Component renders the comment feed. Constructed with Semantic Ui Feed component. */
+
 const CommentFeed = ({ analysis }) => {
   return (
     <Feed>
@@ -86,6 +92,13 @@ const CommentFeed = ({ analysis }) => {
     </Feed>
   );
 };
+
+/** Component renders a button, which triggers a new modal. Modal displays the comment section
+ *  including the following components:
+ *
+ *  - DisplayCommentForm: conditionally renders the comment form
+ *  - Comment feed: renders the comment feed
+ */
 
 /* Renders button that opens modal for comments. Modal is constructed with two componets:
 CommentWrite renders form for writing comments and second renders the comment feed. */

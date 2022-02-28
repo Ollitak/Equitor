@@ -14,6 +14,13 @@ const MyAccountSchema = Yup.object().shape({
   lastname: Yup.string().required("Enter username")
 });
 
+/** Component renders a form that enables changing account details.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const MyAccount = () => {
   const dispatch = useDispatch();
   var myAccount = useSelector((state) => state.user);

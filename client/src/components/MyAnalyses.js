@@ -3,7 +3,10 @@ import FeedItem from "./FeedItem";
 import { useSelector } from "react-redux";
 import prepareAnalyses from "../utilities/prepareAnalyses";
 
-/* Component to render logged user's analyses. Currently shares the .css file in Feed-component. */
+/** Component renders logged user's analyses in "my analysis" page.
+ *  [currently shares the .css file in Feed-component]
+ */
+
 const MyAnalyses = () => {
   const analyses = useSelector((state) => state.analyses);
   const user = useSelector((state) => state.user);
@@ -12,8 +15,7 @@ const MyAnalyses = () => {
 
   var myAnalyses = analyses.filter((analysis) => analysis.user.id === user.id);
 
-  /* Extend analysis objects' fields to include how many hours ago it was posted and average
-  rating. */
+  // Extend analysis objects' fields to include how many hours ago it was posted and average rating
   myAnalyses = prepareAnalyses(myAnalyses);
 
   return (

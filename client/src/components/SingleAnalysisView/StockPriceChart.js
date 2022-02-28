@@ -4,19 +4,22 @@ import { Line } from "react-chartjs-2";
 import "chart.js/auto";
 import "chartjs-adapter-date-fns";
 
+/** Component renders stock price chart included within single analysis view.
+ *  StockData is retreived in SingleAnalysisView component and passed as a prop.
+ */
+
 const StockPriceChart = ({ stockData }) => {
-  /* stockData is retreived from Yahoo Finance api thus being asyncronous => nothing is rendered
-  when data has not yet been retreived. */
+  // API call is asyncronous
   if (!stockData) return null;
 
-  /* Data from Yahoo API is in UNIX date format and here it is mapped into JS date format. */
+  // Data from Yahoo API is in UNIX date format and here it is mapped into JS date format
   const timestamps = stockData.chart.result[0].timestamp.map((time) => {
     return new Date(time * 1000);
   });
 
   const closePrices = stockData.chart.result[0].indicators.quote[0].close;
 
-  /* Store time and price data into array of objects, in which each object contain time and closing price. */
+  // Store time and price data into array of objects, in which each object contain time and closing price
   var plotObjects = [];
   for (var i = 0; i < timestamps.length; i++) {
     plotObjects[i] = { time: timestamps[i], closePrice: closePrices[i] };

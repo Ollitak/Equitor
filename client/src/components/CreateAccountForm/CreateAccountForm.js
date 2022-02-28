@@ -18,6 +18,13 @@ const CreateAccountFormSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Must match with password")
 });
 
+/** Component renders a form that enables account creation.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const CreateAccountForm = () => {
   const history = useHistory();
   const dispatch = useDispatch();

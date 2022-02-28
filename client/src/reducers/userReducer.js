@@ -16,8 +16,12 @@ const reducer = (state = null, action) => {
   }
 };
 
-/* On login, token is stored in both local storage and token variable in analyses service.
-Also, user information is fetched from my-account endpoint and stored in redux store. */
+/** Handles user login logic:
+ *  1) Uses login API endpoint to send user information and fetches the token from the API response
+ *  2) Token is stored in both local storage and token variable in analyses service
+ *  3) User information is fetched from my-account endpoint based on the token and stored in redux store
+ */
+
 export const login = (values) => {
   return async (dispatch) => {
     try {
@@ -35,8 +39,11 @@ export const login = (values) => {
   };
 };
 
-/* Used in useEffect on application launch to set token from local storage to analyses service variable.
-Also, user information is fetched from my-account endpoint and stored in redux store. */
+/** Function is used in useEffect on application launch:
+ *  1) Set token from the local storage to token variable in analyses service
+ *  3) User information is fetched from my-account endpoint based on the token and stored in redux store
+ */
+
 export const initializeUser = (userJson) => {
   return async (dispatch) => {
     try {
@@ -51,8 +58,10 @@ export const initializeUser = (userJson) => {
   };
 };
 
-/* Used to update user information; updated information is stored in redux store. Notice that
-user update does NOT change token and thus token does not need to be manipulated.  */
+/** Used to update user information and store the updated information in redux store.
+ *  Notice that user update does NOT change token and thus token does not need to be manipulated.
+ */
+
 export const updateUser = (values) => {
   return async (dispatch) => {
     try {
@@ -65,7 +74,7 @@ export const updateUser = (values) => {
   };
 };
 
-/* Used on log out to reset localstorage, redux user state and token in analyses service. */
+/** Used on log out. Resets localstorage, redux user state and token in analyses service. */
 export const logout = () => {
   return async (dispatch) => {
     analysesService.setToken(null);

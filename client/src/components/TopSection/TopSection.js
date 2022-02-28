@@ -3,6 +3,8 @@ import NavigationBar from "./NavigationBar";
 import Background from "../../images/background.jpg";
 import "./styles/topSection.css";
 
+/** Component renders top part of the page including the picture and the application title. */
+
 const TopSection = () => {
   return (
     <div className="ts">

@@ -7,6 +7,13 @@ import * as Yup from "yup";
 
 import "./styles/commentForm.css";
 
+/** Component renders a form that enables commenting an an analysis.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const CommentForm = ({ id }) => {
   const dispatch = useDispatch();
 

@@ -19,8 +19,8 @@ const reducer = (state = [], action) => {
   }
 };
 
-/* Used to retreive and store analyses data from the backend on
-app launch. */
+/** Used to retreive and store analyses data from the backend on app launch. */
+
 export const initializeAnalyses = () => {
   return async (dispatch) => {
     const analyses = await analysesService.getAnalyses();
@@ -28,7 +28,8 @@ export const initializeAnalyses = () => {
   };
 };
 
-/* Used to delete analysis from backend and from store. */
+/** Used to delete analysis from backend and from the store. */
+
 export const deleteAnalysis = (id) => {
   return async (dispatch) => {
     try {
@@ -41,7 +42,8 @@ export const deleteAnalysis = (id) => {
   };
 };
 
-/* Used to store analysis to backend and to store. */
+/** Used to store analysis to backend and to store. */
+
 export const addAnalysis = (values) => {
   return async (dispatch) => {
     try {
@@ -54,8 +56,10 @@ export const addAnalysis = (values) => {
   };
 };
 
-/* Used to add new comment to an analysis - backend responds with an
-updated analysis that is then saved to the store. */
+/** Used to add new comment to an analysis.
+ *  Backend responds with an updated analysis that is then saved to the store.
+ */
+
 export const addComment = (id, values) => {
   return async (dispatch) => {
     try {

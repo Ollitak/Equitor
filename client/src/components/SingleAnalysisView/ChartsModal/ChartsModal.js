@@ -4,6 +4,11 @@ import BarPlot from "./BarPlot";
 
 import "./styles/chartsModal.css";
 
+/** Component renders a button, which triggers a new modal. Modal displays the charts from
+ *  the financial forecasts. Charts are plotted using BarPlot component, which can be found
+ *  in a separate module named BarPlot.js.
+ */
+
 const ChartsModal = ({ analysis }) => {
   const [modalOpen, setModalOpen] = useState(false);
 

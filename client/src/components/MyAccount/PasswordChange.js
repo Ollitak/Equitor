@@ -14,6 +14,13 @@ const PasswordChangeSchema = Yup.object().shape({
     .oneOf([Yup.ref("password")], "Passwords must match")
 });
 
+/** Component renders a form that enables changing the password.
+ *
+ *  Yup is used to validate user input.
+ *  Formik is used to control state of the input fields, error handling
+ *  and form submission.
+ */
+
 const PasswordChange = () => {
   const dispatch = useDispatch();
 

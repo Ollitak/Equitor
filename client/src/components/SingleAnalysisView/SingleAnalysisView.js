@@ -12,6 +12,8 @@ import { setError } from "../../reducers/notificationReducer";
 
 import "./styles/singleAnalysisView.css";
 
+/** Component renders colored recommendation label based on the given prop. */
+
 const RecommendationLabel = ({ recommendation }) => {
   switch (recommendation) {
     case "BUY":
@@ -41,16 +43,18 @@ const RecommendationLabel = ({ recommendation }) => {
   }
 };
 
+/** Component renders detailed information of a single analysis. */
+
 const SingleAnalysisView = () => {
   const { id } = useParams();
   const history = useHistory();
   const dispatch = useDispatch();
   const [stockData, setStockData] = useState(null);
 
-  /* Retreive analysis that corresponds to the id in url path */
+  // Retreive analysis that corresponds to the id in url path
   const analysis = useSelector((state) => state.analyses.find((a) => a.id === id));
 
-  /* Retreive stock price data from Yahoo Finance API for price chart when analysis-constant is set. */
+  // Retreive stock price data from Yahoo Finance API for price chart when analysis-constant is set
   useEffect(() => {
     if (analysis) {
       stockDataService
@@ -64,8 +68,7 @@ const SingleAnalysisView = () => {
     }
   }, [analysis, dispatch]);
 
-  /* Return null if analysis is not defined ie. if the page is refreshed
-  with current route or incorrect route is used. */
+  // Return null if analysis is not (yet) defined ie. if the page is refreshed
   if (!analysis) return null;
 
   return (
@@ -74,7 +77,7 @@ const SingleAnalysisView = () => {
         <div className="sav-left-wrapper">
           <h1 className="sav-title">OPTIONS</h1>
           <ChartsModal analysis={analysis} />
-          <FullAnalysisModal analysis={analysis} id={id} />
+          <FullAnalysisModal analysis={analysis} />
           <CommentSectionModal analysis={analysis} id={id} />
           <button className="sav-left-button" onClick={() => history.push("/feed")}>
             BACK TO FEED

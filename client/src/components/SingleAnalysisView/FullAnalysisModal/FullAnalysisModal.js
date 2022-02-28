@@ -3,7 +3,10 @@ import { Modal } from "semantic-ui-react";
 
 import "./styles/fullAnalysisModal.css";
 
-/* Conditionally render title and content based on if content exists. */
+/** Component to render each paragraph within full analysis modal.
+ *  Conditionally renders the title and the content based on content's existance.
+ */
+
 const Paragraph = ({ title, content }) => {
   if (!content) return null;
   return (
@@ -14,7 +17,12 @@ const Paragraph = ({ title, content }) => {
   );
 };
 
-const FullAnalysisModal = ({ analysis, id }) => {
+/** Component renders a button, which triggers a new modal. Modal displays the written equity analysis.
+ *  The written analysis is divided in multiple sections which of each are rendered using
+ *  Paragraph component.
+ */
+
+const FullAnalysisModal = ({ analysis }) => {
   const [modalOpen, setModalOpen] = useState(false);
 
   return (

@@ -4,6 +4,15 @@ import { useHistory, useLocation } from "react-router-dom";
 import { logout } from "../../reducers/userReducer";
 import { useSelector, useDispatch } from "react-redux";
 
+/** Component to render navigation bar if user is logged in.
+ *  Navigation bar currently has options for the following routes:
+ * - About page (general app information)
+ * - Feed page
+ * - My analyses page (shows analyses of currently logged user)
+ * - Create analysis page
+ * - User information page
+ */
+
 const OnLoggedIn = ({ user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -41,6 +50,14 @@ const OnLoggedIn = ({ user }) => {
   );
 };
 
+/** Component to render navigation bar if user is logged out.
+ *  Navigation bar currently has options for the following routes:
+ * - About page (general app information)
+ * - Feed page
+ * - Login page
+ * - Create accounnt page
+ */
+
 const OnLoggedOut = () => {
   const history = useHistory();
   const location = useLocation();
@@ -66,7 +83,8 @@ const OnLoggedOut = () => {
   );
 };
 
-/* Conditionally render navigation bar based on whether user has logged in */
+/** Component renders navigation bar conditionally based on whether user has logged in. */
+
 const NavigationBar = () => {
   const user = useSelector((state) => state.user);
   return user ? <OnLoggedIn user={user} /> : <OnLoggedOut />;

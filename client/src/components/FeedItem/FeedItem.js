@@ -4,8 +4,8 @@ import { Rating } from "semantic-ui-react";
 import Buttons from "./Buttons";
 import "./styles/feedItem.css";
 
-/* Conditionally render date in the feed: if analysis posted <1 hour ago, render 'under hour ago',
-else render hour amount */
+/** Component to render how long ago the analysis was posted. */
+
 const PostedAgo = ({ postedAgo }) => {
   if (postedAgo < 1) {
     return <h2 className="feed-item-ago">UNDER AN HOUR AGO</h2>;
@@ -17,9 +17,15 @@ const PostedAgo = ({ postedAgo }) => {
   }
 };
 
-/* Renders two components:
-FeedContent to show information about the analysis such as who posted it and
-when it was posted, and Buttons, which enables entering single analysis view.  */
+/** Component that a single feed item within the Feed page. FeedItem includes information such as
+ *  who posted the analysis, what is the analysis name, what is its average rating and how long
+ *  ago it was posted. Clicking the single feed item routes the user to the single analysis view.
+ *
+ *  In addition, the component conditionally renders Button component based on the current route.
+ *  If the current route is myPage, only the user's own analyses are visible and buttons allow
+ *  user to delete an analysis.
+ */
+
 const FeedItem = ({ analysis, myPage }) => {
   return (
     <div className="feed-item-wrapper">

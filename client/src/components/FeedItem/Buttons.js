@@ -3,6 +3,11 @@ import { useDispatch } from "react-redux";
 import { deleteAnalysis } from "../../reducers/analysisReducer";
 import "./styles/buttons.css";
 
+/** Component to render buttons for an analysis item. Includes two button elements, one to delete
+ *  and one to modify analysis.
+ *  [modification not yet implemented]
+ */
+
 const Buttons = ({ analysis }) => {
   const dispatch = useDispatch();
 
