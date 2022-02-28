@@ -75,3 +75,6 @@
 15.2 (4h)
   * Yahoo Finance API:n käyttöönotto
   * Osakedatan plottaus chart.js kirjastolla analyysinäkymään
+25.2 (6h)
+  * Dockerin implementointi
+28.2
