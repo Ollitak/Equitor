@@ -4,7 +4,13 @@ const messageRouter = require("express").Router();
 const User = require("../models/user");
 const middleware = require("../utils/middleware");
 
-/** POST endpoint to save a chat message to database.  */
+/** POST endpoint to save a chat message to database.
+ *  Chat messages are stored to the User collection. Each user document has a list of chats with
+ *  users they have chatted before. Each chat has property for receiver user as well as list of
+ *  chat messages. Post endpoint retreives both the sender user and receiver user and saves the new
+ *  chat message for both users. If users don't have chatted before (i.e. no open chats yet), a
+ *  whole new chat property is created.
+ */
 
 messageRouter.post("/", middleware.userExtractor, async (req, res, next) => {
   const body = req.body;
@@ -22,7 +28,7 @@ messageRouter.post("/", middleware.userExtractor, async (req, res, next) => {
     isRead: false
   };
 
-  // If users have chatted before, add a new message to the chat
+  // Check if the users have chatted before. If so, add a new message to that chat
   var chattedBefore = false;
   chatSender.forEach((singleChat) => {
     if (singleChat.receiver._id.toString() === receiverId) {
@@ -39,7 +45,7 @@ messageRouter.post("/", middleware.userExtractor, async (req, res, next) => {
     }
   });
 
-  // If users have not chatted before, create a new chat
+  // If users have not chatted before, create a new chat for both users
   if (!chattedBefore) {
     chatSender = chatSender.concat({
       receiver: receiver._id,
