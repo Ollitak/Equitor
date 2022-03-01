@@ -3,6 +3,14 @@ import { token } from "./analyses";
 
 const BASE_URL = "/api/users";
 
+/** Make GET call to fetch all users. */
+
+const getUsers = async () => {
+  const config = { headers: { Authorization: token } };
+  const users = await axios.get(BASE_URL, config);
+  return users.data;
+};
+
 /** Make POST call to create a new user based on user detais provided as function parameter. */
 
 const createUser = async (userDetails) => {
@@ -29,6 +37,7 @@ const updateMyAccount = async (userDetails) => {
 };
 
 const exportObject = {
+  getUsers,
   createUser,
   findMyAccount,
   updateMyAccount

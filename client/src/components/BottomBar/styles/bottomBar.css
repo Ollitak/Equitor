@@ -7,7 +7,7 @@
 .br-open-chat-menu-button {
   pointer-events: all;
   height: 30px;
-  width: 200px;
+  width: 300px;
   margin: 2px 2px 0px 20px;
   font-size: small;
   font-weight: bold;
@@ -58,4 +58,93 @@
 
 .br-chat-menu-icon:hover {
   color: #ff7d00;
+}
+
+.br-chat-menu-button {
+  background-color: #ff7d00;
+  border: 1px solid rgb(88, 88, 88);
+  color: black;
+  height: 40px;
+  margin: 0px 10px 5px 10px;
+}
+
+.br-chat-menu-subtitle {
+  color: white;
+  text-align: center;
+  font-size: small;
+}
+
+.br-chat-menu-select-container {
+  margin: 0px 10px 0px 10px;
+}
+
+.br-open-chat-button {
+  pointer-events: all;
+  height: 30px;
+  width: 300px;
+  margin: 2px 2px 0px 20px;
+  font-size: small;
+  font-weight: bold;
+  color: #ff7d00;
+  border: 1px solid rgb(88, 88, 88);
+  border-bottom: 0px;
+  border-radius: 5px 5px 0px 0px;
+  background-color: rgb(48, 48, 48);
+}
+
+.br-chatbox-container {
+  display: flex;
+  flex-direction: column;
+  pointer-events: all;
+  background-color: rgb(48, 48, 48);
+  border: 1px solid rgb(88, 88, 88);
+  height: 600px;
+  width: 300px;
+  margin: 2px 2px 0px 20px;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.br-chat-top-container {
+  display: flex;
+  justify-content: center;
+  align-items:center;
+  height: 70px;
+}
+
+.br-chat-container {
+  height: 430px;
+}
+
+.br-chat-title {
+  color: white;
+  margin: 0px 20px;
+  font-size: large;
+}
+
+.br-single-message-own-container {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.br-single-message-own {
+  width: 70%;
+  background-color: #5eff00;
+  color: black;
+  padding: 5px;
+  margin: 6px;
+}
+
+.br-single-message-friend-container {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.br-single-message-friend {
+  width: 70%;
+  background-color: #00fac4;
+  color: black;
+  padding: 5px;
+  margin: 6px;
 }
