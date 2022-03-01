@@ -8,11 +8,13 @@ const middleware = require("../utils/middleware");
 /** GET endpoint to fetch all users. */
 
 usersRouter.get("/", async (req, res) => {
-  const users = await User.find({});
+  const users = await User.find({})
+    .populate("chat.receiver", "username id")
+    .populate("chat.messages.sender", "username id");
   res.status(200).json(users);
 });
 
-/** GET endpoint to fetch one user based on id. */
+/** GET endpoint to fetch user based on token. */
 
 usersRouter.get("/myAccount", middleware.userExtractor, async (req, res, next) => {
   const user = req.user;
@@ -39,7 +41,8 @@ usersRouter.post("/", async (req, res, next) => {
     firstname: body.firstname,
     lastname: body.lastname,
     username: body.username,
-    passwordHash: passwordHash
+    passwordHash: passwordHash,
+    chat: []
   });
 
   try {

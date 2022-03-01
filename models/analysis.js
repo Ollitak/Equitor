@@ -148,9 +148,28 @@ const analysisSchema = mongoose.Schema({
   }
 });
 
+/** Serialization logic for MongoDB objects to JSON.
+ *  Multiple id fields are deleted if they are not needed.
+ */
+
 analysisSchema.set("toJSON", {
   transform: (document, returnedObject) => {
     returnedObject.id = returnedObject._id.toString();
+    returnedObject.financialForecasts.revenueForecast.forEach((f) => {
+      delete f._id;
+    });
+    returnedObject.financialForecasts.ebitdaForecast.forEach((f) => {
+      delete f._id;
+    });
+    returnedObject.financialForecasts.ebitForecast.forEach((f) => {
+      delete f._id;
+    });
+    returnedObject.financialForecasts.netIncomeForecast.forEach((f) => {
+      delete f._id;
+    });
+    returnedObject.comments.forEach((c) => {
+      delete c._id;
+    });
     delete returnedObject._id;
     delete returnedObject.__v;
   }

@@ -21,7 +21,7 @@ commentRouter.post("/:id", middleware.userExtractor, async (req, res, next) => {
 
     await analysis.save();
 
-    /* Analysis needs to be retreived again in order to populate it */
+    // Analysis needs to be retreived again in order to populate it
     const savedAnalysis = await Analysis.findById(analysisId)
       .populate("comments.user", "name username id")
       .populate("user", "name username id");

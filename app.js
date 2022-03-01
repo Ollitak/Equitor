@@ -4,6 +4,7 @@ const usersRouter = require("./controllers/users");
 const loginRouter = require("./controllers/login");
 const commentRouter = require("./controllers/comments");
 const stockPriceRouter = require("./controllers/stockPrice");
+const messageRouter = require("./controllers/messages");
 const middleware = require("./utils/middleware");
 const config = require("./utils/config.js");
 const mongoose = require("mongoose");
@@ -24,6 +25,7 @@ app.use("/api/analyses", analysesRouter);
 app.use("/api/users", usersRouter);
 app.use("/api/comment", commentRouter);
 app.use("/api/stockdata", stockPriceRouter);
+app.use("/api/messages", messageRouter);
 
 // Fallback to index.html in case of undefined route
 app.use(fallback("index.html", { root: "build" }));
