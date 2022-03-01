@@ -28,7 +28,7 @@ const OnLoggedIn = ({ user }) => {
 
   return (
     <Menu stackable inverted pointing secondary size="massive">
-      <Menu.Item onClick={() => history.push("/about")} active={path === "/"}>
+      <Menu.Item onClick={() => history.push("/about")} active={path === "/about"}>
         About Equitor
       </Menu.Item>
       <Menu.Item onClick={() => history.push("/feed")} active={path === "/feed"}>
@@ -65,7 +65,7 @@ const OnLoggedOut = () => {
 
   return (
     <Menu stackable inverted pointing secondary size="massive">
-      <Menu.Item onClick={() => history.push("/")} active={path === "/"}>
+      <Menu.Item onClick={() => history.push("/about")} active={path === "/about"}>
         About Equitor
       </Menu.Item>
       <Menu.Item onClick={() => history.push("/feed")} active={path === "/feed"}>

@@ -10,6 +10,7 @@ import { initializeAnalyses } from "./reducers/analysisReducer";
 import { initializeUser } from "./reducers/userReducer";
 import { useDispatch } from "react-redux";
 import TopSection from "./components/TopSection";
+import BottomBar from "./components/BottomBar";
 import CreateAccountForm from "./components/CreateAccountForm";
 import Notification from "./components/Notification";
 import MyAccount from "./components/MyAccount";
@@ -50,7 +51,8 @@ const App = () => {
         <Redirect from="/" to="about" exact />
         <Route path="/" component={PageNotFound} />
       </Switch>
-      <Divider className="bottom-divider" />
+      <Divider hidden className="bottom-divider" />
+      <BottomBar />
     </Router>
   );
 };

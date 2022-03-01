@@ -63,8 +63,6 @@ const HomePage = () => {
             <p className="hp-desc">{text5}</p>
           </Grid.Column>
         </Grid.Row>
-
-        <Divider className="hp-divider" />
       </Grid>
     </div>
   );
