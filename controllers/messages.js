@@ -57,19 +57,22 @@ messageRouter.post("/", middleware.userExtractor, async (req, res, next) => {
     });
   }
 
-  console.log(chatSender);
-
   try {
     const updatedSender = await User.findByIdAndUpdate(
       sender._id,
       { chat: chatSender },
       { new: true }
-    );
+    )
+      .populate("chat.receiver", "username id")
+      .populate("chat.messages.sender", "username id");
+
     const updatedReceiver = await User.findByIdAndUpdate(
       receiver._id,
       { chat: chatReceiver },
       { new: true }
-    );
+    )
+      .populate("chat.receiver", "username id")
+      .populate("chat.messages.sender", "username id");
 
     if (!updatedSender || !updatedReceiver) {
       return res.status(400).send({ error: "User update unsuccessful" });

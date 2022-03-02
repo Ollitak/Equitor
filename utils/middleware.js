@@ -37,7 +37,9 @@ const userExtractor = async (req, res, next) => {
       return res.status(401).json({ error: "missing or invalid token" });
     }
 
-    req.user = await User.findById(decodedToken.id);
+    req.user = await User.findById(decodedToken.id)
+      .populate("chat.receiver", "username id")
+      .populate("chat.messages.sender", "username id");
     req.userId = decodedToken.id;
     console.log("User extracted successfully");
 
