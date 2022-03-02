@@ -24,7 +24,9 @@ When logged in, navigation bar takes a slightly new form. In addition to Feed vi
 
 Next, lets shortly look through the detailed information view accessible by clicking the analysis within the analyses feed. The title and summary of the analysis report is presented in the middle of the view and on the right side, there is a short summary of the analysis presenting information such as company name, recommendation, target price and a chart of historical stock price. All this information is given by the user that published the report - expect the stock price information, which is fetched from the [Yahoo Finance API](https://www.yahoofinanceapi.com/).
 
-Then, on the left side of the detailed information view are buttons for viewing forecast charts, full analysis and comments. Charts button opens a modal that presents multiple bar plots which visualize financial forecast information given by the user that published the report. Similarly, full analysis button opens a modal that presents rest of the analysis written by the publisher - this information is asked in the create analysis form and is optional. Next, the Comment button opens a modal that allows users to write and rate the analysis in question and read comments posted by other users. However, user cannot comment his own analysis and user must be logged in in order to post a new comment. Lastly, there is a button to return back to Feed view.
+Then, on the left side of the detailed information view are buttons for viewing forecast charts, full analysis and comments. Charts button opens a modal that presents multiple bar plots which visualize financial forecast information given by the user that published the report. Similarly, full analysis button opens a modal that presents rest of the analysis written by the publisher - this information is asked in the analysis form and is optional. Next, the Comment button opens a modal that allows users to write and rate the analysis in question and read comments posted by other users. However, user cannot comment his own analysis and user must be logged in in order to post a new comment. Lastly, there is a button to return back to Feed view.
+
+The latest addition to app functionalities is chat. When logged in, user sees a fixed chat icon in the bottom left corner. This icon opens up a messaging menu, where user can select other users to start a chat with. When user decides to start a new chat, a chat window is opened in the left corner next to messaging menu. Chat window as well as messaging menu window can both be minimized and maximized by clicking the arrow. Currently, chat functionality does not work in real-time and thus needs a bit more development in future. Chat is currently updated whenever a user property in redux store is updated, namely when site is refreshed or user updates his or her user details.
 
 ## Shortly about the file structure and dependencies
 Application is built in a monorepo, meaning that both front-end and back-end are in the same directory. Back-end is located in the root and has its own package.json. Front-end is located in the [Client](/client) directory, and also has its own package.json.
@@ -34,11 +36,11 @@ Back-end is coded with Node.js and the underlying web framework is [Express.js](
 Front-end, on the other hand, is coded with React. The UI itself is mostly pure css divided into separate .css files. Each React component has a corresponding css-file that can be found in styles-folder within each component folder. Also, [Semantic UI](https://react.semantic-ui.com/) is used in some places, but I aim to transition to pure css as soon as possible. Charts within the Single Analysis view are plotted with [chartJS](https://www.chartjs.org/) and [React Chart JS](https://github.com/reactchartjs/react-chartjs-2), and forms are validated with [Yup schema](https://www.npmjs.com/package/yup) and controlled with [Formik](https://formik.org/). As already mentioned, stock price information is fetched from the [Yahoo Finance API](https://www.yahoofinanceapi.com/) by making a GET request first from the frontend to the backend and then calling the Yahoo API from the backend.
 
 ## How to run it?
-#### OPTION 1: visit deployed application
+### OPTION 1: visit deployed application
 Feel free to test the application in the following url:  https://equitor.herokuapp.com/
 
 
-#### OPTION 2: run locally
+### OPTION 2: run locally
 1) Clone the repository
 
 2) Install dependencies
@@ -68,7 +70,7 @@ In the project root, run the following commands to start the backend with Nodemo
 npm run dev
 npm run dev:frontend
 ```
-### OR
+#### OR
 
 4) Run the application in production
 
@@ -80,7 +82,7 @@ npm start
 ```
 
 
-#### OPTION 3: start application inside container
+### OPTION 3: start application inside container
 Application has a simple docker setup implemented.
 
 1) To start the container, first create .env file to the project root including the following environment variables.
@@ -98,8 +100,10 @@ YAHOO_FINANCE_API_KEY = your-yahoo-finance-api-key
 docker-compose -f docker-compose.yml up
 ```
 
+## Improvements and next steps
+* Chat is currently not working in realtime. Thus, something like long polling or websockets need to be applied in near future.
+* UI is not optimized for mobile. Especially the chat needs to be more dynamic. 
 
 ## Some extra things to notice
 * Heroku deployment uses my free subscription of Yahoo Finance API that allows 100 requests per day. Thus be aware that if stock price charts are not plotted, it is possible that the free requests are exhausted for the day.
 
-### I thank for your interest in my application and in case you have any comments (improvement suggestions or whatever), feel free to contact me!
