@@ -21,7 +21,7 @@ const OnLoggedIn = ({ user }) => {
 
   const logOut = () => {
     if (window.confirm("Are you sure you want to log out?")) {
-      history.push("/home");
+      history.push("/about");
       dispatch(logout());
     }
   };
