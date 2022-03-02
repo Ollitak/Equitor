@@ -8,41 +8,51 @@
   * alustavan backend-version viimeistely ja frontendin aloitus
   * user-scheman luominen databaseen ja schemojen väliset yhteydet
   * react front-endin aloitus, alustava versio aloitussivusta visualisointeineen 
+
 19.1 (9h)
   * front-endin jatkaminen
   * alustavien toiminnallisuuksien lisääminen: sisäänkirjautumissivu, analyysin luontisivu,
     uloskirjautumismahdollisuus ja analyysin poistamismahdollisuus
   * token-perusteisen kirjautumisen implementointi
+
 20.1 (9h)
   *  reduxin implementointi ja kommentointimahdollisuuden lisääminen
+
 21.1 (12h)
   * semantic UI:n opettelu ja implementointi login formiin, Yup:n käyttöönotto. Haasteita muun muassa semantic ui:n ja formikin yhteensovittamisen kanssa.
+
 24.1 (12h)
   * navigaatiomenun ja homepagen luominen pääasiassa Semantic UI:lla
   * yhden analyysin sivun ulkoasun tekeminen, muun muassa Semantic UI:n Gridin opettelu
   * analyysin backend scheeman laajennus ja vastaavat muutokset front-endiin
+
 25.1 (10.5h)
   * uuden analyysin luomiseen käytettävän formin laajentaminen, mm. checkboxit joilla
     mahdollista renderöidä textboxeja ehdollisesti.
   * feedin rakentaminen semantic UI:lla
   * koodin jakaminen pienempiin komponentteihin ja moduuleihin
+
 26.1 (11h)
   * filteröinnin implementointi
   * styling
   * käyttäjän luomiseen tarkoitetun formin luominen
+
 27.1 (8h)
   * notifikaatioiden implementointi
   * utiliteettifunktioiden luominen mm. keskimääräisen ratingin laskelmiseen
   * filteröinnin laajentaminen
   * modalin implementointi kommentoiti-ikkunaan
+
 28.1 (4.5h)
   * eslintin fiksaaminen (ei extendannut react-app:n default configia) ja lintteriongelmien fiksaus
   * prettierin asentaminen ja konffaaminen
   * yleinen stailaus
+
 31.1 (7h)
   * backendin uudelleensuunnittelua: ajatuksena tehdä viesteistä oma kokoelma, mutta päätin olla implementoimatta
   * backendiin pieniä fiksauksia, esim delete vaatii nyt tokenin
   * my account -välilehden tekeminen ja tätä varten tarvittavan put endpointin luominen user kokoelmalle
+
 1.2 (9h)
   * muutos miten käyttäjä tallentaan frontendin tilaan, aikaisemmin tilaan tallennettiin login API:n vastaus, kun nyt käyttäjä haetaan erillisellä API-pyynnöllä. Local storagessa nyt vain token.
   * muun koodin muokkaaminen toimivaksi (nyt käyttäjän hakeminen esimerkiksi sivun refreshauksen yhteydessä asynkroninen toimenpide).
@@ -50,31 +60,53 @@
   * salasanan muuttamisen implementointi front- ja backendiin
   * omia analyysejä ei voi enää kommentoida
   * pientä ui stailausta
+
 2.2 (12h)
   * alert ilmoitusten implementointi
   * tämänhetkisen version deployaaminen herokuun ja ongelmien selvittely (heroku esimerkiksi yritti automaattisesti buildata frontendiä, vaikka tarkoitus oli käyttää valmista, ennen deployaamista tehtyä buildia)
   * express bugin korjaus, joka aiheutui frontendin routeista ja staattisen build-kansion tarjoamisesta backendissä. Sivun refreshaaminen frontendin routen kanssa aiheutti unknown-endpoint errorin, koska backend ei osannut
     routea sovellusta frontendin routeen. Tätä varten asensin "express history api fallbackin" joka korjasin ongelman
   * uuden teeman implementointi (ui styling)
+
 3.2 (3.5h)
   * uuden teeman implemennoinnin jatkaminen
+
 4.2 (1.5h)
   * muutama bugifiksi pääasiassa liittyen filteröintiin
+
 9.2 (1h)
   * prettierin asentaminen backendiin ja prettierin ajaminen
+
 10.2 (9.5h)
   * inline css tyylittämisen erottaminen erillisiin .css filuihin
+
 11.2 (8h)
   * inline css tyylittämisen erottaminen erillisiin .css filuihin continued
   * chart.js:n implementointi dummy datalla
   * deployaus
+
 12.2 (9.5h)
   * Käyttäjä voi nyt lisätä analyysiin talouslukuennusteita
   * Analyysiformin muokkaus
   * Ennusteiden plottaus chart.js kirjastolla uuteen modaliin
+
 15.2 (4h)
   * Yahoo Finance API:n käyttöönotto
   * Osakedatan plottaus chart.js kirjastolla analyysinäkymään
+
 25.2 (6h)
   * Dockerin implementointi
-28.2
+
+28.2 (3h)
+  * Koodin läpikäynti kommentoinnin osalta. Kommenttien parantaminen.
+  * NotFound komponentin implementointi
+
+1.3 (7h)
+  * Chat-toiminnallisuuden aloittaminen.
+  * Database scheman muokkaus ja backend routereiden rakentaminen.
+  * Front-end UI:n aloittaminen
+2.3 (4h)
+  * Chat toiminnallisuus - frontendin jatkaminen.
+  * Viestien lähettäminen toimii nyt mainiosti. Pitäisi vielä implementoida pollaus-toiminto, jotta viestit päivittyisivät reaaliajassa.
+
+TUNNIT YHTEENSÄ 17.1.2022-2.3.2022: 180h
