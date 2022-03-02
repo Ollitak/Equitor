@@ -64,7 +64,9 @@ usersRouter.put("/myAccount", middleware.userExtractor, async (req, res, next) =
   }
 
   try {
-    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true })
+      .populate("chat.receiver", "username id")
+      .populate("chat.messages.sender", "username id");
 
     if (!updatedUser) {
       return res.status(400).send({ error: "user update unsuccessful" });
