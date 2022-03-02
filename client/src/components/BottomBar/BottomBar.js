@@ -191,7 +191,7 @@ const ChatBox = ({ chatShow, setChatShow, user }) => {
             value={chatMessage}
             onChange={handleInputChange}
             type="text"
-            placeholder={"Write a comment..."}></textarea>
+            placeholder={"Write a new message..."}></textarea>
           <button className="br-chatbox-send-button" type="submit">
             SEND
           </button>
