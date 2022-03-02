@@ -1,5 +1,6 @@
 import analysesService from "../services/analyses";
 import usersService from "../services/users";
+import messageService from "../services/messages";
 import loginService from "../services/login";
 import { setError, setSuccess } from "./notificationReducer";
 
@@ -70,6 +71,21 @@ export const updateUser = (values) => {
       dispatch(setSuccess("User update successful!"));
     } catch (e) {
       dispatch(setError("User update failed."));
+    }
+  };
+};
+
+/** Used to add new message to the database and then update user information with that added message.
+ *  Notice that user update does NOT change token and thus token does not need to be manipulated.
+ */
+
+export const addMessage = (receiverId, content) => {
+  return async (dispatch) => {
+    try {
+      const updatedUser = await messageService.newMessage(receiverId, content);
+      dispatch({ type: "UPDATE_USER", user: updatedUser });
+    } catch (e) {
+      dispatch(setError("Error in sending a message"));
     }
   };
 };
