@@ -107,3 +107,5 @@ docker-compose -f docker-compose.yml up
 ## Some extra things to notice
 * Heroku deployment uses my free subscription of Yahoo Finance API that allows 100 requests per day. Thus be aware that if stock price charts are not plotted, it is possible that the free requests are exhausted for the day.
 
+## Timekeeping
+Working hours keeping required by the course can be found [here](https://github.com/Ollitak/Equitor/blob/master/planning/timekeeping.txt)
